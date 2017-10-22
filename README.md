@@ -1,2 +1,2 @@
 # arto-server
-Server application for Arto.
+Server application for Arto

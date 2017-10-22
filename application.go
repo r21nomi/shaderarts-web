@@ -9,12 +9,12 @@ import (
 )
 
 // Pages
-const indexPage = "public/arto-web/template/page/index.html"
-const detailPage = "public/arto-web/template/page/detail.html"
+const indexPage = "public/template/page/index.html"
+const detailPage = "public/template/page/detail.html"
 
 // Partials
-const headerPartial = "public/arto-web/template/partial/header.html"
-const artItemPartial = "public/arto-web/template/partial/art_item.html"
+const headerPartial = "public/template/partial/header.html"
+const artItemPartial = "public/template/partial/art_item.html"
 
 type Art struct {
 	ID string

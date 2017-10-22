@@ -1,0 +1,10 @@
+{{ define "art_item" }}
+
+{{ range $i, $v := .Items }}
+<div class="art_{{ $i }}">
+    <div><a href="/detail/{{ $v.ID }}">{{ $v.Title }}</a></div>
+    <div>{{ $v.Body }}</div>
+</div>
+{{ end }}
+
+{{ end }}
