@@ -6,15 +6,18 @@ import (
 	"net/http"
 	"os"
 	"text/template"
+	"path/filepath"
 )
 
-// Pages
-const indexPage = "public/template/page/index.html"
-const detailPage = "public/template/page/detail.html"
+var executableDir = getExecutableDir()
+
+// Pages (set from executable directory since working directory will change depend on the directory where the program was executed.)
+var indexPage = executableDir + "/public/template/page/index.html"
+var detailPage = executableDir + "/public/template/page/detail.html"
 
 // Partials
-const headerPartial = "public/template/partial/header.html"
-const artItemPartial = "public/template/partial/art_item.html"
+var headerPartial = executableDir + "/public/template/partial/header.html"
+var artItemPartial = executableDir + "/public/template/partial/art_item.html"
 
 type Art struct {
 	ID string
@@ -54,4 +57,14 @@ func main() {
 
 	log.Printf("Listening on port %s\n\n", port)
 	http.ListenAndServe(":" + port, router)
+}
+
+/**
+ * Get directory where executable file is located.
+ */
+func getExecutableDir() string {
+	exe, _ := os.Executable()
+	wd := filepath.Dir(exe)
+    log.Println("Executable directory : " + wd)
+	return wd
 }
