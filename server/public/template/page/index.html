@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{{ define "index" }}
+<html>
+    {{ template "header" }}
+    <body>
+        <h1>Arto</h1>
+        <div>{{ template "art_item" . }}</div>
+    </body>
+</html>
+{{ end }}
