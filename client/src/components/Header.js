@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../styles/header.css'
+import styles from '../styles/header.css.js'
 
 const Header = () => (
-    <header className={styles.header}>
+    <header style={styles.header}>
         Arto
     </header>
 )
