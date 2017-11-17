@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from '../styles/link.css'
 
-const Link = ({ active, children, onClick }) => {
+const Link = ({ active, onClick, children }) => {
     if (active) {
-        return <span>{children}</span>
+        return <span className={styles.link_selected}>{children}</span>
     }
 
     return (
-        <a href="#"
+        <a className={styles.link}
+            href="#"
             onClick={e => {
                 e.preventDefault()
                 onClick()

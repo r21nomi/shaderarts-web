@@ -1,0 +1,8 @@
+.link {
+    color: #ffcc00;
+    padding: 8px;
+}
+.link_selected {
+    color: #fff;
+    padding: 8px;
+}
