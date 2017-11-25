@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from '../components/Header'
 import TopPage from './TopPage'
-import BrowsePage from './BrowsePage'
+import ExplorePage from './ExplorePage'
 import CreatePage from './CreatePage'
 import Footer from '../components/Footer'
 import {
@@ -14,12 +13,9 @@ import styles from '../styles/app.css'
 const App = () => (
     <Router>
         <div>
-            <Header />
-            <div className={styles.content}>
-                <Route exact path="/" component={TopPage}></Route>
-                <Route path="/browse" component={BrowsePage} />
-                <Route path="/create" component={CreatePage} />
-            </div>
+            <Route exact path="/" component={TopPage}></Route>
+            <Route path="/explore" component={ExplorePage} />
+            <Route path="/create" component={CreatePage} />
             <Footer />
         </div>
     </Router>
