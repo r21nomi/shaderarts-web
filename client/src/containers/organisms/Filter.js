@@ -1,6 +1,6 @@
 import React from 'react'
-import FilterLink from './FilterLink'
-import styles from '../styles/filter.css'
+import FilterLink from '../FilterLink'
+import styles from '../../styles/filter.css'
 
 const Filter = () => (
     <div className={styles.filter}>

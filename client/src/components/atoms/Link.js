@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from '../styles/link.css'
+import styles from '../../styles/link.css'
 
 const Link = ({ active, onClick, children }) => {
     if (active) {

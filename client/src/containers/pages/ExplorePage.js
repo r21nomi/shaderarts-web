@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../components/Header'
-import AddTodo from './AddTodo'
-import Filter from './Filter'
-import VisibleTodoList from './VisibleTodoList'
-import styles from '../styles/explore_page.css'
+import Header from '../organisms/Header'
+import AddTodo from '../AddTodo'
+import Filter from '../organisms/Filter'
+import VisibleTodoList from '../VisibleTodoList'
+import styles from '../../styles/explore_page.css'
 
 const ExplorePage = () => (
     <div>

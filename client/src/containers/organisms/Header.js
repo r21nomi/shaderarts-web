@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from '../styles/header.css'
+import styles from '../../styles/header.css'
 
-const CreateHeader = () => (
+const Header = () => (
     <header className={styles.header}>
         <div className={styles.title}><Link to="/">Arto</Link></div>
         <ul>
-            <li>Save as draft</li>
-            <li>Submit</li>
+            <li><Link to="/explore">Explore</Link></li>
+            <li><Link to="/create">Create</Link></li>
         </ul>
     </header>
 )
 
-export default CreateHeader
+export default Header

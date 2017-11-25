@@ -2,13 +2,13 @@ import React from 'react';
 import TopPage from './TopPage'
 import ExplorePage from './ExplorePage'
 import CreatePage from './CreatePage'
-import Footer from '../components/Footer'
+import Footer from '../organisms/Footer'
 import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom'
 import 'normalize.css'
-import styles from '../styles/app.css'
+import styles from '../../styles/app.css'
 
 const App = () => (
     <Router>
