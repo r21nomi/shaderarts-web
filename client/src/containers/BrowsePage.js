@@ -3,7 +3,7 @@ import AddTodo from './AddTodo'
 import Filter from './Filter'
 import VisibleTodoList from './VisibleTodoList'
 
-const Browse = () => (
+const BrowsePage = () => (
     <div>
         <AddTodo />
         <Filter />
@@ -11,4 +11,4 @@ const Browse = () => (
     </div>
 )
 
-export default Browse
+export default BrowsePage

@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Create = () => (
+const CreatePage = () => (
     <div>Create page</div>
 )
 
-export default Create
+export default CreatePage

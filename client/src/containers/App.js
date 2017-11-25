@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header'
+import TopPage from './TopPage'
 import BrowsePage from './BrowsePage'
 import CreatePage from './CreatePage'
 import Footer from '../components/Footer'
@@ -15,7 +16,8 @@ const App = () => (
         <div>
             <Header />
             <div className={styles.content}>
-                <Route exact path="/" component={BrowsePage} />
+                <Route exact path="/" component={TopPage}></Route>
+                <Route path="/browse" component={BrowsePage} />
                 <Route path="/create" component={CreatePage} />
             </div>
             <Footer />
