@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const vertexShaderSource = "attribute vec4 a_position; void main() { gl_Position = a_position; }"
+const vertexShaderSource =
+`
+attribute vec4 a_position;
+void main() {
+    gl_Position = a_position;
+}
+`
 
-const fragmentShaderSource = "precision mediump float; void main() { gl_FragColor = vec4(1, 0, 0.5, 1); }"
+const fragmentShaderSource =
+`
+precision mediump float;
+void main() {
+    gl_FragColor = vec4(1, 1, 0.5, 1);
+}
+`
 
 class GLSLCanvas extends Component {
     componentDidMount() {
@@ -29,9 +41,10 @@ class GLSLCanvas extends Component {
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
 
         var positions = [
-            0, 0,
-            0, 0.5,
-            0.7, 0
+            -1, 1, 0,
+            -1, -1, 0,
+            1, 1, 0,
+            1, -1, 0
         ]
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
 
@@ -44,16 +57,16 @@ class GLSLCanvas extends Component {
         gl.enableVertexAttribArray(positionAttributeLocation)
 
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
-        var size = 2
+        var size = 3  // xyz
         var type = gl.FLOAT
         var normalize = false
         var stride = 0
         var offset = 0
         gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride, offset)
 
-        var primitiveType = gl.TRIANGLES
-        var count = 3
-        gl.drawArrays(primitiveType, offset, count)
+        var primitiveType = gl.TRIANGLE_STRIP
+        var vertexCount = 4
+        gl.drawArrays(primitiveType, offset, vertexCount)
 
         this.props.updateCanvas(gl)
     }
