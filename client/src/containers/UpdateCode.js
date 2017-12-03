@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { updateCode } from '../actions'
-import ShaderEditor from './organisms/ShaderEditor'
+import ShaderEditor from '../components/molecules/ShaderEditor'
 
 const mapStateToProps = (state) => ({
     code: state.code

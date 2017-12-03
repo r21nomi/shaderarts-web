@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import GLSLCanvas from './organisms/GLSLCanvas'
+import GLSLCanvas from '../components/molecules/GLSLCanvas'
 
 const mapStateToProps = (state) => ({
     code: state.code
