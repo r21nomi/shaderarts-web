@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CodeMirror from 'react-codemirror'
-import styles from 'codemirror/lib/codemirror.css'
 
 class ShaderEditor extends Component {
     constructor(props) {
@@ -21,7 +20,7 @@ class ShaderEditor extends Component {
             lineNumbers: true,
             mode: this.state.mode
 		}
-		return <CodeMirror className={styles.CodeMirror} value={this.state.code} onChange={this.updateCode} options={options} />
+		return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
 	}
 }
 

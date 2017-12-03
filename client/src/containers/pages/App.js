@@ -7,7 +7,7 @@ import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom'
-import 'normalize.css'
+import '../../styles/global_styles.css'
 import styles from '../../styles/app.css'
 
 const App = () => (

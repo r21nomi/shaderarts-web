@@ -1,0 +1,6 @@
+/**
+ * Global css classes.
+ * These classes should not be modified by css-modules.
+ */
+@import '../../node_modules/normalize.css/normalize.css';
+@import '../../node_modules/codemirror/lib/codemirror.css';
