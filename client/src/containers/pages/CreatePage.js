@@ -1,14 +1,14 @@
 import React from 'react'
-import ShaderEditor from '../organisms/ShaderEditor'
+import UpdateCode from '../UpdateCode'
+import UpdateGLSLCanvas from '../UpdateGLSLCanvas'
 import CreateHeader from '../organisms/CreateHeader'
-import GLSLCanvas from '../organisms/GLSLCanvas'
 import styles from '../../styles/create_page.css'
 
 const canvasProps = {
     width: 500,
     height: 500,
-    updateCanvas: (gl) => {
-        console.log("update canvas")
+    onCanvasUpdated: (gl) => {
+        // no-op
     }
 }
 
@@ -16,8 +16,8 @@ const CreatePage = () => (
     <div>
         <CreateHeader />
         <div className={styles.content}>
-            <ShaderEditor />
-            <GLSLCanvas {...canvasProps} />
+            <UpdateCode />
+            <UpdateGLSLCanvas {...canvasProps} />
         </div>
     </div>
 )

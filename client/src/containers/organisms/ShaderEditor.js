@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
 import CodeMirror from 'react-codemirror'
+import PropTypes from 'prop-types'
 
 class ShaderEditor extends Component {
     constructor(props) {
         super(props);
+        const { code } = this.props
+
         this.state = {
             readOnly: false,
-            code: '# Heading\n\nSome **bold** and _italic_ text\nBy [Jed Watson](https://github.com/JedWatson)',
-            mode: 'markdown'
+            code: code.fragmentShader
         }
     }
 	updateCode(newCode) {
+        const { onCodeUpdated } = this.props
+        
 		this.setState({
 			code: newCode
-		})
+        })
+        
+        onCodeUpdated(newCode)
 	}
 	render() {
 		var options = {
@@ -22,6 +28,10 @@ class ShaderEditor extends Component {
 		}
 		return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
 	}
+}
+
+ShaderEditor.propTypes = {
+    onCodeUpdated: PropTypes.func.isRequired
 }
 
 export default ShaderEditor
