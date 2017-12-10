@@ -1,6 +1,9 @@
 import * as React from 'react';
 import * as CodeMirror from 'react-codemirror';
-import { CodeState } from '../../reducers/code'
+import { CodeState } from '../../reducers/code';
+import 'codemirror/mode/clike/clike';
+import '../../styles/shader_editor.css';
+import 'codemirror/theme/monokai.css';
 
 interface Props {
     onCodeUpdated: any;
@@ -8,32 +11,33 @@ interface Props {
 }
 
 class ShaderEditor extends React.Component<Props, object> {
-    state: any;
-
     constructor(props: Props) {
         super(props);
-        const { code } = this.props;
-
-        this.state = {
-            readOnly: false,
-            code: code.fragmentShader
-        };
     }
+
 	updateCode(newCode: string) {
         const { onCodeUpdated } = this.props;
         
         this.setState({
-			code: newCode
+            code: newCode
         });
         
         onCodeUpdated(newCode);
 	}
 	render() {
-		var options = {
+        const { code } = this.props;
+		let options = {
+            readOnly: false,
             lineNumbers: true,
-            mode: this.state.mode
+            mode: 'x-shader/x-fragment',
+            theme: 'monokai',
+            indentUnit: 4
 		};
-		return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />;
+        return <CodeMirror
+            className="ShaderEditor-content"
+            value={code.fragmentShader}
+            onChange={this.updateCode.bind(this)}
+            options={options} />;
 	}
 }
 

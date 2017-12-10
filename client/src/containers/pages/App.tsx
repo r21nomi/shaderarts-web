@@ -1,3 +1,7 @@
+import 'normalize.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/monokai.css';
+import '../../styles/app.css';
 import * as React from 'react';
 import TopPage from './TopPage';
 import ExplorePage from './ExplorePage';
@@ -7,8 +11,6 @@ import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom';
-import '../../styles/global_styles.css';
-import '../../styles/app.css';
 
 const App = () => (
     <Router>
