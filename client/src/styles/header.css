@@ -1,9 +1,9 @@
-.header {
+.Header {
     background-color: #222;
     padding: 8px;
     margin-bottom: 16px;
 }
 
-.title {
+.Header-title {
     color: white;
 }
