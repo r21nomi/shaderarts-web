@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import GLSLCanvas from '../components/molecules/GLSLCanvas';
+import { RootState } from '../reducers/index';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
     code: state.code
 });
 

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as CodeMirror from 'react-codemirror';
+import { CodeState } from '../../reducers/code'
 
 interface Props {
     onCodeUpdated: any;
-    code: any;
+    code: CodeState;
 }
 
 class ShaderEditor extends React.Component<Props, object> {

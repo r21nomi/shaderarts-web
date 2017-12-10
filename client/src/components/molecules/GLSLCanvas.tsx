@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { CodeState } from '../../reducers/code'
 
 interface Props {
     width: number;
     height: number;
     onCanvasUpdated: any;
-    code: any;
+    code: CodeState;
 }
 
 class GLSLCanvas extends React.Component<Props, object> {

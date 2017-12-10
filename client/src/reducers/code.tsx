@@ -1,3 +1,5 @@
+import { CodeAction } from "../actions/index";
+
 const VERTEX_SHADER_SOURCE =
 `
 attribute vec4 position;
@@ -70,12 +72,12 @@ void main( void ) {
 }
 `;
 
-const initialState = {
+const initialState: CodeState = {
     vertexShader: VERTEX_SHADER_SOURCE,
     fragmentShader: FRAGMENT_SHADER_SOURCE
 };
 
-const code = (state = initialState, action: any) => {
+const code = (state: CodeState = initialState, action: CodeAction) => {
     switch (action.type) {
         case 'UPDATE_CODE':
             return Object.assign({}, state, {
@@ -85,5 +87,10 @@ const code = (state = initialState, action: any) => {
             return state;
     }
 };
+
+export interface CodeState {
+	vertexShader: string;
+    fragmentShader: string;
+}
 
 export default code;

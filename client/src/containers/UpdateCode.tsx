@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { updateCode } from '../actions';
 import ShaderEditor from '../components/molecules/ShaderEditor';
+import { RootState } from '../reducers/index';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
     code: state.code
 });
 

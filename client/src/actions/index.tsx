@@ -1,5 +1,10 @@
 let nextToDoId = 0;
 
+export interface CodeAction {
+    type: string;
+    code: string;
+}
+
 export const addTodo = (text: string) => ({
     type: 'ADD_TODO',
     id: nextToDoId++,
@@ -16,7 +21,7 @@ export const toggleTodo = (id: any) => ({
     id
 });
 
-export const updateCode = (code: string) => ({
+export const updateCode = (code: string): CodeAction => ({
     type: 'UPDATE_CODE',
     code
 });

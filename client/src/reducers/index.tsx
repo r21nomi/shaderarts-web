@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
-import code from './code';
+import code, { CodeState } from './code';
 
-const todoApp = combineReducers({
+export interface RootState {
+    code: CodeState;
+}
+
+const todoApp = combineReducers<RootState>({
     todos,
     visibilityFilter,
     code
