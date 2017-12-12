@@ -77,7 +77,7 @@ const initialState: CodeState = {
     fragmentShader: FRAGMENT_SHADER_SOURCE
 };
 
-const code = (state: CodeState = initialState, action: CodeAction) => {
+const code = (state: CodeState = initialState, action: CodeAction): CodeState => {
     switch (action.type) {
         case 'UPDATE_CODE':
             return Object.assign({}, state, {
