@@ -1,15 +1,20 @@
 import * as React from 'react';
+import { ArtEntity } from '../../models';
 
 interface Props {
-    onClick: any;
-    title: string;
+    art: ArtEntity;
+    onArtClick: (id: string) => void;
 }
 
-const Art = ({ onClick, title }: Props) => (
+const Art = ({ art, onArtClick }: Props) => (
     <div
-        onClick={onClick}
+        onClick={() => onArtClick(art.id)}
     >
-    {title}_Art!!!!!
+        <ul>
+            <li>{art.title}</li>
+            <li>{art.description}</li>
+            <li>{art.star}</li>
+        </ul>
     </div>
 );
 

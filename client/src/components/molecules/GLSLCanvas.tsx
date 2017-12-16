@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CodeState } from '../../reducers/code'
+import { CodeState } from '../../reducers/code';
 
 interface Props {
     width: number;

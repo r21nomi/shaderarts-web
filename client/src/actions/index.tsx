@@ -1,8 +1,15 @@
+import { ArtEntity } from '../models/';
+
 let nextToDoId = 0;
 
 export interface CodeAction {
     type: string;
     code: string;
+}
+
+export interface FetchArtsAction {
+    type: string;
+    arts: ArtEntity[];
 }
 
 export const addTodo = (text: string) => ({
@@ -26,7 +33,7 @@ export const updateCode = (code: string): CodeAction => ({
     code
 });
 
-export function fetchArtis() {
+export function fetchArts() {
     return (dispatch: any) => {
         dispatch(requestArts());
         return fetch('http://ec2-52-199-201-116.ap-northeast-1.compute.amazonaws.com/v1/art')
@@ -36,13 +43,14 @@ export function fetchArtis() {
     };
 }
 
-function requestArts() {
+function requestArts(): FetchArtsAction {
     return {
-        type: 'REQUEST_ARTS'
+        type: 'REQUEST_ARTS',
+        arts: []
     };
 }
 
-function receiveArts(json: any) {
+function receiveArts(json: ArtEntity[]): FetchArtsAction {
     return {
         type: 'RECEIVE_ARTS',
         arts: json

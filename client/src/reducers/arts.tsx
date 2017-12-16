@@ -1,13 +1,14 @@
+import { FetchArtsAction } from "../actions/index";
+import { ArtEntity } from '../models/';
+
 const initialState: ArtsState = {
     items: []
-}
+};
 
-const arts = (state: ArtsState = initialState, action: any): ArtsState => {
+const arts = (state: ArtsState = initialState, action: FetchArtsAction): ArtsState => {
     switch (action.type) {
         case 'REQUEST_ARTS':
-            return Object.assign({}, state, {
-                fragmentShader: action.code
-            });
+            return state;
 
         case 'RECEIVE_ARTS':
             return Object.assign({}, state, {
@@ -20,7 +21,7 @@ const arts = (state: ArtsState = initialState, action: any): ArtsState => {
 };
 
 export interface ArtsState {
-	items: any[]
+	items: ArtEntity[];
 }
 
 export default arts;

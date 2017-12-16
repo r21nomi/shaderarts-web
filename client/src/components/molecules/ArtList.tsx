@@ -4,8 +4,8 @@ import { ArtsState } from '../../reducers/arts';
 
 interface Props {
     arts: ArtsState;
-    onFetch: any;
-    onArtClick: any;
+    onFetch: () => void;
+    onArtClick: (id: string) => void;
 }
 
 class ArtList extends React.Component<Props, object> {
@@ -19,11 +19,11 @@ class ArtList extends React.Component<Props, object> {
             {arts.items.map(art =>
                 <Art
                     key={art.id}
-                    {...art}
-                    onClick={() => onArtClick(art.id)}
+                    art={art}
+                    onArtClick={() => onArtClick(art.id)}
                 />
             )}
-        </div>
+        </div>;
     }
 }
 
