@@ -4,6 +4,7 @@ import 'codemirror/theme/monokai.css';
 import '../../styles/app.css';
 import * as React from 'react';
 import TopPage from './TopPage';
+import LoginPage from './LoginPage';
 import ExplorePage from './ExplorePage';
 import CreatePage from './CreatePage';
 import Footer from '../organisms/Footer';
@@ -12,15 +13,20 @@ import {
     Route
 } from 'react-router-dom';
 
-const App = () => (
-    <Router>
-        <div>
-            <Route exact path="/" component={TopPage}></Route>
-            <Route path="/explore" component={ExplorePage} />
-            <Route path="/create" component={CreatePage} />
-            <Footer />
-        </div>
-    </Router>
-);
+interface Props {}
+
+class App extends React.Component<Props, object> {
+    render() {
+        return <Router>
+                    <div>
+                        <Route exact path="/" component={TopPage} />
+                        <Route path="/login" component={LoginPage} />
+                        <Route path="/explore" component={ExplorePage} />
+                        <Route path="/create" component={CreatePage} />
+                        <Footer />
+                    </div>
+                </Router>
+    }
+}
 
 export default App;

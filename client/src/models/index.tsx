@@ -1,3 +1,7 @@
+export interface UserEntity {
+    
+}
+
 export interface ArtEntity {
     id: string;
     title: string;
