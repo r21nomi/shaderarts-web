@@ -3,14 +3,14 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import App from './containers/pages/App';
+import AppWithAuthorizationCheck from './containers/AppWithAuthorizationCheck';
 import reducer from './reducers';
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 render(
     <Provider store={store}>
-        <App />
+        <AppWithAuthorizationCheck />
     </Provider>,
     document.getElementById('root')
 );

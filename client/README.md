@@ -14,6 +14,20 @@ components which connect to redux.
 - pages
 
 ## Get started
+### setup for firebase
+Place `firebaseConfig.tsx` under `src` dir.
+```typescript
+// Fill appropriate values.
+export const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
+};
+```
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
