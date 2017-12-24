@@ -1,5 +1,6 @@
 export interface UserEntity {
-    
+    id: string;
+    name: string;
 }
 
 export interface ArtEntity {

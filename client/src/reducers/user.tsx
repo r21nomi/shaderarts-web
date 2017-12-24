@@ -4,7 +4,10 @@ import { UserEntity } from '../models/';
 const initialState: UserState = {
     isFetching: true,
     isAuthorized: false,
-    user: {}
+    user: {
+        id: '',
+        name: ''
+    }
 };
 
 const user = (state: UserState = initialState, action: FetchUserAction): UserState => {

@@ -59,7 +59,10 @@ function loginSuccess(user: UserEntity): LoginTwitterAction {
 function loginError(errorMessage: string): LoginTwitterAction {
     return {
         type: 'TWITTER_LOGIN_ERROR',
-        user: {},
+        user: {
+            id: '',
+            name: ''
+        },
         errorMessage: errorMessage
     };
 }

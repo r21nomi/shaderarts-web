@@ -37,7 +37,10 @@ class Header extends React.Component<Props, object> {
                 if (!isAuthorized) {
                     return <button><Link to="/login">Login</Link></button>;
                 } else {
-                    return <LogoutButton onClick={onLogoutButtonClick} />;
+                    return <div>
+                            <p>{userState.user.name}</p>
+                            <LogoutButton onClick={onLogoutButtonClick} />;
+                        </div>
                 }
             })()}
         </header>;
