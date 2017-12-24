@@ -1,4 +1,4 @@
-import { FetchArtsAction } from "../actions/index";
+import { FetchArtsAction } from "../actions/fetchArts";
 import { ArtEntity } from '../models/';
 
 const initialState: ArtsState = {
