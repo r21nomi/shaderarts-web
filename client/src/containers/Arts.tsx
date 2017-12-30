@@ -2,14 +2,16 @@ import { connect } from 'react-redux';
 import { fetchArts } from '../actions/fetchArts';
 import ArtList from '../components/molecules/ArtList';
 import { RootState } from '../reducers/index';
+import { UserEntity } from '../models/index';
 
 const mapStateToProps = (state: RootState) => ({
-    arts: state.arts
+    arts: state.arts,
+    userState: state.user
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    onFetch: () => {
-        dispatch(fetchArts());
+    onFetch: (userEntity: UserEntity) => {
+        dispatch(fetchArts(userEntity));
     },
     onArtClick: (id: string) => {
         console.log('id:' + id);

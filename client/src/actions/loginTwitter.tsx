@@ -45,7 +45,8 @@ function loginError(errorMessage: string): LoginTwitterAction {
         type: 'TWITTER_LOGIN_ERROR',
         user: {
             id: '',
-            name: ''
+            name: '',
+            token: ''
         },
         errorMessage: errorMessage
     };

@@ -1,6 +1,7 @@
 export interface UserEntity {
     id: string;
     name: string;
+    token: string;
 }
 
 export interface ArtEntity {

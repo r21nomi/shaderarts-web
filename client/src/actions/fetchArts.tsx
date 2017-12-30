@@ -1,12 +1,13 @@
-import { ArtEntity } from '../models/';
+import { ArtEntity, UserEntity } from '../models/';
 
 export interface FetchArtsAction {
     type: string;
     arts: ArtEntity[];
 }
 
-export function fetchArts() {
+export function fetchArts(userEntity: UserEntity) {
     let header = new Headers();
+    header.set('X-Token', userEntity.token);
 
     var option = {
         method: 'GET',

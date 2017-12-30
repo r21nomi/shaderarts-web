@@ -6,7 +6,8 @@ const initialState: UserState = {
     isAuthorized: false,
     user: {
         id: '',
-        name: ''
+        name: '',
+        token: ''
     }
 };
 
@@ -14,6 +15,7 @@ const user = (state: UserState = initialState, action: FetchUserAction): UserSta
     switch (action.type) {
         case 'USER_AUTHORIZED':
             console.log('USER_AUTHORIZED');
+            console.log(action.user);
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthorized: true,
