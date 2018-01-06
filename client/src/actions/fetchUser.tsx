@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import { UserEntity } from '../models/';
+import { urlProvider } from '../urlProvider';
 
 export interface FetchUserAction {
     type: string;
@@ -32,8 +33,7 @@ function login(dispatch: any, idToken: string) {
         method: 'GET',
         headers: header
     };
-    fetch('http://ec2-52-199-201-116.ap-northeast-1.compute.amazonaws.com/v1/login', option)
-    // fetch('http://localhost:9000/v1/login', option)
+    fetch(`${urlProvider.endpoint}/v1/login`, option)
         .then(response => response.json())
         .then(json => dispatch(userAuthorized(json)));
 }

@@ -1,4 +1,5 @@
 import { ArtEntity, UserEntity } from '../models/';
+import { urlProvider } from '../urlProvider';
 
 export interface FetchArtsAction {
     type: string;
@@ -15,8 +16,7 @@ export function fetchArts(userEntity: UserEntity) {
     };
     return (dispatch: any) => {
         dispatch(requestArts());
-        return fetch('http://ec2-52-199-201-116.ap-northeast-1.compute.amazonaws.com/v1/art', option)
-        // return fetch('http://localhost:9000/v1/art', option)
+        return fetch(`${urlProvider.endpoint}/v1/art`, option)
             .then(response => response.json())
             .then(json => dispatch(receiveArts(json)));
     };
