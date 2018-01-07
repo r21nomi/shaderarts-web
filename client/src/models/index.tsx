@@ -7,10 +7,16 @@ export interface UserEntity {
 export interface ArtEntity {
     id: string;
     title: string;
-    user_id: string;
     type: number;
     thumb: string;
-    src: string;
     description: string;
     star: number;
+    user: UserEntity;
+    programs: ProgramEntity[]
+}
+
+export interface ProgramEntity {
+    id: string;
+    type: number;
+    code: string;
 }

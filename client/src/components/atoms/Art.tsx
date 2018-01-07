@@ -13,7 +13,9 @@ const Art = ({ art, onArtClick }: Props) => (
         <ul>
             <li>{art.title}</li>
             <li>{art.description}</li>
-            <li>{art.star}</li>
+            <li>☆{art.star}</li>
+            <li>created by {art.user.name}</li>
+            <li>programs: {art.programs.length}</li>
         </ul>
     </div>
 );
