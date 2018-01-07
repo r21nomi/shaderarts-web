@@ -3,7 +3,7 @@ import GLSLCanvas from '../components/molecules/GLSLCanvas';
 import { RootState } from '../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
-    code: state.code
+    codeState: state.code
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({

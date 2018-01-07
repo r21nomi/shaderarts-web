@@ -5,7 +5,7 @@ interface Props {
     width: number;
     height: number;
     onCanvasUpdated: any;
-    code: CodeState;
+    codeState: CodeState;
 }
 
 class GLSLCanvas extends React.Component<Props, object> {
@@ -30,7 +30,7 @@ class GLSLCanvas extends React.Component<Props, object> {
 
     updateCanvas() {
         // Get code from reducer.
-        const { code } = this.props;
+        const { codeState } = this.props;
 
         var gl = this.gl;
         if (!gl) {
@@ -38,8 +38,8 @@ class GLSLCanvas extends React.Component<Props, object> {
             return;
         }
 
-        let vertexShaderSource = code.vertexShader;
-        let fragmentShaderSource = code.fragmentShader;
+        let vertexShaderSource = codeState.vertexShader;
+        let fragmentShaderSource = codeState.fragmentShader;
         var vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
         var fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
         if (!vertexShader || !fragmentShader) {
