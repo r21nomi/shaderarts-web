@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as CodeMirror from 'react-codemirror';
 import { CodeState } from '../../reducers/code';
 import 'codemirror/mode/clike/clike';
-import '../../styles/shader_editor.css';
+import './styles/shader_editor.css';
 import 'codemirror/theme/monokai.css';
 
 interface Props {

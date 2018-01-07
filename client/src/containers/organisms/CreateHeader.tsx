@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/create_header.css';
+import './styles/create_header.css';
 
 const CreateHeader = () => (
     <header className="CreateHeader">

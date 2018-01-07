@@ -5,7 +5,7 @@ import { RootState } from '../../reducers/index';
 import { UserState } from '../../reducers/user';
 import LogoutButton from '../../components/atoms/LogoutButton';
 import { logout } from '../../actions/logout';
-import '../../styles/header.css';
+import './styles/header.css';
 
 interface Props {
     userState: UserState;

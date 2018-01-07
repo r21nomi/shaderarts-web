@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../styles/twitter_login_button.css';
+import './styles/twitter_login_button.css';
 
 interface Props {
     onClick: () => void;

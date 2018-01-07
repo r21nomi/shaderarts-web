@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../styles/logout_button.css';
+import './styles/logout_button.css';
 
 interface Props {
     onClick: () => void;

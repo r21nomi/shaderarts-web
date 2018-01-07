@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../styles/link.css';
+import './styles/link.css';
 
 interface Props {
     onClick: any;
