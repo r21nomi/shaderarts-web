@@ -10,14 +10,10 @@ export interface FetchUserAction {
 export function fetchUser() {
     return (dispatch: any) => {
         firebase.auth().onAuthStateChanged(function(user) {
-            console.log("fetchUser success");
-            
             if (user) {
-                user.getToken(true).then(function(idToken) {
-                    login(dispatch, idToken);
-                }).catch(function(error) {
-                    console.log(error);
-                });
+                user.getToken(true)
+                    .then(idToken => login(dispatch, idToken))
+                    .catch(error => console.error(error));
             } else {
                 dispatch(userUnAuthorized());
             }
@@ -35,7 +31,8 @@ function login(dispatch: any, idToken: string) {
     };
     fetch(`${urlProvider.endpoint}/v1/login`, option)
         .then(response => response.json())
-        .then(json => dispatch(userAuthorized(json)));
+        .then(json => dispatch(userAuthorized(json)))
+        .catch(error => console.error(error));
 }
 
 function userAuthorized(user: UserEntity): FetchUserAction {

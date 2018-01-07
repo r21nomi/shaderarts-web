@@ -10,7 +10,7 @@ export function postArt(userEntity: UserEntity, codeState: CodeState) {
     let header = new Headers();
     header.set('X-Token', userEntity.token);
 
-    let data = toArtData(codeState)
+    let data = toArtData(codeState);
     let option = {
         method: 'POST',
         headers: header,
@@ -20,7 +20,8 @@ export function postArt(userEntity: UserEntity, codeState: CodeState) {
     return (dispatch: any) => {
         dispatch(requestPostingArt());
         return fetch(`${urlProvider.endpoint}/v1/art`, option)
-            .then(response => dispatch(postingArtSuccess()));
+            .then(response => dispatch(postingArtSuccess()))
+            .catch(e => console.error(e));
     };
 }
 

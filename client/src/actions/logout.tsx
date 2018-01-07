@@ -11,9 +11,7 @@ export function logout() {
             // firebase.auth().onAuthStateChanged in fetchUser.tsx will be fired.
             dispatch(logoutSuccess());
 
-        }).catch(function(error) {
-            dispatch(logoutError(error.message));
-        });
+        }).catch(error => dispatch(logoutError(error.message)));
     };
 }
 

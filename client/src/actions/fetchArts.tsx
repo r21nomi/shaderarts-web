@@ -18,7 +18,8 @@ export function fetchArts(userEntity: UserEntity) {
         dispatch(requestArts());
         return fetch(`${urlProvider.endpoint}/v1/art`, option)
             .then(response => response.json())
-            .then(json => dispatch(receiveArts(json)));
+            .then(json => dispatch(receiveArts(json)))
+            .catch(e => console.error(e));
     };
 }
 

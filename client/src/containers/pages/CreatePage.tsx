@@ -36,8 +36,6 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
         console.log(codeState);
     },
     handleHeaderSubmitButtonClick: (userState: UserState, codeState: CodeState) => {
-        console.log("handleHeaderSubmitButtonClick");
-        console.log(userState);
         dispatch(postArt(userState.user, codeState));
     }
 });

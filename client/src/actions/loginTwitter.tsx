@@ -10,11 +10,11 @@ export interface LoginTwitterAction {
 export function loginTwitter() {
     return (dispatch: any) => {
         var provider = new firebase.auth.TwitterAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        firebase.auth().signInWithPopup(provider).then(result => {
             var user = result.user;
             dispatch(loginSuccess(user));
 
-          }).catch(function(error) {
+        }).catch(error => {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -28,7 +28,7 @@ export function loginTwitter() {
             console.log(credential);
 
             dispatch(loginError(errorMessage));
-          });
+        });
     };
 }
 
