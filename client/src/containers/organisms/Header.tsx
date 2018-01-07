@@ -29,15 +29,15 @@ class Header extends React.Component<Props, object> {
 
         return <header className="Header">
             <div className="Header-title"><Link to="/">Arto</Link></div>
-            <ul>
-                <li><Link to="/explore">Explore</Link></li>
-                <li><Link to="/create">Create</Link></li>
+            <ul className="Header-menu">
+                <li className="Header-menuItem"><Link to="/explore">Explore</Link></li>
+                <li className="Header-menuItem"><Link to="/create">Create</Link></li>
             </ul>
             {(() => {
                 if (!isAuthorized) {
                     return <button><Link to="/login">Login</Link></button>;
                 } else {
-                    return <div>
+                    return <div className="Header-logoutSection">
                             <p>{userState.user.name}</p>
                             <LogoutButton onClick={onLogoutButtonClick} />;
                         </div>

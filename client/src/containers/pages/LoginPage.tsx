@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import LoginForm from '../LoginForm';
 import { RootState } from '../../reducers/index';
 import { UserState } from '../../reducers/user';
-import '../../styles/top_page.css';
+import './styles/page.css';
+import './styles/top_page.css';
 
 interface Props {
     userState: UserState;
@@ -25,7 +26,7 @@ class LoginPage extends React.Component<Props, object> {
             history.back();
         }
         return <div>
-            <div className="LoginPage-content">Top Page</div>
+            <div className="Page-content LoginPage-content">Top Page</div>
             <LoginForm />
         </div>;
     }

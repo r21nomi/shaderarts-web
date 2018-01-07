@@ -1,7 +1,7 @@
 import 'normalize.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
-import '../../styles/app.css';
+import './styles/app.css';
 import * as React from 'react';
 import TopPage from './TopPage';
 import LoginPage from './LoginPage';
