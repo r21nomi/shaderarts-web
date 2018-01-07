@@ -1,23 +1,29 @@
 .Header {
     width: 100%;
     height: 56px;
-    display: flex;
-    align-items: center;
     z-index: 100;
     position: fixed;
     box-sizing: border-box;
     padding: 8px;
-    background-color: #222;
+    background-color: #fff;
 }
 
-.Header-title {
+.Header-content {
+    height: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.Header-logo {
     color: white;
+    margin-right: 32px;
 }
 
 .Header-menu {
     display: flex;
     flex-grow: 1;
-    padding: 0px;
 }
 
 .Header-menuItem {

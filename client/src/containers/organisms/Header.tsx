@@ -28,21 +28,23 @@ class Header extends React.Component<Props, object> {
         let isAuthorized = userState.isAuthorized;
 
         return <header className="Header">
-            <div className="Header-title"><Link to="/">Arto</Link></div>
-            <ul className="Header-menu">
-                <li className="Header-menuItem"><Link to="/explore">Explore</Link></li>
-                <li className="Header-menuItem"><Link to="/create">Create</Link></li>
-            </ul>
-            {(() => {
-                if (!isAuthorized) {
-                    return <button><Link to="/login">Login</Link></button>;
-                } else {
-                    return <div className="Header-logoutSection">
-                            <p>{userState.user.name}</p>
-                            <LogoutButton onClick={onLogoutButtonClick} />;
-                        </div>
-                }
-            })()}
+            <div className="Header-content">
+                <div className="Header-logo"><Link to="/">Arto</Link></div>
+                <ul className="Header-menu">
+                    <li className="Header-menuItem"><Link to="/explore">Explore</Link></li>
+                    <li className="Header-menuItem"><Link to="/create">Create</Link></li>
+                </ul>
+                {(() => {
+                    if (!isAuthorized) {
+                        return <button><Link to="/login">Login</Link></button>;
+                    } else {
+                        return <div className="Header-logoutSection">
+                                <p>{userState.user.name}</p>
+                                <LogoutButton onClick={onLogoutButtonClick} />
+                            </div>;
+                    }
+                })()}
+            </div>
         </header>;
     }
 }

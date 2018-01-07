@@ -1,7 +1,38 @@
-.content {
-    padding: 8px;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+    color: #222;
+    font-family: 'Roboto Mono', monospace;
+    line-height: normal;
+}
+
+ul {
+    padding: 0px;
+}
+
+body {
+    font-size: 1.4rem;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #222;
+}
+
+button {
+    font-family: 'Roboto Mono', monospace;
 }
 
 ul {
     list-style:none;
+}
+
+.content {
+    padding: 8px;
 }

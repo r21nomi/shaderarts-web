@@ -3,9 +3,9 @@ import './styles/footer.css';
 
 const Footer = () => (
     <footer className="Footer">
-        <p>
+        <div className="Footer-content">
             Arto, inc.
-        </p>
+        </div>
     </footer>
 );
 

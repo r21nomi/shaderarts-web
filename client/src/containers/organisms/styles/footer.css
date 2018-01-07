@@ -1,6 +1,14 @@
 .Footer {
-    background-color: #222;
-    color: #fff;
-    padding: 8px;
+    background-color: #fff;
+    color: #222;
     text-align: right;
+    box-sizing: border-box;
+}
+
+.Footer-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-top: 1px #ddd solid;
+    padding: 16px;
 }
