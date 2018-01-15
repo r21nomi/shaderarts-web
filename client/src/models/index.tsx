@@ -12,11 +12,11 @@ export interface ArtEntity {
     description: string;
     star: number;
     user: UserEntity;
-    programs: ProgramEntity[]
+    codes: CodeEntity[]
 }
 
-export interface ProgramEntity {
+export interface CodeEntity {
     id: string;
     type: number;
-    code: string;
+    text: string;
 }

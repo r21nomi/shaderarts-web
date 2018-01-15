@@ -21,7 +21,10 @@ export function postArt(userEntity: UserEntity, codeState: CodeState) {
         dispatch(requestPostingArt());
         return fetch(`${urlProvider.endpoint}/v1/art`, option)
             .then(response => dispatch(postingArtSuccess()))
-            .catch(e => console.error(e));
+            .catch(e => {
+                console.error(e);
+                dispatch(postingArtError());
+            });
     };
 }
 
@@ -30,14 +33,14 @@ function toArtData(codeState: CodeState): object {
         title: 'art title',
         description: 'art description.',
         type: 1,
-        programs: [
+        codes: [
             {
                 type: 1,
-                code: codeState.vertexShader
+                text: codeState.vertexShader
             },
             {
                 type: 2,
-                code: codeState.fragmentShader
+                text: codeState.fragmentShader
             }
         ]
     };
@@ -52,5 +55,11 @@ function requestPostingArt(): PostArtAction {
 function postingArtSuccess(): PostArtAction {
     return {
         type: 'POSTING_ART_SUCCESS'
+    };
+}
+
+function postingArtError(): PostArtAction {
+    return {
+        type: 'POSTING_ART_ERROR'
     };
 }
