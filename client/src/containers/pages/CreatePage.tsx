@@ -7,6 +7,8 @@ import UpdateCode from '../UpdateCode';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import CreateHeader from '../organisms/CreateHeader';
 import { postArt } from '../../actions/postArt';
+import { toArtData } from '../../models/artDataProvider';
+import { ArtType } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
 
@@ -36,7 +38,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
         console.log(codeState);
     },
     handleHeaderSubmitButtonClick: (userState: UserState, codeState: CodeState) => {
-        dispatch(postArt(userState.user, codeState));
+        // TODO: Set title and description.
+        let artData = toArtData("art1", "description1", ArtType.GLSL, codeState);
+        dispatch(postArt(userState.user, artData));
     }
 });
 

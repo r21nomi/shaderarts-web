@@ -1,0 +1,14 @@
+.Art {
+
+}
+.Art-code {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.Art-title {
+    font-size: 1.8rem;
+}
+.Art-description {
+
+}

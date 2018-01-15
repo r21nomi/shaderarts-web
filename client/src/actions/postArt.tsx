@@ -1,20 +1,19 @@
 import { UserEntity } from '../models/';
 import { urlProvider } from '../urlProvider';
-import { CodeState } from '../reducers/code';
+import { ArtData } from '../models/data';
 
 export interface PostArtAction {
     type: string;
 }
 
-export function postArt(userEntity: UserEntity, codeState: CodeState) {
+export function postArt(userEntity: UserEntity, artData: ArtData) {
     let header = new Headers();
     header.set('X-Token', userEntity.token);
 
-    let data = toArtData(codeState);
     let option = {
         method: 'POST',
         headers: header,
-        body: JSON.stringify(data)
+        body: JSON.stringify(artData)
     };
 
     return (dispatch: any) => {
@@ -25,24 +24,6 @@ export function postArt(userEntity: UserEntity, codeState: CodeState) {
                 console.error(e);
                 dispatch(postingArtError());
             });
-    };
-}
-
-function toArtData(codeState: CodeState): object {
-    return {
-        title: 'art title',
-        description: 'art description.',
-        type: 1,
-        codes: [
-            {
-                type: 1,
-                text: codeState.vertexShader
-            },
-            {
-                type: 2,
-                text: codeState.fragmentShader
-            }
-        ]
     };
 }
 
