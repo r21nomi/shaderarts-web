@@ -12,6 +12,11 @@ class GLSLCanvas extends React.Component<Props, object> {
     gl: any;
     startTime: number;
 
+    getThumb: () => any = () => {
+        let canvas: any = this.refs.canvas;
+        return canvas.toDataURL('image/png');
+    }
+
     constructor(props: Props) {
         super(props);
         this.startTime = 0;
