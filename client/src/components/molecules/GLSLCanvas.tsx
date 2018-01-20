@@ -23,7 +23,7 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
     componentDidMount() {
         let canvas: any = this.refs.canvas;
-        this.gl = canvas.getContext('webgl');
+        this.gl = canvas.getContext('experimental-webgl', { preserveDrawingBuffer: true });
         this.startTime = Date.now();
         this.animate();
     }
