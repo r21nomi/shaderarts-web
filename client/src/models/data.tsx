@@ -4,6 +4,7 @@ export interface ArtData {
     title: string;
     type: ArtType;
     description: string;
+    thumb: string;
     codes: CodeData[]
 }
 

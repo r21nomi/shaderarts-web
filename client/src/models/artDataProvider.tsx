@@ -6,12 +6,14 @@ export function toArtData(
     title: string,
     description: string,
     type: ArtType,
+    thumb: string,
     codeState: CodeState
 ): ArtData {
     return {
         title: title,
         description: description,
         type: type,
+        thumb: thumb,
         codes: [
             {
                 type: CodeType.VERTEX_SHADER,

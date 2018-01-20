@@ -37,9 +37,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
         console.log("handleHeaderSaveAsDraftButtonClick");
     },
     handleHeaderSubmitButtonClick: (userState: UserState, codeState: CodeState, artThumb: string) => {
-        // TODO: Set title and description.
-        console.log(artThumb);
-        let artData = toArtData("art1", "description1", ArtType.GLSL, codeState);
+        artThumb = artThumb.replace(/^.*,/, '');
+        let artData = toArtData("art1", "description1", ArtType.GLSL, artThumb, codeState);
         dispatch(postArt(userState.user, artData));
     }
 });
