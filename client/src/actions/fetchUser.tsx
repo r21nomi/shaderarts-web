@@ -49,7 +49,8 @@ function userUnAuthorized(): FetchUserAction {
         user: {
             id: '',
             name: '',
-            token: ''
+            token: '',
+            thumb: ''
         }
     }
 }
