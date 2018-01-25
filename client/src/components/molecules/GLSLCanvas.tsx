@@ -11,6 +11,7 @@ interface Props {
 class GLSLCanvas extends React.Component<Props, object> {
     gl: any;
     startTime: number;
+    animationTimer: number;
 
     getThumb: () => any = () => {
         let canvas: any = this.refs.canvas;
@@ -21,6 +22,7 @@ class GLSLCanvas extends React.Component<Props, object> {
         super(props);
         this.startTime = 0;
     }
+
     componentDidMount() {
         let canvas: any = this.refs.canvas;
         this.gl = canvas.getContext('experimental-webgl', { preserveDrawingBuffer: true });
@@ -28,9 +30,19 @@ class GLSLCanvas extends React.Component<Props, object> {
         this.animate();
     }
 
+    componentWillUnmount() {
+        this.stopAnimate();
+    }
+
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
+        this.animationTimer = requestAnimationFrame(this.animate.bind(this));
         this.updateCanvas();
+    }
+
+    stopAnimate() {
+        if (this.animationTimer) {
+            cancelAnimationFrame(this.animationTimer);
+        }
     }
 
     updateCanvas() {
