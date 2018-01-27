@@ -3,6 +3,7 @@ import Art from '../atoms/Art';
 import { ArtsState } from '../../reducers/arts';
 import { UserState } from '../../reducers/user';
 import { UserEntity } from '../../models/index';
+import './styles/artList.css';
 
 interface Props {
     arts: ArtsState;
@@ -18,7 +19,7 @@ class ArtList extends React.Component<Props, object> {
 
     render() {
         const { arts, onArtClick } = this.props;
-        return <div>
+        return <div className="ArtList">
             {arts.items.map(art =>
                 <Art
                     key={art.id}

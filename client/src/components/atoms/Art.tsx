@@ -8,24 +8,53 @@ interface Props {
 }
 
 const Art = ({ art, onArtClick }: Props) => (
-    <div
-        onClick={() => onArtClick(art.id)}
-    >
-        <div className="Art-thumb"><img src={art.thumb} alt={art.title}/></div>
-        <ul>
-            <li><img src={art.user.thumb} alt={art.user.name}/></li>
-            <li>{art.user.name}</li>
-            <li>{ArtType.getName(art.type)}</li>
-            <li>☆{art.star}</li>
-            <li>
-                {art.codes.map(code =>
-                    <div key={code.id}>
-                        <div>{CodeType.getName(code.type)}</div>
-                        <div className="Art-code">{code.text}</div>
-                    </div>
-                )}
+    <div className="Art">
+        <a className="Art-thumb"
+            href="javascript:void(0)"
+            onClick={() => onArtClick(art.id)}
+        >
+            <img src={art.thumb} alt={art.title}/>
+        </a>
+        <ul className="Art-info">
+            <li className="Art-userThumb">
+                <a href="javascript:void(0)"
+                    onClick={() => console.log("Art-userThumb")}
+                >
+                    <img src={art.user.thumb} alt={art.user.name}/>
+                </a>
+            </li>
+            <li className="Art-userName">
+                <a href="javascript:void(0)"
+                    onClick={() => console.log("Art-userName")}
+                >
+                    {art.user.name}
+                </a>
+            </li>
+            <li className="Art-star">
+                <a href="javascript:void(0)"
+                    onClick={() => console.log("Art-star")}
+                >
+                    ☆{art.star}
+                </a>
             </li>
         </ul>
+        <ul className="Art-tags">
+            <li className="Art-tag">
+                <a href="javascript:void(0)"
+                    onClick={() => console.log("Art-tag")}
+                >
+                    #{ArtType.getName(art.type)}
+                </a>
+            </li>
+        </ul>
+        <div>
+            {art.codes.map(code =>
+                <div key={code.id}>
+                    <div>{CodeType.getName(code.type)}</div>
+                    <div className="Art-code">{code.text}</div>
+                </div>
+            )}
+        </div>
     </div>
 );
 

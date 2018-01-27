@@ -1,14 +1,59 @@
 .Art {
-
 }
-.Art-code {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+.Art-thumb {
+    display: block;
+    line-height: 0;
+    margin-bottom: 8px;
+}
+.Art-thumb img {
+    width: 100%;
 }
 .Art-title {
     font-size: 1.8rem;
 }
 .Art-description {
 
+}
+.Art-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+.Art-userThumb {
+    width: 30px;
+    margin-right: 8px;
+}
+.Art-userThumb a {
+    display: block;
+    line-height: 0;
+}
+.Art-userThumb img {
+    width: 100%;
+    border-radius: 50%;
+}
+.Art-userName {
+    flex-grow: 1;
+}
+.Art-star {
+
+}
+.Art-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+.Art-tag {
+    margin: 0 8px 4px 0;
+}
+.Art-tag a {
+    font-size: 1.1rem;
+    color: #999;
+}
+.Art-code {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
