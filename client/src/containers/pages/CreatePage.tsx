@@ -66,7 +66,12 @@ class CreatePage extends React.Component<Props, object> {
             />
             <div className="Page-content CreatePage-content">
                 <UpdateCode />
-                <UpdateGLSLCanvas ref={(r) => this.updateGLSLCanvas = r} {...canvasProps} />
+                <UpdateGLSLCanvas
+                    ref={(r) => this.updateGLSLCanvas = r}
+                    {...canvasProps}
+                    vertexShader = {codeState.vertexShader}
+                    fragmentShader = {codeState.fragmentShader}
+                />
             </div>
         </div>;
     }

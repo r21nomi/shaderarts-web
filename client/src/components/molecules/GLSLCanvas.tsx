@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { CodeState } from '../../reducers/code';
 
 interface Props {
     width: number;
     height: number;
     onCanvasUpdated: any;
-    codeState: CodeState;
+    vertexShader: string;
+    fragmentShader: string;
 }
 
 class GLSLCanvas extends React.Component<Props, object> {
@@ -46,17 +46,14 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
 
     updateCanvas() {
-        // Get code from reducer.
-        const { codeState } = this.props;
-
         var gl = this.gl;
         if (!gl) {
             console.log('webgl is not available.');
             return;
         }
 
-        let vertexShaderSource = codeState.vertexShader;
-        let fragmentShaderSource = codeState.fragmentShader;
+        let vertexShaderSource = this.props.vertexShader;
+        let fragmentShaderSource = this.props.fragmentShader;
         var vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
         var fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
         if (!vertexShader || !fragmentShader) {

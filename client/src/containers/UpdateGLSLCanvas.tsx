@@ -3,10 +3,13 @@ import GLSLCanvas from '../components/molecules/GLSLCanvas';
 import { RootState } from '../reducers/index';
 
 interface Props {
+    vertexShader: string;
+    fragmentShader: string;
 }
 
-const mapStateToProps = (state: RootState) => ({
-    codeState: state.code
+const mapStateToProps = (state: RootState, ownProps: Props) => ({
+    vertexShader: ownProps.vertexShader,
+    fragmentShader: ownProps.fragmentShader
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: Props) => ({
