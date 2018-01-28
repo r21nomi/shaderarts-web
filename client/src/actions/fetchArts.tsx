@@ -6,7 +6,7 @@ export interface FetchArtsAction {
     arts: ArtEntity[];
 }
 
-export function fetchArts(userEntity: UserEntity) {
+export function fetchArts(userEntity: UserEntity, offset: number) {
     let header = new Headers();
     header.set('X-Token', userEntity.token);
 
@@ -14,9 +14,10 @@ export function fetchArts(userEntity: UserEntity) {
         method: 'GET',
         headers: header
     };
+    var limit = 8;
     return (dispatch: any) => {
         dispatch(requestArts());
-        return fetch(`${urlProvider.endpoint}/v1/art`, option)
+        return fetch(`${urlProvider.endpoint}/v1/art?limit=${limit}&offset=${offset}`, option)
             .then(response => response.json())
             .then(json => dispatch(receiveArts(json)))
             .catch(e => console.error(e));

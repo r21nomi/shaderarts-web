@@ -13,7 +13,7 @@ export interface ArtEntity {
     description: string;
     star: number;
     user: UserEntity;
-    codes: CodeEntity[]
+    codes: CodeEntity[];
 }
 
 export interface CodeEntity {
@@ -28,12 +28,12 @@ export enum ArtType {
 
 export namespace ArtType {
     export function getName(artType: ArtType) {
-        switch(artType) {
+        switch (artType) {
             case ArtType.GLSL:
-                return "GLSL";
+                return 'GLSL';
 
             default:
-                return "";
+                return '';
         }
     }
 }
@@ -47,13 +47,13 @@ export namespace CodeType {
     export function getName(codeType: CodeType) {
         switch (codeType) {
             case CodeType.VERTEX_SHADER:
-                return "Vertex Shader";
+                return 'Vertex Shader';
 
             case CodeType.FRAGMENT_SHADER:
-                return "Freagment Shader";
+                return 'Freagment Shader';
 
             default:
-                return "";
+                return '';
         }
     }
 }

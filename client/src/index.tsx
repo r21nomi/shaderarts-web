@@ -3,10 +3,20 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import { routerMiddleware } from 'react-router-redux';
+import history from './history';
 import AppWithAuthorizationCheck from './containers/AppWithAuthorizationCheck';
-import reducer from './reducers';
+import reducers from './reducers';
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+const middleware = applyMiddleware(
+    thunkMiddleware,
+    routerMiddleware(history)
+);
+
+const store = createStore(
+    reducers,
+    middleware
+)
 
 render(
     <Provider store={store}>

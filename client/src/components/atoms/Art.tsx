@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { ArtEntity, ArtType, CodeType } from '../../models';
 import './styles/art.css';
 
@@ -9,30 +10,27 @@ interface Props {
 
 const Art = ({ art, onArtClick }: Props) => (
     <div className="Art">
-        <a className="Art-thumb"
-            href="javascript:void(0)"
-            onClick={() => onArtClick(art.id)}
-        >
+        <Link className="Art-thumb" to={`/art/${art.id}`}>
             <img src={art.thumb} alt={art.title}/>
-        </a>
+        </Link>
         <ul className="Art-info">
             <li className="Art-userThumb">
                 <a href="javascript:void(0)"
-                    onClick={() => console.log("Art-userThumb")}
+                    onClick={() => console.log('Art-userThumb')}
                 >
                     <img src={art.user.thumb} alt={art.user.name}/>
                 </a>
             </li>
             <li className="Art-userName">
                 <a href="javascript:void(0)"
-                    onClick={() => console.log("Art-userName")}
+                    onClick={() => console.log('Art-userName')}
                 >
                     {art.user.name}
                 </a>
             </li>
             <li className="Art-star">
                 <a href="javascript:void(0)"
-                    onClick={() => console.log("Art-star")}
+                    onClick={() => console.log('Art-stat')}
                 >
                     ☆{art.star}
                 </a>
@@ -41,7 +39,7 @@ const Art = ({ art, onArtClick }: Props) => (
         <ul className="Art-tags">
             <li className="Art-tag">
                 <a href="javascript:void(0)"
-                    onClick={() => console.log("Art-tag")}
+                    onClick={() => console.log('Art-tag')}
                 >
                     #{ArtType.getName(art.type)}
                 </a>

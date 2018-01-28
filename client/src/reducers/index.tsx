@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
 import user, { UserState } from './user';
@@ -11,7 +12,8 @@ export interface RootState {
     code: CodeState;
 }
 
-const todoApp = combineReducers<RootState>({
+const reducers = combineReducers<RootState>({
+    router: routerReducer,
     todos,
     visibilityFilter,
     user,
@@ -19,4 +21,4 @@ const todoApp = combineReducers<RootState>({
     code
 });
 
-export default todoApp;
+export default reducers;
