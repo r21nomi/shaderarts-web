@@ -6,11 +6,12 @@ import { UserState } from '../../reducers/user';
 import { ArtDetailState } from '../../reducers/artDetail';
 import { UserEntity, ArtType } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
+import ArtInfo from '../../components/atoms/ArtInfo';
 import { fetchArtDetail } from '../../actions/fetchArtDetail';
 import './styles/page.css';
 
 const canvasProps = {
-    width: 500,
+    width: 1024,
     height: 500,
     onCanvasUpdated: (gl: any) => {
         // no-op
@@ -66,6 +67,11 @@ class ArtDetailPage extends React.Component<Props, object> {
                             vertexShader = {art.codes[0].text}
                             fragmentShader = {art.codes[1].text}
                         />
+                        <div>
+                            <h1>{art.title}</h1>
+                            <p>{art.description}</p>
+                        </div>
+                        <ArtInfo art={art} />
                     </div>
                 </div>
             );
