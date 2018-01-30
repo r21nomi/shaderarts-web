@@ -18,10 +18,6 @@ class ShaderEditor extends React.Component<Props, object> {
 	updateCode(newCode: string) {
         const { onCodeUpdated } = this.props;
         
-        this.setState({
-            code: newCode
-        });
-        
         onCodeUpdated(newCode);
 	}
 	render() {
