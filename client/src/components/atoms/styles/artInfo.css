@@ -1,0 +1,43 @@
+.ArtInfo-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+.ArtInfo-userThumb {
+    width: 30px;
+    margin-right: 8px;
+}
+.ArtInfo-userThumb a {
+    display: block;
+    line-height: 0;
+}
+.ArtInfo-userThumb img {
+    width: 100%;
+    border-radius: 50%;
+}
+.ArtInfo-userName {
+    flex-grow: 1;
+}
+.ArtInfo-star {
+
+}
+.ArtInfo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+.ArtInfo-tag {
+    margin: 0 8px 4px 0;
+}
+.ArtInfo-tag a {
+    font-size: 1.1rem;
+    color: #999;
+}
+.ArtInfo-code {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
