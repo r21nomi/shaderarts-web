@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Art from '../atoms/Art';
+import Art from '../../components/molecules/Art';
 import { ArtsState } from '../../reducers/arts';
 import { UserState } from '../../reducers/user';
 import { UserEntity } from '../../models/index';

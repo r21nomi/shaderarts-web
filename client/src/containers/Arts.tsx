@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchArts } from '../actions/fetchArts';
-import ArtList from '../components/molecules/ArtList';
+import ArtList from './organisms/ArtList';
 import { RootState } from '../reducers/index';
 import { UserEntity } from '../models/index';
 
