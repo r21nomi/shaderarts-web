@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/index';
+import { WindowSizeState } from '../../reducers/windowSize';
 import { UserState } from '../../reducers/user';
 import { CodeState } from '../../reducers/code';
 import UpdateCode from '../UpdateCode';
@@ -12,15 +13,8 @@ import { ArtType } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
 
-const canvasProps = {
-    width: 500,
-    height: 500,
-    onCanvasUpdated: (gl: any) => {
-        // no-op
-    }
-};
-
 interface Props {
+    windowSizeState: WindowSizeState;
     userState: UserState;
     codeState: CodeState;
     handleHeaderSaveAsDraftButtonClick: (code: CodeState) => void;
@@ -28,6 +22,7 @@ interface Props {
 }
 
 const mapStateToProps = (state: RootState) => ({
+    windowSizeState: state.windowSize,
     codeState: state.code,
     userState: state.user
 });
@@ -51,10 +46,18 @@ class CreatePage extends React.Component<Props, object> {
         let glslCanvas = this.updateGLSLCanvas.getWrappedInstance();
         this.getArtThumb = glslCanvas.getThumb;
     }
-    render() {
-        const { userState, codeState, handleHeaderSaveAsDraftButtonClick, handleHeaderSubmitButtonClick } = this.props
 
-        return <div>
+    render() {
+        const { windowSizeState, userState, codeState, handleHeaderSaveAsDraftButtonClick, handleHeaderSubmitButtonClick } = this.props
+
+        let rootClassName = '';
+
+        if (true) {
+            // TODO: Check condition.
+            rootClassName = 'overlayMode';
+        }
+
+        return <div className={rootClassName}>
             <CreateHeader 
                 onSaveAsDraftButtonClick={() => {
                     handleHeaderSaveAsDraftButtonClick(codeState);
@@ -68,7 +71,12 @@ class CreatePage extends React.Component<Props, object> {
                 <UpdateCode />
                 <UpdateGLSLCanvas
                     ref={(r) => this.updateGLSLCanvas = r}
-                    {...canvasProps}
+                    width = {windowSizeState.width}
+                    height = {windowSizeState.height}
+                    onCanvasUpdated = {(gl: any) => {
+                        // no-op
+                    }}
+                    // {...canvasProps}
                     vertexShader = {codeState.vertexShader}
                     fragmentShader = {codeState.fragmentShader}
                 />

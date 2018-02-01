@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './styles/glsl_canvas.css';
 
 interface Props {
     width: number;
@@ -134,7 +135,11 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
 
     render() {
-        return <canvas ref="canvas" width={this.props.width} height={this.props.height}></canvas>;
+        return <canvas
+                className="GLSLCanvas-canvas"
+                ref="canvas"
+                width={this.props.width}
+                height={this.props.height} />;
     }
 }
 

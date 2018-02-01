@@ -4,7 +4,8 @@ import ShaderEditor from '../components/molecules/ShaderEditor';
 import { RootState } from '../reducers/index';
 
 const mapStateToProps = (state: RootState) => ({
-    code: state.code
+    windowSizeState: state.windowSize,
+    codeSate: state.code
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({

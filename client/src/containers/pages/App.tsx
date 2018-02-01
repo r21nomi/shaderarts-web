@@ -13,19 +13,28 @@ import Footer from '../organisms/Footer';
 import { RootState } from '../../reducers/index';
 import { ConnectedRouter } from 'react-router-redux';
 import history from '../../history';
-import { Route, Switch } from 'react-router'
+import { Route, Switch } from 'react-router';
+import { updateWindowSize } from '../../actions/updateWindowSize';
 
-interface Props {}
+interface Props {
+    onResize: (e: UIEvent) => void
+}
 
 const mapStateToProps = (state: RootState) => ({
     // no-op
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    // no-op
+    onResize: (e: UIEvent) => {
+        dispatch(updateWindowSize(window.innerWidth, window.innerHeight));
+    }
 });
 
 class App extends React.Component<Props, object> {
+    componentDidMount() {
+        const { onResize } = this.props
+        window.addEventListener("resize", onResize);
+    }
     render() {
         return <ConnectedRouter history={history}>
                     <Switch>
