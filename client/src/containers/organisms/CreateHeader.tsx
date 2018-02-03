@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/header.css';
 import './styles/create_header.css';
+import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -31,6 +32,9 @@ class CreateHeader extends React.Component<Props, object> {
                         >
                             Submit
                         </a>
+                    </li>
+                    <li>
+                        <PaneMenuButton />
                     </li>
                 </ul>
             </div>
