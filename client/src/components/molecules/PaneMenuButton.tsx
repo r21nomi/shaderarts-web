@@ -2,15 +2,19 @@ import * as React from 'react';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import ArrowDropDown from 'material-ui-icons/ArrowDropDown';
-import withStyles from 'material-ui/styles/withStyles';
+import withStyles, { WithStyles } from 'material-ui/styles/withStyles';
 
 const styles = (theme: any) => ({
-    icon: {
-      margin: 0,
+    root: {
+        margin: 0,
     }
 });
 
-class PaneMenuButton extends React.Component<any, object> {
+interface Props {
+    // no-op
+}
+
+class PaneMenuButton extends React.Component<WithStyles<'root'> & Props, object> {
     private initialAnchorEl: HTMLElement;
 
     state = {
@@ -38,7 +42,7 @@ class PaneMenuButton extends React.Component<any, object> {
                         onClick={this.handleClick}
                     >
                         Pane
-                        <ArrowDropDown className={classes.icon}/>
+                        <ArrowDropDown className={classes.root}/>
                     </Button>
                 </div>
                 <Menu
