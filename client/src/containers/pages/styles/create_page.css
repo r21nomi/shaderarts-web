@@ -2,3 +2,11 @@
     display: flex;
     align-items: start;
 }
+
+.paneMode-split .CreatePage-content .ShaderEditor-content {
+    width: 50%;
+}
+
+.paneMode-split .CreatePage-content .GLSLCanvas-canvas {
+    width: 50%;
+}

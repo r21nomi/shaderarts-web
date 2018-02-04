@@ -135,11 +135,12 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
 
     render() {
-        return <canvas
-                className="GLSLCanvas-canvas"
-                ref="canvas"
-                width={this.props.width}
-                height={this.props.height} />;
+        return <div className="GLSLCanvas-canvas">
+                    <canvas
+                        ref="canvas"
+                        width={this.props.width}
+                        height={this.props.height} />
+                </div>;
     }
 }
 

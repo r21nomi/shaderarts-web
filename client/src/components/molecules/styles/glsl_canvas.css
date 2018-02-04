@@ -1,6 +1,26 @@
-.overlayMode .GLSLCanvas-canvas {
+.paneMode-overlay .GLSLCanvas-canvas {
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+.paneMode-split .GLSLCanvas-canvas {
+    position: relative;
+}
+
+.paneMode-split .GLSLCanvas-canvas:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.paneMode-split .GLSLCanvas-canvas canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }

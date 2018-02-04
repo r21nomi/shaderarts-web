@@ -61,12 +61,13 @@ class CreatePage extends React.Component<Props, object> {
         } = this.props
 
         let rootClassName = '';
+        let canvasSize = getSizeForCanvas(paneModeState, windowSizeState)
 
         if (true) {
             if (paneModeState.mode == PaneMode.OVERLAY) {
-                rootClassName = 'overlayMode';
+                rootClassName = 'paneMode-overlay';
             } else if (paneModeState.mode == PaneMode.SPLIT) {
-                rootClassName = 'splitMode';
+                rootClassName = 'paneMode-split';
             }
         }
 
@@ -84,8 +85,8 @@ class CreatePage extends React.Component<Props, object> {
                 <UpdateCode />
                 <UpdateGLSLCanvas
                     ref={(r) => this.updateGLSLCanvas = r}
-                    width = {windowSizeState.width}
-                    height = {windowSizeState.height}
+                    width = {canvasSize.width}
+                    height = {canvasSize.height}
                     onCanvasUpdated = {(gl: any) => {
                         // no-op
                     }}
@@ -96,6 +97,23 @@ class CreatePage extends React.Component<Props, object> {
             </div>
         </div>;
     }
+}
+
+function getSizeForCanvas(paneModeState: PaneModeState, windowSizeState: WindowSizeState) {
+    let size = {
+        width: 0,
+        height: 0
+    };
+
+    if (paneModeState.mode == PaneMode.OVERLAY) {
+        size.width = windowSizeState.width;
+        size.height = windowSizeState.height;
+
+    } else if (paneModeState.mode == PaneMode.SPLIT) {
+        size.width = size.height = windowSizeState.width;
+    }
+
+    return size;
 }
 
 export default connect(
