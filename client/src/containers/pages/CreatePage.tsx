@@ -4,12 +4,13 @@ import { RootState } from '../../reducers/index';
 import { WindowSizeState } from '../../reducers/windowSize';
 import { UserState } from '../../reducers/user';
 import { CodeState } from '../../reducers/code';
+import { PaneModeState } from '../../reducers/paneMode';
 import UpdateCode from '../UpdateCode';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import CreateHeader from '../organisms/CreateHeader';
 import { postArt } from '../../actions/postArt';
 import { toArtData } from '../../models/artDataProvider';
-import { ArtType } from '../../models/index';
+import { ArtType, PaneMode } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
 
@@ -17,6 +18,7 @@ interface Props {
     windowSizeState: WindowSizeState;
     userState: UserState;
     codeState: CodeState;
+    paneModeState: PaneModeState;
     handleHeaderSaveAsDraftButtonClick: (code: CodeState) => void;
     handleHeaderSubmitButtonClick: (userState: UserState, code: CodeState, artThumb: string) => void;
 }
@@ -24,7 +26,8 @@ interface Props {
 const mapStateToProps = (state: RootState) => ({
     windowSizeState: state.windowSize,
     codeState: state.code,
-    userState: state.user
+    userState: state.user,
+    paneModeState: state.paneMode
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
@@ -48,13 +51,23 @@ class CreatePage extends React.Component<Props, object> {
     }
 
     render() {
-        const { windowSizeState, userState, codeState, handleHeaderSaveAsDraftButtonClick, handleHeaderSubmitButtonClick } = this.props
+        const {
+            windowSizeState,
+            userState,
+            codeState,
+            paneModeState,
+            handleHeaderSaveAsDraftButtonClick,
+            handleHeaderSubmitButtonClick
+        } = this.props
 
         let rootClassName = '';
 
         if (true) {
-            // TODO: Check condition.
-            rootClassName = 'overlayMode';
+            if (paneModeState.mode == PaneMode.OVERLAY) {
+                rootClassName = 'overlayMode';
+            } else if (paneModeState.mode == PaneMode.SPLIT) {
+                rootClassName = 'splitMode';
+            }
         }
 
         return <div className={rootClassName}>

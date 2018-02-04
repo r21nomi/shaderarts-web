@@ -1,17 +1,36 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../reducers/index';
+import { PaneModeState } from '../../reducers/paneMode';
+import { PaneMode } from '../../models/index';
 import './styles/header.css';
 import './styles/create_header.css';
 import PaneMenuButton from '../../components/molecules/PaneMenuButton';
+import { UpdatePaneMode } from '../../actions/updatePaneMode';
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
     onSubmitButtonClick: () => void;
+
+    // For PaneMenuButton
+    paneModeState: PaneModeState;
+    onModeChanged: (mode: PaneMode) => void;
 }
+
+const mapStateToProps = (state: RootState) => ({
+    paneModeState: state.paneMode
+});
+
+const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+    onModeChanged: (mode: PaneMode) => {
+        dispatch(UpdatePaneMode(mode));
+    }
+});
 
 class CreateHeader extends React.Component<Props, object> {
     render() {
-        const { onSaveAsDraftButtonClick, onSubmitButtonClick } = this.props;
+        const { paneModeState, onModeChanged, onSaveAsDraftButtonClick, onSubmitButtonClick } = this.props;
 
         return <header className="Header CreateHeader">
             <div className="Header-content CreateHeader-content">
@@ -34,7 +53,9 @@ class CreateHeader extends React.Component<Props, object> {
                         </a>
                     </li>
                     <li>
-                        <PaneMenuButton />
+                        <PaneMenuButton
+                            paneMode={paneModeState.mode}
+                            onModeChanged={onModeChanged} />
                     </li>
                 </ul>
             </div>
@@ -42,4 +63,7 @@ class CreateHeader extends React.Component<Props, object> {
     }
 }
 
-export default CreateHeader;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateHeader);

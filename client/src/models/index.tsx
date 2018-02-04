@@ -57,3 +57,23 @@ export namespace CodeType {
         }
     }
 }
+
+export enum PaneMode {
+    OVERLAY = 1,
+    SPLIT = 2
+}
+
+export namespace PaneMode {
+    export function getName(paneMode: PaneMode) {
+        switch (paneMode) {
+            case PaneMode.OVERLAY:
+                return 'Overlay';
+
+            case PaneMode.SPLIT:
+                return 'Split';
+
+            default:
+                return '';
+        }
+    }
+}

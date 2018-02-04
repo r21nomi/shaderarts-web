@@ -24,6 +24,7 @@
 .Header-menu {
     display: flex;
     flex-grow: 1;
+    align-items: center;
 }
 
 .Header-menuItem {
