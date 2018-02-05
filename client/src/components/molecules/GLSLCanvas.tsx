@@ -7,6 +7,7 @@ interface Props {
     onCanvasUpdated: any;
     vertexShader: string;
     fragmentShader: string;
+    shouldRender: boolean;
 }
 
 class GLSLCanvas extends React.Component<Props, object> {
@@ -33,6 +34,10 @@ class GLSLCanvas extends React.Component<Props, object> {
 
     componentWillUnmount() {
         this.stopAnimate();
+    }
+
+    shouldComponentUpdate() {
+        return this.props.shouldRender;
     }
 
     animate() {

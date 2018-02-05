@@ -66,6 +66,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                             {...canvasProps}
                             vertexShader = {art.codes[0].text}
                             fragmentShader = {art.codes[1].text}
+                            shouldRender = {true}
                         />
                         <div>
                             <h1>{art.title}</h1>

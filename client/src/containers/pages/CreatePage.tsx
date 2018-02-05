@@ -44,6 +44,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
 class CreatePage extends React.Component<Props, object> {
     updateGLSLCanvas: any;
     getArtThumb: () => any
+    lastCanvasWidth: number;
+    lastCanvasHeight: number;
+    lastPaneMode: PaneMode;
 
     componentDidMount() {
         let glslCanvas = this.updateGLSLCanvas.getWrappedInstance();
@@ -71,6 +74,13 @@ class CreatePage extends React.Component<Props, object> {
             }
         }
 
+        let shouldRenderCanvas = this.lastCanvasWidth != canvasSize.width
+            || this.lastCanvasHeight != canvasSize.height || this.lastPaneMode != paneModeState.mode;
+
+        this.lastCanvasWidth = canvasSize.width;
+        this.lastCanvasHeight = canvasSize.height;
+        this.lastPaneMode = paneModeState.mode;
+
         return <div className={rootClassName}>
             <CreateHeader 
                 onSaveAsDraftButtonClick={() => {
@@ -90,9 +100,9 @@ class CreatePage extends React.Component<Props, object> {
                     onCanvasUpdated = {(gl: any) => {
                         // no-op
                     }}
-                    // {...canvasProps}
                     vertexShader = {codeState.vertexShader}
                     fragmentShader = {codeState.fragmentShader}
+                    shouldRender = {shouldRenderCanvas}
                 />
             </div>
         </div>;
