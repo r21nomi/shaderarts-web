@@ -1,0 +1,30 @@
+.PostSheet-content {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.PostSheet-content input, .PostSheet-content textarea {
+    font-size: 1.4rem;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.PostSheet-label {
+    font-size: 1.2rem!important;
+    font-family: 'Roboto Mono', monospace!important;
+}
+
+.PostSheet-buttons {
+    text-align: right;
+}
+
+.PostSheet-cancelButton {
+    color: #666!important;
+    font-size: 1.2rem!important;
+    font-family: 'Roboto Mono', monospace!important;
+}
+
+.PostSheet-submitButton {
+    color: #9b27af!important;
+    font-size: 1.2rem!important;
+    font-family: 'Roboto Mono', monospace!important;
+}
