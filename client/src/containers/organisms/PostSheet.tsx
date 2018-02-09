@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { PostData } from "../../models/data";
 import { RootState } from '../../reducers/index';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -15,7 +16,7 @@ const styles = (theme: any) => ({
 
 interface Props {
     onCancelButtonClick: () => void;
-    onSubmitButtonClick: () => void;
+    onSubmitButtonClick: (postData: PostData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -27,11 +28,13 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 });
 
 class PostSheet extends React.Component<WithStyles<'textField'> & Props, object> {
+    title: string;
+    description: string;
+    // TODO: Fix
+    tags: string[] = [''];
 
     render() {
         const { classes, onCancelButtonClick, onSubmitButtonClick } = this.props;
-
-        console.log(this.props);
 
         return <div className="PostSheet-content">
                     <div className="PostSheet-textField">
@@ -41,6 +44,9 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             label="Title"
                             className={classes.textField}
                             labelClassName="PostSheet-label"
+                            onChange={event => {
+                                this.title = event.target.value
+                            }}
                             margin="normal"
                         />
                     </div>
@@ -52,6 +58,9 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             label="Description"
                             className={classes.textField}
                             labelClassName="PostSheet-label"
+                            onChange={event => {
+                                this.description = event.target.value
+                            }}
                             margin="normal"
                         />
                     </div>
@@ -61,6 +70,10 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             label="Tags"
                             className={classes.textField}
                             labelClassName="PostSheet-label"
+                            onChange={event => {
+                                // TODO: Fix
+                                this.tags[0]= event.target.value
+                            }}
                             margin="normal"
                         />
                     </div>
@@ -73,7 +86,11 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                         </Button>
                         <Button
                             className="PostSheet-submitButton"
-                            onClick={() => onSubmitButtonClick()}
+                            onClick={() => onSubmitButtonClick({
+                                title: this.title,
+                                description: this.description,
+                                tags: this.tags
+                            })}
                         >
                             Submit
                         </Button>

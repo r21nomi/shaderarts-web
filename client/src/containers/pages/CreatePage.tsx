@@ -13,6 +13,7 @@ import { toArtData } from '../../models/artDataProvider';
 import { ArtType, PaneMode } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
+import {ArtData, PostData} from "../../models/data";
 
 interface Props {
     windowSizeState: WindowSizeState;
@@ -20,7 +21,7 @@ interface Props {
     codeState: CodeState;
     paneModeState: PaneModeState;
     handleHeaderSaveAsDraftButtonClick: (code: CodeState) => void;
-    handleHeaderSubmitButtonClick: (userState: UserState, code: CodeState, artThumb: string) => void;
+    handleHeaderSubmitButtonClick: (userState: UserState, artData: ArtData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -34,9 +35,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
     handleHeaderSaveAsDraftButtonClick: (codeState: CodeState) => {
         console.log("handleHeaderSaveAsDraftButtonClick");
     },
-    handleHeaderSubmitButtonClick: (userState: UserState, codeState: CodeState, artThumb: string) => {
-        artThumb = artThumb.replace(/^.*,/, '');
-        let artData = toArtData("art1", "description1", ArtType.GLSL, artThumb, codeState);
+    handleHeaderSubmitButtonClick: (userState: UserState, artData: ArtData) => {
         dispatch(postArt(userState.user, artData));
     }
 });
@@ -86,9 +85,10 @@ class CreatePage extends React.Component<Props, object> {
                 onSaveAsDraftButtonClick={() => {
                     handleHeaderSaveAsDraftButtonClick(codeState);
                 }}
-                onSubmitButtonClick={() => {
-                    let artThumb: string = this.getArtThumb();
-                    handleHeaderSubmitButtonClick(userState, codeState, artThumb);
+                onSubmitButtonClick={(postData: PostData) => {
+                    let artThumb: string = this.getArtThumb().replace(/^.*,/, '');
+                    let artData = toArtData(postData.title, postData.description, ArtType.GLSL, artThumb, codeState);
+                    handleHeaderSubmitButtonClick(userState, artData);
                 }}
             />
             <div className="Page-content CreatePage-content">

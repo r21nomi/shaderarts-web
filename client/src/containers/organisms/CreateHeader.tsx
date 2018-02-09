@@ -9,10 +9,11 @@ import './styles/create_header.css';
 import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/updatePaneMode';
+import {PostData} from "../../models/data";
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
-    onSubmitButtonClick: () => void;
+    onSubmitButtonClick: (postData: PostData) => void;
 
     // For PaneMenuButton
     paneModeState: PaneModeState;
@@ -83,7 +84,7 @@ class CreateHeader extends React.Component<Props, object> {
                     >
                         <PostSheet
                             onCancelButtonClick={() => this.onCancelButtonClick()}
-                            onSubmitButtonClick={() => onSubmitButtonClick()} />
+                            onSubmitButtonClick={(postData: PostData) => onSubmitButtonClick(postData)} />
                     </div>
                 </header>;
     }

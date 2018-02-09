@@ -12,3 +12,9 @@ export interface CodeData {
     type: CodeType;
     text: string;
 }
+
+export interface PostData {
+    title: string;
+    description: string;
+    tags: string[];
+}
