@@ -9,11 +9,11 @@ import './styles/create_header.css';
 import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/updatePaneMode';
-import {PostData} from "../../models/data";
+import { ArtInfoData } from '../../models/data';
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
-    onSubmitButtonClick: (postData: PostData) => void;
+    onSubmitButtonClick: (postData: ArtInfoData) => void;
 
     // For PaneMenuButton
     paneModeState: PaneModeState;
@@ -33,18 +33,18 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 class CreateHeader extends React.Component<Props, object> {
 
     onSubmitMouseOver() {
-        let headerEL: any = this.refs.createHeader
-        headerEL.classList.add('submit--over')
+        let headerEL: any = this.refs.createHeader;
+        headerEL.classList.add('submit--over');
     }
 
     onSubmitMouseLeave() {
-        let headerEL: any = this.refs.createHeader
-        headerEL.classList.remove('submit--over')
+        let headerEL: any = this.refs.createHeader;
+        headerEL.classList.remove('submit--over');
     }
 
     onCancelButtonClick() {
-        let headerEL: any = this.refs.createHeader
-        headerEL.classList.remove('submit--over')
+        let headerEL: any = this.refs.createHeader;
+        headerEL.classList.remove('submit--over');
     }
 
     render() {
@@ -84,7 +84,7 @@ class CreateHeader extends React.Component<Props, object> {
                     >
                         <PostSheet
                             onCancelButtonClick={() => this.onCancelButtonClick()}
-                            onSubmitButtonClick={(postData: PostData) => onSubmitButtonClick(postData)} />
+                            onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
                     </div>
                 </header>;
     }

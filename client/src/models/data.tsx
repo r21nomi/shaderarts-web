@@ -13,7 +13,7 @@ export interface CodeData {
     text: string;
 }
 
-export interface PostData {
+export interface ArtInfoData {
     title: string;
     description: string;
     tags: string[];

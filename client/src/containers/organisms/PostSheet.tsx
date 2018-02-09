@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { PostData } from "../../models/data";
+import { ArtInfoData } from '../../models/data';
 import { RootState } from '../../reducers/index';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -16,7 +16,7 @@ const styles = (theme: any) => ({
 
 interface Props {
     onCancelButtonClick: () => void;
-    onSubmitButtonClick: (postData: PostData) => void;
+    onSubmitButtonClick: (artInfoData: ArtInfoData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -45,7 +45,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             className={classes.textField}
                             labelClassName="PostSheet-label"
                             onChange={event => {
-                                this.title = event.target.value
+                                this.title = event.target.value;
                             }}
                             margin="normal"
                         />
@@ -59,7 +59,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             className={classes.textField}
                             labelClassName="PostSheet-label"
                             onChange={event => {
-                                this.description = event.target.value
+                                this.description = event.target.value;
                             }}
                             margin="normal"
                         />
@@ -72,7 +72,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             labelClassName="PostSheet-label"
                             onChange={event => {
                                 // TODO: Fix
-                                this.tags[0]= event.target.value
+                                this.tags[0] = event.target.value;
                             }}
                             margin="normal"
                         />
@@ -95,7 +95,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             Submit
                         </Button>
                     </div>
-                </div>
+                </div>;
     }
 }
 

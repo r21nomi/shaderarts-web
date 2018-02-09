@@ -13,7 +13,7 @@ import { toArtData } from '../../models/artDataProvider';
 import { ArtType, PaneMode } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
-import {ArtData, PostData} from "../../models/data";
+import {ArtData, ArtInfoData} from "../../models/data";
 
 interface Props {
     windowSizeState: WindowSizeState;
@@ -85,9 +85,9 @@ class CreatePage extends React.Component<Props, object> {
                 onSaveAsDraftButtonClick={() => {
                     handleHeaderSaveAsDraftButtonClick(codeState);
                 }}
-                onSubmitButtonClick={(postData: PostData) => {
+                onSubmitButtonClick={(artInfoData: ArtInfoData) => {
                     let artThumb: string = this.getArtThumb().replace(/^.*,/, '');
-                    let artData = toArtData(postData.title, postData.description, ArtType.GLSL, artThumb, codeState);
+                    let artData = toArtData(artInfoData.title, artInfoData.description, ArtType.GLSL, artThumb, codeState);
                     handleHeaderSubmitButtonClick(userState, artData);
                 }}
             />
