@@ -1,6 +1,7 @@
 .PostSheet-content {
     max-width: 1024px;
     margin: 0 auto;
+    text-align: right;
 }
 
 .PostSheet-content input, .PostSheet-content textarea {
@@ -15,6 +16,7 @@
 
 .PostSheet-buttons {
     text-align: right;
+    margin-top: 24px;
 }
 
 .PostSheet-cancelButton {

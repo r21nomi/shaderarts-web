@@ -15,7 +15,7 @@ const styles = (theme: any) => ({
 });
 
 interface Props {
-    onCancelButtonClick: () => void;
+    onDaveAsDraftButtonClick: () => void;
     onSubmitButtonClick: (artInfoData: ArtInfoData) => void;
 }
 
@@ -34,12 +34,12 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
     tags: string[] = [''];
 
     render() {
-        const { classes, onCancelButtonClick, onSubmitButtonClick } = this.props;
+        const { classes, onDaveAsDraftButtonClick, onSubmitButtonClick } = this.props;
 
         return <div className="PostSheet-content">
                     <div className="PostSheet-textField">
                         <TextField
-                            required
+                            required={true}
                             id="required"
                             label="Title"
                             className={classes.textField}
@@ -52,7 +52,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                     </div>
                     <div className="PostSheet-textField">
                         <TextField
-                            multiline
+                            multiline={true}
                             rows="3"
                             id="required"
                             label="Description"
@@ -80,9 +80,9 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                     <div className="PostSheet-buttons">
                         <Button
                             className="PostSheet-cancelButton"
-                            onClick={() => onCancelButtonClick()}
+                            onClick={() => onDaveAsDraftButtonClick()}
                         >
-                            Cancel
+                            Save as Draft
                         </Button>
                         <Button
                             className="PostSheet-submitButton"

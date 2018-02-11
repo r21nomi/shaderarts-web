@@ -10,6 +10,8 @@ import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/updatePaneMode';
 import { ArtInfoData } from '../../models/data';
+import Button from 'material-ui/Button';
+import KeyboardArrowDown from 'material-ui-icons/KeyboardArrowDown';
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -54,28 +56,19 @@ class CreateHeader extends React.Component<Props, object> {
                     <div className="Header-content CreateHeader-content">
                         <div className="Header-logo CreateHeader-logo"><Link to="/">Arto</Link></div>
                         <ul className="Header-menu CreateHeader-menu">
-                            <li className="Header-menuItem CreateHeader-menuItem">
-                                <a
-                                    href="javascript:void(0)"
-                                    onClick={() => onSaveAsDraftButtonClick()}
-                                >
-                                    Save as draft
-                                </a>
-                            </li>
-                            <li className="Header-menuItem CreateHeader-menuItem">
-                                <a
-                                    href="javascript:void(0)"
-                                    onMouseOver={this.onSubmitMouseOver.bind(this)}
-                                >
-                                    Submit
-                                </a>
-                            </li>
                             <li>
                                 <PaneMenuButton
                                     paneMode={paneModeState.mode}
                                     onModeChanged={onModeChanged} />
                             </li>
                         </ul>
+                        <Button
+                            className="CreateHeader-submitButton"
+                            onMouseOver={this.onSubmitMouseOver.bind(this)}
+                        >
+                            Submit
+                            <KeyboardArrowDown />
+                        </Button>
                     </div>
                     <div
                         className="CreateHeader-submitMenu"
@@ -83,7 +76,7 @@ class CreateHeader extends React.Component<Props, object> {
                         onMouseLeave={this.onSubmitMouseLeave.bind(this)}
                     >
                         <PostSheet
-                            onCancelButtonClick={() => this.onCancelButtonClick()}
+                            onDaveAsDraftButtonClick={() => onSaveAsDraftButtonClick()}
                             onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
                     </div>
                 </header>;

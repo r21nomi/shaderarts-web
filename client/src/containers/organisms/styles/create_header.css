@@ -5,12 +5,23 @@
 
 }
 
+.CreateHeader-logo {
+    margin-right: 96px;
+}
+
 .CreateHeader-menu {
 
 }
 
 .CreateHeader-menuItem {
 
+}
+
+.CreateHeader-submitButton {
+    color: #666!important;
+    font-size: 1.4rem!important;
+    font-family: 'Roboto Mono', monospace!important;
+    text-transform: none!important;
 }
 
 .CreateHeader-submitMenu {
