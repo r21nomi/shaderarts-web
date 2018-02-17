@@ -39,9 +39,12 @@ class Header extends React.Component<Props, object> {
                         return <button><Link to="/login">Login</Link></button>;
                     } else {
                         return <div className="Header-logoutSection">
-                                <p>{userState.user.name}</p>
-                                <LogoutButton onClick={onLogoutButtonClick} />
-                            </div>;
+                                    <div className="Header-userInfo">
+                                        <img className="Header-thumb" src={userState.user.thumb} alt={userState.user.name}/>
+                                        <p className="Header-userName">{userState.user.name}</p>
+                                    </div>
+                                    <LogoutButton onClick={onLogoutButtonClick} />
+                                </div>;
                     }
                 })()}
             </div>
