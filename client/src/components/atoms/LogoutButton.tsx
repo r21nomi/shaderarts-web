@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Button from 'material-ui/Button';
 import './styles/logout_button.css';
 
 interface Props {
@@ -6,12 +7,12 @@ interface Props {
 }
 
 const LogoutButton = ({ onClick }: Props) => (
-    <button
+    <Button
         className="LogoutButton"
         onClick={() => onClick()}
     >
-    Logout
-    </button>
+        Logout
+    </Button>
 );
 
 export default LogoutButton;
