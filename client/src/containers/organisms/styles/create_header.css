@@ -25,7 +25,6 @@
 }
 
 .CreateHeader-submitMenu {
-    display: none;
     width: 100%;
     /* height: 112px; */
     background-color: #fff;
@@ -35,8 +34,4 @@
     z-index: -1;
     padding: 56px 24px 24px;
     box-sizing: border-box;
-}
-
-.submit--over .CreateHeader-submitMenu {
-    display: block;
 }

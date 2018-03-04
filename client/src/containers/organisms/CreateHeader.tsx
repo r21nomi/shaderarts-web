@@ -9,9 +9,10 @@ import './styles/create_header.css';
 import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/updatePaneMode';
+import { ToggleDetailMode } from '../../actions/toggleDetailMode';
 import { ArtInfoData } from '../../models/data';
 import Button from 'material-ui/Button';
-import KeyboardArrowDown from 'material-ui-icons/KeyboardArrowDown';
+import {DetailModeState} from "../../reducers/detailMode";
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -20,15 +21,23 @@ interface Props {
     // For PaneMenuButton
     paneModeState: PaneModeState;
     onModeChanged: (mode: PaneMode) => void;
+
+    // For DetailButton
+    detailModeState: DetailModeState;
+    onDetailModeChanged: (isCurrentEnabled: boolean) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    paneModeState: state.paneMode
+    paneModeState: state.paneMode,
+    detailModeState: state.detailMode
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onModeChanged: (mode: PaneMode) => {
         dispatch(UpdatePaneMode(mode));
+    },
+    onDetailModeChanged: (isCurrentEnabled: boolean) => {
+        dispatch(ToggleDetailMode(isCurrentEnabled))
     }
 });
 
@@ -50,7 +59,14 @@ class CreateHeader extends React.Component<Props, object> {
     }
 
     render() {
-        const { paneModeState, onModeChanged, onSaveAsDraftButtonClick, onSubmitButtonClick } = this.props;
+        const {
+            paneModeState,
+            detailModeState,
+            onModeChanged,
+            onDetailModeChanged,
+            onSaveAsDraftButtonClick,
+            onSubmitButtonClick
+        } = this.props;
 
         return <header className="Header CreateHeader" ref="createHeader">
                     <div className="Header-content CreateHeader-content">
@@ -64,21 +80,24 @@ class CreateHeader extends React.Component<Props, object> {
                         </ul>
                         <Button
                             className="CreateHeader-submitButton"
-                            onMouseOver={this.onSubmitMouseOver.bind(this)}
+                            onClick={() => onDetailModeChanged(detailModeState.isEnabled)}
                         >
-                            Submit
-                            <KeyboardArrowDown />
+                            Publish
                         </Button>
                     </div>
-                    <div
-                        className="CreateHeader-submitMenu"
-                        onMouseOver={this.onSubmitMouseOver.bind(this)}
-                        onMouseLeave={this.onSubmitMouseLeave.bind(this)}
-                    >
-                        <PostSheet
-                            onDaveAsDraftButtonClick={() => onSaveAsDraftButtonClick()}
-                            onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
-                    </div>
+                    {(() => {
+                        if (detailModeState.isEnabled) {
+                            return <div
+                                        className="CreateHeader-submitMenu"
+                                    >
+                                        <PostSheet
+                                            onDaveAsDraftButtonClick={() => onSaveAsDraftButtonClick()}
+                                            onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
+                                    </div>
+                        } else {
+                            return null
+                        }
+                    })()}
                 </header>;
     }
 }
