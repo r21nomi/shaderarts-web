@@ -9,10 +9,10 @@ import './styles/create_header.css';
 import PaneMenuButton from '../../components/molecules/PaneMenuButton';
 import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/updatePaneMode';
-import { ToggleDetailMode } from '../../actions/toggleDetailMode';
+import { TogglePostSheetMode } from '../../actions/togglePostSheetMode';
 import { ArtInfoData } from '../../models/data';
 import Button from 'material-ui/Button';
-import {DetailModeState} from "../../reducers/detailMode";
+import { PostSheetModeState } from "../../reducers/postSheetMode";
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -22,22 +22,22 @@ interface Props {
     paneModeState: PaneModeState;
     onModeChanged: (mode: PaneMode) => void;
 
-    // For DetailButton
-    detailModeState: DetailModeState;
-    onDetailModeChanged: (isCurrentEnabled: boolean) => void;
+    // For PublishButton
+    postSheetModeState: PostSheetModeState;
+    onPostSheetModeChanged: (isCurrentEnabled: boolean) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
     paneModeState: state.paneMode,
-    detailModeState: state.detailMode
+    postSheetModeState: state.postSheetMode
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onModeChanged: (mode: PaneMode) => {
         dispatch(UpdatePaneMode(mode));
     },
-    onDetailModeChanged: (isCurrentEnabled: boolean) => {
-        dispatch(ToggleDetailMode(isCurrentEnabled))
+    onPostSheetModeChanged: (isCurrentEnabled: boolean) => {
+        dispatch(TogglePostSheetMode(isCurrentEnabled))
     }
 });
 
@@ -61,9 +61,9 @@ class CreateHeader extends React.Component<Props, object> {
     render() {
         const {
             paneModeState,
-            detailModeState,
+            postSheetModeState,
             onModeChanged,
-            onDetailModeChanged,
+            onPostSheetModeChanged,
             onSaveAsDraftButtonClick,
             onSubmitButtonClick
         } = this.props;
@@ -80,13 +80,13 @@ class CreateHeader extends React.Component<Props, object> {
                         </ul>
                         <Button
                             className="CreateHeader-submitButton"
-                            onClick={() => onDetailModeChanged(detailModeState.isEnabled)}
+                            onClick={() => onPostSheetModeChanged(postSheetModeState.isEnabled)}
                         >
                             Publish
                         </Button>
                     </div>
                     {(() => {
-                        if (detailModeState.isEnabled) {
+                        if (postSheetModeState.isEnabled) {
                             return <div
                                         className="CreateHeader-submitMenu"
                                     >
