@@ -73,26 +73,36 @@ class GLSLCanvas extends React.Component<Props, object> {
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
-        // position
-        let positionAttributeLocation = gl.getAttribLocation(program, 'position');
-        let positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
         let positions = [
             -1, -1, 0,
             1, -1, 0,
             -1, 1, 0,
-            1, -1, 0,
-            -1, 1, 0,
             1, 1, 0
         ];
+
+        let index = [
+            0, 1, 2,
+            1, 2, 3
+        ];
+
+        // position
+        let vbo = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+        let positionAttributeLocation = gl.getAttribLocation(program, 'position');
         gl.enableVertexAttribArray(positionAttributeLocation);
+
         let size = 3;  // xyz
         let type = gl.FLOAT;
         let normalize = false;
         let stride = 0;
         let offset = 0;
         gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride, offset);
+
+        let ibo = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int16Array(index), gl.STATIC_DRAW);
 
         // resolution
         let resolutionLocation = gl.getUniformLocation(program, 'resolution');
@@ -104,8 +114,9 @@ class GLSLCanvas extends React.Component<Props, object> {
         gl.uniform1f(timeLocation, time);
 
         let primitiveType = gl.TRIANGLES;
-        let vertexCount = 6;
-        gl.drawArrays(primitiveType, offset, vertexCount);
+        let vertexCount = index.length;
+        gl.drawElements(primitiveType, vertexCount, gl.UNSIGNED_SHORT, 0);
+        gl.flush();
 
         this.props.onCanvasUpdated(gl);
     }
