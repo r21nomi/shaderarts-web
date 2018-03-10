@@ -18,7 +18,7 @@ class GLSLCanvas extends React.Component<Props, object> {
     getThumb: () => any = () => {
         let canvas: any = this.refs.canvas;
         return canvas.toDataURL('image/png');
-    }
+    };
 
     constructor(props: Props) {
         super(props);
@@ -52,7 +52,7 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
 
     updateCanvas() {
-        var gl = this.gl;
+        let gl = this.gl;
         if (!gl) {
             console.log('webgl is not available.');
             return;
@@ -60,13 +60,13 @@ class GLSLCanvas extends React.Component<Props, object> {
 
         let vertexShaderSource = this.props.vertexShader;
         let fragmentShaderSource = this.props.fragmentShader;
-        var vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-        var fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+        let vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        let fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
         if (!vertexShader || !fragmentShader) {
             // Could not compile program.
             return;
         }
-        var program = this.createProgram(gl, vertexShader, fragmentShader);
+        let program = this.createProgram(gl, vertexShader, fragmentShader);
         gl.useProgram(program);
 
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -74,10 +74,10 @@ class GLSLCanvas extends React.Component<Props, object> {
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         // position
-        var positionAttributeLocation = gl.getAttribLocation(program, 'position');
-        var positionBuffer = gl.createBuffer();
+        let positionAttributeLocation = gl.getAttribLocation(program, 'position');
+        let positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        var positions = [
+        let positions = [
             -1, -1, 0,
             1, -1, 0,
             -1, 1, 0,
@@ -87,35 +87,35 @@ class GLSLCanvas extends React.Component<Props, object> {
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(positionAttributeLocation);
-        var size = 3;  // xyz
-        var type = gl.FLOAT;
-        var normalize = false;
-        var stride = 0;
-        var offset = 0;
+        let size = 3;  // xyz
+        let type = gl.FLOAT;
+        let normalize = false;
+        let stride = 0;
+        let offset = 0;
         gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride, offset);
 
         // resolution
-        var resolutionLocation = gl.getUniformLocation(program, 'resolution');
+        let resolutionLocation = gl.getUniformLocation(program, 'resolution');
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
 
         // time
-        var timeLocation = gl.getUniformLocation(program, 'time');
-        var time = (Date.now() - this.startTime) / 1000;
+        let timeLocation = gl.getUniformLocation(program, 'time');
+        let time = (Date.now() - this.startTime) / 1000;
         gl.uniform1f(timeLocation, time);
 
-        var primitiveType = gl.TRIANGLES;
-        var vertexCount = 6;
+        let primitiveType = gl.TRIANGLES;
+        let vertexCount = 6;
         gl.drawArrays(primitiveType, offset, vertexCount);
 
         this.props.onCanvasUpdated(gl);
     }
 
     createShader(gl: any, type: string, source: string) {
-        var shader = gl.createShader(type);
+        let shader = gl.createShader(type);
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
 
-        var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+        let success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
         if (!success) {
             console.log(gl.getShaderInfoLog(shader));
             gl.deleteShader(shader);
@@ -125,12 +125,12 @@ class GLSLCanvas extends React.Component<Props, object> {
     }
 
     createProgram(gl: any, vertexShader: string, fragmentShader: string) {
-        var program = gl.createProgram();
+        let program = gl.createProgram();
         gl.attachShader(program, vertexShader);
         gl.attachShader(program, fragmentShader);
         gl.linkProgram(program);
 
-        var success = gl.getProgramParameter(program, gl.LINK_STATUS);
+        let success = gl.getProgramParameter(program, gl.LINK_STATUS);
         if (!success) {
             console.log(gl.getParameterInfoLog(program));
             gl.deleteProgram(program);
