@@ -57,7 +57,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
         console.log(this.props);
 
         return <div className="PostSheet-content">
-                    <div className="PostSheet-textField">
+                    <div className="PostSheet-textField PostSheet-title">
                         <TextField
                             required={true}
                             id="required"
@@ -70,7 +70,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             margin="normal"
                         />
                     </div>
-                    <div className="PostSheet-textField">
+                    <div className="PostSheet-textField PostSheet-description">
                         <TextField
                             multiline={true}
                             rows="3"
@@ -84,18 +84,21 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             margin="normal"
                         />
                     </div>
-                    <div className="PostSheet-textField">
-                        <ReactTags tags={tagsState.tags}
-                            handleDelete={onTagDeleted}
-                            handleAddition={(tag: string) => {
-                                let id = tagsState.tags.length == 0
-                                    ? 0
-                                    : tagsState.tags[tagsState.tags.length - 1].id + 1
-                                onTagAdded({
-                                    id: id,
-                                    text: tag
-                                })
-                            }} />
+                    <div className="PostSheet-textField PostSheet-tags">
+                        <div className="PostSheet-tagsContent">
+                            <label className="PostSheet-tagsLabel">Tags</label>
+                            <ReactTags tags={tagsState.tags}
+                                handleDelete={onTagDeleted}
+                                handleAddition={(tag: string) => {
+                                    let id = tagsState.tags.length == 0
+                                        ? 0
+                                        : tagsState.tags[tagsState.tags.length - 1].id + 1
+                                    onTagAdded({
+                                        id: id,
+                                        text: tag
+                                    })
+                                }} />
+                        </div>
                     </div>
                     <div className="PostSheet-buttons">
                         <Button
