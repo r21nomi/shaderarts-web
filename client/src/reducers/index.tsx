@@ -8,7 +8,8 @@ import code, { CodeState } from './code';
 import arts, { ArtsState } from './arts';
 import artDetail, { ArtDetailState } from './artDetail';
 import paneMode, { PaneModeState } from './paneMode';
-import postSheetMode, { PostSheetModeState } from "./postSheetMode";
+import postSheetMode, { PostSheetModeState } from './postSheetMode';
+import tags, { TagsState } from './tags';
 
 export interface RootState {
     windowSize: WindowSizeState;
@@ -18,6 +19,7 @@ export interface RootState {
     code: CodeState;
     paneMode: PaneModeState;
     postSheetMode: PostSheetModeState;
+    tags: TagsState;
 }
 
 const reducers = combineReducers<RootState>({
@@ -30,7 +32,8 @@ const reducers = combineReducers<RootState>({
     artDetail,
     code,
     paneMode,
-    postSheetMode
+    postSheetMode,
+    tags
 });
 
 export default reducers;

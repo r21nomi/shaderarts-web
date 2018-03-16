@@ -5,7 +5,7 @@ export interface ArtData {
     type: ArtType;
     description: string;
     thumb: string;
-    codes: CodeData[]
+    codes: CodeData[];
 }
 
 export interface CodeData {
@@ -17,4 +17,9 @@ export interface ArtInfoData {
     title: string;
     description: string;
     tags: string[];
+}
+
+export interface TagData {
+    id: number;
+    text: string;
 }
