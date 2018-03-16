@@ -6,6 +6,7 @@ export interface ArtData {
     description: string;
     thumb: string;
     codes: CodeData[];
+    tags: string[];
 }
 
 export interface CodeData {

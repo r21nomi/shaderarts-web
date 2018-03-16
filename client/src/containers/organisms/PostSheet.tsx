@@ -23,8 +23,8 @@ interface Props {
     onSubmitButtonClick: (artInfoData: ArtInfoData) => void;
 
     tagsState: TagsState;
-    onTagAdded: (tag: TagData) => void
-    onTagDeleted: (id: number) => void
+    onTagAdded: (tag: TagData) => void;
+    onTagDeleted: (id: number) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -90,13 +90,13 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             <ReactTags tags={tagsState.tags}
                                 handleDelete={onTagDeleted}
                                 handleAddition={(tag: string) => {
-                                    let id = tagsState.tags.length == 0
+                                    let id = tagsState.tags.length === 0
                                         ? 0
-                                        : tagsState.tags[tagsState.tags.length - 1].id + 1
+                                        : tagsState.tags[tagsState.tags.length - 1].id + 1;
                                     onTagAdded({
                                         id: id,
                                         text: tag
-                                    })
+                                    });
                                 }} />
                         </div>
                     </div>
@@ -112,7 +112,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             onClick={() => onSubmitButtonClick({
                                 title: this.title,
                                 description: this.description,
-                                tags: tagsState.tags.map((tag: TagData) => { return tag.text })
+                                tags: tagsState.tags.map((tag: TagData) => { return tag.text; })
                             })}
                         >
                             Submit

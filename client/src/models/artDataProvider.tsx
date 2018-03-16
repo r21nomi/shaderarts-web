@@ -7,7 +7,8 @@ export function toArtData(
     description: string,
     type: ArtType,
     thumb: string,
-    codeState: CodeState
+    codeState: CodeState,
+    tags: string[]
 ): ArtData {
     return {
         title: title,
@@ -23,6 +24,7 @@ export function toArtData(
                 type: CodeType.FRAGMENT_SHADER,
                 text: codeState.fragmentShader
             }
-        ]
+        ],
+        tags: tags
     };
 }

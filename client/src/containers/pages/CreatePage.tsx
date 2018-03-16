@@ -87,7 +87,14 @@ class CreatePage extends React.Component<Props, object> {
                 }}
                 onSubmitButtonClick={(artInfoData: ArtInfoData) => {
                     let artThumb: string = this.getArtThumb().replace(/^.*,/, '');
-                    let artData = toArtData(artInfoData.title, artInfoData.description, ArtType.GLSL, artThumb, codeState);
+                    let artData = toArtData(
+                        artInfoData.title,
+                        artInfoData.description,
+                        ArtType.GLSL,
+                        artThumb,
+                        codeState,
+                        artInfoData.tags
+                    );
                     handleHeaderSubmitButtonClick(userState, artData);
                 }}
             />
