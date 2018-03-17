@@ -1,6 +1,6 @@
 import { CodeState } from '../reducers/code';
 import { ArtType, CodeType } from './';
-import { ArtData } from './data';
+import { ArtData, TagData } from './data';
 
 export function toArtData(
     title: string,
@@ -8,7 +8,7 @@ export function toArtData(
     type: ArtType,
     thumb: string,
     codeState: CodeState,
-    tags: string[]
+    tags: TagData[]
 ): ArtData {
     return {
         title: title,

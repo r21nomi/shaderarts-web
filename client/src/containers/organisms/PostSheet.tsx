@@ -27,6 +27,11 @@ interface Props {
     onTagDeleted: (id: number) => void;
 }
 
+interface InternalTagData {
+    id: number;
+    text: string;
+}
+
 const mapStateToProps = (state: RootState) => ({
     tagsState: state.tags
 });
@@ -87,14 +92,10 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                     <div className="PostSheet-textField PostSheet-tags">
                         <div className="PostSheet-tagsContent">
                             <label className="PostSheet-tagsLabel">Tags</label>
-                            <ReactTags tags={tagsState.tags}
+                            <ReactTags tags={toInternalTagDataList(tagsState)}
                                 handleDelete={onTagDeleted}
                                 handleAddition={(tag: string) => {
-                                    let id = tagsState.tags.length === 0
-                                        ? 0
-                                        : tagsState.tags[tagsState.tags.length - 1].id + 1;
                                     onTagAdded({
-                                        id: id,
                                         text: tag
                                     });
                                 }} />
@@ -112,7 +113,7 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                             onClick={() => onSubmitButtonClick({
                                 title: this.title,
                                 description: this.description,
-                                tags: tagsState.tags.map((tag: TagData) => { return tag.text; })
+                                tags: tagsState.tags
                             })}
                         >
                             Submit
@@ -120,6 +121,15 @@ class PostSheet extends React.Component<WithStyles<'textField'> & Props, object>
                     </div>
                 </div>;
     }
+}
+
+function toInternalTagDataList(tagsState: TagsState): InternalTagData[] {
+    return tagsState.tags.map((tagData: TagData, index: number) => {
+        return {
+            id: index,
+            text: tagData.text
+        };
+    });
 }
 
 export default connect(

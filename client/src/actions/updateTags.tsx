@@ -2,18 +2,18 @@ import { TagData } from '../models/data';
 
 export interface UpdateTagsAction {
     type: string;
-    id: number;
+    index: number;
     text: string;
 }
 
 export const AddTag = (tagData: TagData): UpdateTagsAction => ({
     type: 'ADD_TAG',
-    id: tagData.id,
+    index: -1,
     text: tagData.text
 });
 
-export const DeleteTag = (id: number): UpdateTagsAction => ({
+export const DeleteTag = (index: number): UpdateTagsAction => ({
     type: 'DELETE_TAG',
-    id: id,
+    index: index,
     text: ''
 });
