@@ -13,7 +13,6 @@ const initialState: ArtDetailState = {
         user: {
             id: '',
             name: '',
-            token: '',
             thumb: ''
         },
         codes: []

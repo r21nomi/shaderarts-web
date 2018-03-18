@@ -1,23 +1,27 @@
-import { ArtEntity, UserEntity, ArtType } from '../models/';
+import { ArtEntity, ArtType } from '../models/';
 import { urlProvider } from '../urlProvider';
 import { handleErrors } from './handleErrors';
+import { getCurrentUserToken } from './getCurrentUserToken';
 
 export interface FetchArtDetailAction {
     type: string;
     art: ArtEntity;
 }
 
-export function fetchArtDetail(userEntity: UserEntity, artID: string) {
-    let header = new Headers();
-    header.set('X-Token', userEntity.token);
-
-    var option = {
-        method: 'GET',
-        headers: header
-    };
+export function fetchArtDetail(artID: string) {
     return (dispatch: any) => {
         dispatch(requestArtDetail());
-        return fetch(`${urlProvider.endpoint}/v1/art/${artID}`, option)
+        return getCurrentUserToken()
+            .then(token => {
+                let header = new Headers();
+                header.set('X-Token', token);
+
+                return {
+                    method: 'GET',
+                    headers: header
+                };
+            })
+            .then(option => fetch(`${urlProvider.endpoint}/v1/art/${artID}`, option))
             .then(handleErrors)
             .then(response => response.json())
             .then(json => dispatch(receiveArtDetail(json)))
@@ -38,7 +42,6 @@ function requestArtDetail(): FetchArtDetailAction {
             user: {
                 id: '',
                 name: '',
-                token: '',
                 thumb: ''
             },
             codes: []

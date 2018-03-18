@@ -1,7 +1,6 @@
 export interface UserEntity {
     id: string;
     name: string;
-    token: string;
     thumb: string;
 }
 

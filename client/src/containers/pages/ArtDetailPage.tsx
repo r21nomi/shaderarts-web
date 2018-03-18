@@ -4,7 +4,7 @@ import Header from '../organisms/Header';
 import { RootState } from '../../reducers/index';
 import { UserState } from '../../reducers/user';
 import { ArtDetailState } from '../../reducers/artDetail';
-import { UserEntity, ArtType } from '../../models/index';
+import { ArtType } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import ArtInfo from '../../components/atoms/ArtInfo';
 import { fetchArtDetail } from '../../actions/fetchArtDetail';
@@ -26,7 +26,7 @@ interface Props {
     };
     userState: UserState;
     artDetailState: ArtDetailState;
-    onFetch: (userEntity: UserEntity, artID: string) => void;
+    onFetch: (artID: string) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -35,15 +35,15 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    onFetch: (userEntity: UserEntity, artID: string) => {
-        dispatch(fetchArtDetail(userEntity, artID));
+    onFetch: (artID: string) => {
+        dispatch(fetchArtDetail(artID));
     }
 });
 
 class ArtDetailPage extends React.Component<Props, object> {
     componentDidMount() {
         var artID = this.props.match.params.id
-        this.props.onFetch(this.props.userState.user, artID);
+        this.props.onFetch(artID);
     }
     render() {
         const { artDetailState } = this.props;

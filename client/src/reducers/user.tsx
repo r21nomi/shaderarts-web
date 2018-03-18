@@ -7,7 +7,6 @@ const initialState: UserState = {
     user: {
         id: '',
         name: '',
-        token: '',
         thumb: ''
     }
 };

@@ -46,7 +46,6 @@ function loginError(errorMessage: string): LoginTwitterAction {
         user: {
             id: '',
             name: '',
-            token: '',
             thumb: ''
         },
         errorMessage: errorMessage

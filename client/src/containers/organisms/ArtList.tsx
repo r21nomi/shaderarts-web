@@ -2,19 +2,18 @@ import * as React from 'react';
 import Art from '../../components/molecules/Art';
 import { ArtsState } from '../../reducers/arts';
 import { UserState } from '../../reducers/user';
-import { UserEntity } from '../../models/index';
 import './styles/artList.css';
 
 interface Props {
     arts: ArtsState;
     userState: UserState;
-    onFetch: (userEntity: UserEntity) => void;
+    onFetch: () => void;
     onArtClick: (id: string) => void;
 }
 
 class ArtList extends React.Component<Props, object> {
     componentDidMount() {
-        this.props.onFetch(this.props.userState.user);
+        this.props.onFetch();
     }
 
     render() {
