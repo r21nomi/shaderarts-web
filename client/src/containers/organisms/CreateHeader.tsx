@@ -12,7 +12,7 @@ import { UpdatePaneMode } from '../../actions/updatePaneMode';
 import { TogglePostSheetMode } from '../../actions/togglePostSheetMode';
 import { ArtInfoData } from '../../models/data';
 import Button from 'material-ui/Button';
-import { PostSheetModeState } from "../../reducers/postSheetMode";
+import { PostSheetModeState } from '../../reducers/postSheetMode';
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
         dispatch(UpdatePaneMode(mode));
     },
     onPostSheetModeChanged: (isCurrentEnabled: boolean) => {
-        dispatch(TogglePostSheetMode(isCurrentEnabled))
+        dispatch(TogglePostSheetMode(isCurrentEnabled));
     }
 });
 
@@ -93,9 +93,9 @@ class CreateHeader extends React.Component<Props, object> {
                                         <PostSheet
                                             onDaveAsDraftButtonClick={() => onSaveAsDraftButtonClick()}
                                             onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
-                                    </div>
+                                    </div>;
                         } else {
-                            return null
+                            return null;
                         }
                     })()}
                 </header>;

@@ -1,4 +1,6 @@
-import { CodeAction } from "../actions/index";
+import { UpdateArtDataAction } from "../actions/updateArtData";
+import { ArtType, CodeType } from '../models';
+import { ArtData } from '../models/data';
 
 const VERTEX_SHADER_SOURCE =
 `
@@ -72,25 +74,46 @@ void main( void ) {
 }
 `;
 
-const initialState: CodeState = {
-    vertexShader: VERTEX_SHADER_SOURCE,
-    fragmentShader: FRAGMENT_SHADER_SOURCE
+const initialState: ArtDataState = {
+    data: {
+        title: '',
+        description: '',
+        type: ArtType.GLSL,
+        thumb: '',
+        codes: [
+            {
+                type: CodeType.VERTEX_SHADER,
+                text: VERTEX_SHADER_SOURCE
+            },
+            {
+                type: CodeType.FRAGMENT_SHADER,
+                text: FRAGMENT_SHADER_SOURCE
+            }
+        ],
+        tags: []
+    }
 };
 
-const code = (state: CodeState = initialState, action: CodeAction): CodeState => {
+const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction): ArtDataState => {
     switch (action.type) {
-        case 'UPDATE_CODE':
+        case 'UPDATE_ART_DATA':
             return Object.assign({}, state, {
-                fragmentShader: action.code
+                artData: action.artData
             });
+
+        case 'UPDATE_ART_DATA_CODE':
+            state.data.codes = action.codeData
+            return Object.assign({}, state, {
+                artData: state
+            });
+
         default:
             return state;
     }
 };
 
-export interface CodeState {
-	vertexShader: string;
-    fragmentShader: string;
+export interface ArtDataState {
+    data: ArtData
 }
 
-export default code;
+export default artData

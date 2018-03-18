@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/index';
 import { WindowSizeState } from '../../reducers/windowSize';
-import { CodeState } from '../../reducers/code';
 import { PaneModeState } from '../../reducers/paneMode';
 import UpdateCode from '../UpdateCode';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
@@ -12,25 +11,26 @@ import { toArtData } from '../../models/artDataProvider';
 import { ArtType, PaneMode } from '../../models/index';
 import './styles/page.css';
 import './styles/create_page.css';
-import {ArtData, ArtInfoData} from "../../models/data";
+import { ArtData, CodeData, ArtInfoData } from '../../models/data';
+import { ArtDataState } from '../../reducers/artData';
 
 interface Props {
     windowSizeState: WindowSizeState;
-    codeState: CodeState;
     paneModeState: PaneModeState;
-    handleHeaderSaveAsDraftButtonClick: (code: CodeState) => void;
+    artDataState: ArtDataState;
+    handleHeaderSaveAsDraftButtonClick: (codes: CodeData[]) => void;
     handleHeaderSubmitButtonClick: (artData: ArtData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
     windowSizeState: state.windowSize,
-    codeState: state.code,
-    paneModeState: state.paneMode
+    paneModeState: state.paneMode,
+    artDataState: state.artData
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
-    handleHeaderSaveAsDraftButtonClick: (codeState: CodeState) => {
-        console.log("handleHeaderSaveAsDraftButtonClick");
+    handleHeaderSaveAsDraftButtonClick: (codes: CodeData[]) => {
+        console.log('handleHeaderSaveAsDraftButtonClick');
     },
     handleHeaderSubmitButtonClick: (artData: ArtData) => {
         dispatch(postArt(artData));
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
 
 class CreatePage extends React.Component<Props, object> {
     updateGLSLCanvas: any;
-    getArtThumb: () => any
+    getArtThumb: () => any;
     lastCanvasWidth: number;
     lastCanvasHeight: number;
     lastPaneMode: PaneMode;
@@ -52,14 +52,14 @@ class CreatePage extends React.Component<Props, object> {
     render() {
         const {
             windowSizeState,
-            codeState,
             paneModeState,
+            artDataState,
             handleHeaderSaveAsDraftButtonClick,
             handleHeaderSubmitButtonClick
-        } = this.props
+        } = this.props;
 
         let rootClassName = '';
-        let canvasSize = getSizeForCanvas(paneModeState, windowSizeState)
+        let canvasSize = getSizeForCanvas(paneModeState, windowSizeState);
 
         if (true) {
             if (paneModeState.mode == PaneMode.OVERLAY) {
@@ -79,33 +79,33 @@ class CreatePage extends React.Component<Props, object> {
         return <div className={rootClassName}>
             <CreateHeader 
                 onSaveAsDraftButtonClick={() => {
-                    handleHeaderSaveAsDraftButtonClick(codeState);
+                    handleHeaderSaveAsDraftButtonClick(artDataState.data.codes);
                 }}
                 onSubmitButtonClick={(artInfoData: ArtInfoData) => {
                     let artThumb: string = this.getArtThumb().replace(/^.*,/, '');
-                    let artData = toArtData(
+                    let newArtData = toArtData(
                         artInfoData.title,
                         artInfoData.description,
                         ArtType.GLSL,
                         artThumb,
-                        codeState,
+                        artDataState.data.codes,
                         artInfoData.tags
                     );
-                    handleHeaderSubmitButtonClick(artData);
+                    handleHeaderSubmitButtonClick(newArtData);
                 }}
             />
             <div className="Page-content CreatePage-content">
                 <UpdateCode />
                 <UpdateGLSLCanvas
                     ref={(r) => this.updateGLSLCanvas = r}
-                    width = {canvasSize.width}
-                    height = {canvasSize.height}
-                    onCanvasUpdated = {(gl: any) => {
+                    width={canvasSize.width}
+                    height={canvasSize.height}
+                    onCanvasUpdated={(gl: any) => {
                         // no-op
                     }}
-                    vertexShader = {codeState.vertexShader}
-                    fragmentShader = {codeState.fragmentShader}
-                    shouldRender = {shouldRenderCanvas}
+                    vertexShader={artDataState.data.codes[0].text}
+                    fragmentShader={artDataState.data.codes[1].text}
+                    shouldRender={shouldRenderCanvas}
                 />
             </div>
         </div>;

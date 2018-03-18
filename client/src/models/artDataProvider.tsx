@@ -1,13 +1,12 @@
-import { CodeState } from '../reducers/code';
-import { ArtType, CodeType } from './';
-import { ArtData, TagData } from './data';
+import { ArtType } from './';
+import { ArtData, CodeData, TagData } from './data';
 
 export function toArtData(
     title: string,
     description: string,
     type: ArtType,
     thumb: string,
-    codeState: CodeState,
+    codes: CodeData[],
     tags: TagData[]
 ): ArtData {
     return {
@@ -15,16 +14,7 @@ export function toArtData(
         description: description,
         type: type,
         thumb: thumb,
-        codes: [
-            {
-                type: CodeType.VERTEX_SHADER,
-                text: codeState.vertexShader
-            },
-            {
-                type: CodeType.FRAGMENT_SHADER,
-                text: codeState.fragmentShader
-            }
-        ],
+        codes: codes,
         tags: tags
     };
 }

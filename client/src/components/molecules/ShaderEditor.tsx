@@ -1,15 +1,16 @@
 import * as React from 'react';
 import * as CodeMirror from 'react-codemirror';
 import { WindowSizeState } from '../../reducers/windowSize';
-import { CodeState } from '../../reducers/code';
+import { CodeData } from '../../models/data';
+import { ArtDataState } from '../../reducers/artData';
 import 'codemirror/mode/clike/clike';
 import './styles/shader_editor.css';
 import 'codemirror/theme/monokai.css';
 
 interface Props {
-    onCodeUpdated: any;
+    onCodeUpdated: (codeData: CodeData[]) => void;
     windowSizeState: WindowSizeState;
-    codeSate: CodeState;
+    artData: ArtDataState;
 }
 
 class ShaderEditor extends React.Component<Props, object> {
@@ -25,13 +26,23 @@ class ShaderEditor extends React.Component<Props, object> {
     }
 
 	updateCode(newCode: string) {
-        const { onCodeUpdated } = this.props;
-        
-        onCodeUpdated(newCode);
+        const { onCodeUpdated, artData } = this.props;
+        let codes = artData.data.codes;
+        let codeData = [
+            {
+                type: codes[0].type,
+                text: codes[0].text
+            },
+            {
+                type: codes[1].type,
+                text: newCode
+            }
+        ];
+        onCodeUpdated(codeData);
     }
     
 	render() {
-        const { windowSizeState, codeSate } = this.props;
+        const { windowSizeState, artData } = this.props;
 
         if (this.codeMirror) {
             setHeight(this.codeMirror, windowSizeState.height);
@@ -43,10 +54,13 @@ class ShaderEditor extends React.Component<Props, object> {
             mode: 'x-shader/x-fragment',
             theme: 'monokai',
             indentUnit: 4
-		};
+        };
+
+        let fragmentShader = artData.data.codes[1].text;
+        
         return <CodeMirror
                 className="ShaderEditor-content"
-                value={codeSate.fragmentShader}
+                value={fragmentShader}
                 onChange={this.updateCode.bind(this)}
                 options={options} />;
 	}

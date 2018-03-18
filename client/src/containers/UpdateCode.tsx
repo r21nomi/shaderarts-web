@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
-import { updateCode } from '../actions';
+import { updateArtDataCode } from '../actions/updateArtData';
 import ShaderEditor from '../components/molecules/ShaderEditor';
 import { RootState } from '../reducers/index';
+import { CodeData } from '../models/data';
 
 const mapStateToProps = (state: RootState) => ({
     windowSizeState: state.windowSize,
-    codeSate: state.code
+    artData: state.artData
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    onCodeUpdated: (newCode: string) => {
-        dispatch(updateCode(newCode));
+    onCodeUpdated: (codeData: CodeData[]) => {
+        dispatch(updateArtDataCode(codeData));
     }
 });
 
