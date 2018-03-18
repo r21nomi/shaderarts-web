@@ -1,5 +1,6 @@
 import { ArtEntity, UserEntity } from '../models/';
 import { urlProvider } from '../urlProvider';
+import { handleErrors } from './handleErrors';
 
 export interface FetchArtsAction {
     type: string;
@@ -18,6 +19,7 @@ export function fetchArts(userEntity: UserEntity, offset: number) {
     return (dispatch: any) => {
         dispatch(requestArts());
         return fetch(`${urlProvider.endpoint}/v1/art?limit=${limit}&offset=${offset}`, option)
+            .then(handleErrors)
             .then(response => response.json())
             .then(json => dispatch(receiveArts(json)))
             .catch(e => console.error(e));

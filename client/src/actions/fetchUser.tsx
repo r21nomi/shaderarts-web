@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import { UserEntity } from '../models/';
 import { urlProvider } from '../urlProvider';
+import { handleErrors } from './handleErrors';
 
 export interface FetchUserAction {
     type: string;
@@ -30,6 +31,7 @@ function login(dispatch: any, idToken: string) {
         headers: header
     };
     fetch(`${urlProvider.endpoint}/v1/login`, option)
+        .then(handleErrors)
         .then(response => response.json())
         .then(json => dispatch(userAuthorized(json)))
         .catch(error => console.error(error));

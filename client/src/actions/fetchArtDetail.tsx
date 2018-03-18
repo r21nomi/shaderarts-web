@@ -1,5 +1,6 @@
 import { ArtEntity, UserEntity, ArtType } from '../models/';
 import { urlProvider } from '../urlProvider';
+import { handleErrors } from './handleErrors';
 
 export interface FetchArtDetailAction {
     type: string;
@@ -17,6 +18,7 @@ export function fetchArtDetail(userEntity: UserEntity, artID: string) {
     return (dispatch: any) => {
         dispatch(requestArtDetail());
         return fetch(`${urlProvider.endpoint}/v1/art/${artID}`, option)
+            .then(handleErrors)
             .then(response => response.json())
             .then(json => dispatch(receiveArtDetail(json)))
             .catch(e => console.error(e));
