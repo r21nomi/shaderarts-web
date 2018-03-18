@@ -9,7 +9,7 @@ export interface FetchArtsAction {
 }
 
 export function fetchArts(offset: number) {
-    var limit = 8;
+    var limit = 16;
     return (dispatch: any) => {
         dispatch(requestArts());
         return getCurrentUserToken()
