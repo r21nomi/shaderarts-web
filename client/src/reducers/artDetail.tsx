@@ -15,7 +15,8 @@ const initialState: ArtDetailState = {
             name: '',
             thumb: ''
         },
-        codes: []
+        codes: [],
+        tags: []
     }
 };
 

@@ -44,7 +44,8 @@ function requestArtDetail(): FetchArtDetailAction {
                 name: '',
                 thumb: ''
             },
-            codes: []
+            codes: [],
+            tags: []
         }
     };
 }

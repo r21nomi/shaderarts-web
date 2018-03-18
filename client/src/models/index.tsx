@@ -13,11 +13,17 @@ export interface ArtEntity {
     star: number;
     user: UserEntity;
     codes: CodeEntity[];
+    tags: TagEntity[];
 }
 
 export interface CodeEntity {
     id: string;
     type: CodeType;
+    text: string;
+}
+
+export interface TagEntity {
+    id: string;
     text: string;
 }
 

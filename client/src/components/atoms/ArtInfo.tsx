@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArtEntity, ArtType, CodeType } from '../../models';
+import { ArtEntity, CodeType } from '../../models';
 import './styles/artInfo.css';
 
 interface Props {
@@ -32,13 +32,17 @@ const ArtInfo = ({ art }: Props) => (
             </li>
         </ul>
         <ul className="ArtInfo-tags">
-            <li className="ArtInfo-tag">
-                <a href="javascript:void(0)"
-                    onClick={() => console.log('ArtInfo-tag')}
+            {art.tags.map(tag =>
+                <li className="ArtInfo-tag"
+                    key={tag.id}
                 >
-                    #{ArtType.getName(art.type)}
-                </a>
-            </li>
+                    <a href="javascript:void(0)"
+                        onClick={() => console.log(tag.text)}
+                    >
+                        #{tag.text}
+                    </a>
+                </li>
+            )}
         </ul>
         <div>
             {art.codes.map(code =>

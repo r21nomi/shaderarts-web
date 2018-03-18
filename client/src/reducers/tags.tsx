@@ -18,7 +18,7 @@ const tags = (state: TagsState = initialState, action: UpdateTagsAction): TagsSt
             });
 
         case 'DELETE_TAG':
-            state.tags.splice(action.index, 1)  // remove item.
+            state.tags.splice(action.index, 1);  // remove item.
             return Object.assign({}, state, {
                 tags: [
                     ...state.tags
