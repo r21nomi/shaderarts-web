@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/index';
 import { WindowSizeState } from '../../reducers/windowSize';
-import { UserState } from '../../reducers/user';
 import { CodeState } from '../../reducers/code';
 import { PaneModeState } from '../../reducers/paneMode';
 import UpdateCode from '../UpdateCode';
@@ -17,17 +16,15 @@ import {ArtData, ArtInfoData} from "../../models/data";
 
 interface Props {
     windowSizeState: WindowSizeState;
-    userState: UserState;
     codeState: CodeState;
     paneModeState: PaneModeState;
     handleHeaderSaveAsDraftButtonClick: (code: CodeState) => void;
-    handleHeaderSubmitButtonClick: (userState: UserState, artData: ArtData) => void;
+    handleHeaderSubmitButtonClick: (artData: ArtData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
     windowSizeState: state.windowSize,
     codeState: state.code,
-    userState: state.user,
     paneModeState: state.paneMode
 });
 
@@ -35,8 +32,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
     handleHeaderSaveAsDraftButtonClick: (codeState: CodeState) => {
         console.log("handleHeaderSaveAsDraftButtonClick");
     },
-    handleHeaderSubmitButtonClick: (userState: UserState, artData: ArtData) => {
-        dispatch(postArt(userState.user, artData));
+    handleHeaderSubmitButtonClick: (artData: ArtData) => {
+        dispatch(postArt(artData));
     }
 });
 
@@ -55,7 +52,6 @@ class CreatePage extends React.Component<Props, object> {
     render() {
         const {
             windowSizeState,
-            userState,
             codeState,
             paneModeState,
             handleHeaderSaveAsDraftButtonClick,
@@ -95,7 +91,7 @@ class CreatePage extends React.Component<Props, object> {
                         codeState,
                         artInfoData.tags
                     );
-                    handleHeaderSubmitButtonClick(userState, artData);
+                    handleHeaderSubmitButtonClick(artData);
                 }}
             />
             <div className="Page-content CreatePage-content">

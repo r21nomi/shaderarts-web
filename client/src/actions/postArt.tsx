@@ -1,4 +1,3 @@
-import { UserEntity } from '../models/';
 import { urlProvider } from '../urlProvider';
 import { ArtData } from '../models/data';
 import { handleErrors } from './handleErrors';
@@ -8,7 +7,7 @@ export interface PostArtAction {
     type: string;
 }
 
-export function postArt(userEntity: UserEntity, artData: ArtData) {
+export function postArt(artData: ArtData) {
     return (dispatch: any) => {
         dispatch(requestPostingArt());
         return getCurrentUserToken()
