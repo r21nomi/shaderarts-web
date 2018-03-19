@@ -1,4 +1,4 @@
-import { UpdateArtDataAction } from "../actions/updateArtData";
+import { UpdateArtDataAction, UpdateArtDataActionType } from '../actions/updateArtData';
 import { ArtType, CodeType } from '../models';
 import { ArtData } from '../models/data';
 
@@ -96,13 +96,13 @@ const initialState: ArtDataState = {
 
 const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction): ArtDataState => {
     switch (action.type) {
-        case 'UPDATE_ART_DATA':
+        case UpdateArtDataActionType.UPDATE_ART_DATA:
             return Object.assign({}, state, {
                 artData: action.artData
             });
 
-        case 'UPDATE_ART_DATA_CODE':
-            state.data.codes = action.codeData
+        case UpdateArtDataActionType.UPDATE_ART_DATA_CODE:
+            state.data.codes = action.codeData;
             return Object.assign({}, state, {
                 artData: state
             });
@@ -113,7 +113,7 @@ const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction
 };
 
 export interface ArtDataState {
-    data: ArtData
+    data: ArtData;
 }
 
-export default artData
+export default artData;
