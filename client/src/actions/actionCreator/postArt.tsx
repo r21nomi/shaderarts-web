@@ -3,6 +3,9 @@ import { ArtData } from '../../models/data';
 import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
 import { PostArtAction } from '../PostArtAction';
+import { UpdateArtDataAction, UpdateArtDataActionType } from '../updateArtDataAction';
+import { getDefaultArtData } from '../../models/artDataProvider';
+import { push, RouterAction } from 'react-router-redux';
 
 export function postArt(artData: ArtData) {
     return (dispatch: any) => {
@@ -21,6 +24,8 @@ export function postArt(artData: ArtData) {
             .then(option => fetch(`${urlProvider.endpoint}/v1/art`, option))
             .then(handleErrors)
             .then(response => dispatch(postingArtSuccess()))
+            .then(response => dispatch(restArtData()))
+            .then(response => dispatch(goToTopPage()))
             .catch(e => {
                 console.error(e);
                 dispatch(postingArtError());
@@ -44,4 +49,15 @@ function postingArtError(): PostArtAction {
     return {
         type: 'POSTING_ART_ERROR'
     };
+}
+
+function restArtData(): UpdateArtDataAction {
+    return {
+        type: UpdateArtDataActionType.UPDATE_ART_DATA,
+        artData: getDefaultArtData()
+    };
+}
+
+function goToTopPage(): RouterAction {
+    return push('/');
 }

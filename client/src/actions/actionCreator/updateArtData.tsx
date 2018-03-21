@@ -4,8 +4,7 @@ import { UpdateArtDataAction, UpdateArtDataActionType } from '../updateArtDataAc
 
 export const updateArtData = (artData: ArtData): UpdateArtDataAction => ({
     type: UpdateArtDataActionType.UPDATE_ART_DATA,
-    artData,
-    codeData: artData.codes
+    artData
 });
 
 export const updateArtDataCode = (codeData: CodeData[]): UpdateArtDataAction => ({
@@ -15,8 +14,7 @@ export const updateArtDataCode = (codeData: CodeData[]): UpdateArtDataAction => 
         description: '',
         type: ArtType.GLSL,
         thumb: '',
-        codes: [],
+        codes: codeData,
         tags: []
-    },
-    codeData
+    }
 });
