@@ -1,11 +1,8 @@
-import { urlProvider } from '../urlProvider';
-import { ArtData } from '../models/data';
+import { urlProvider } from '../../urlProvider';
+import { ArtData } from '../../models/data';
 import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
-
-export interface PostArtAction {
-    type: string;
-}
+import { PostArtAction } from '../PostArtAction';
 
 export function postArt(artData: ArtData) {
     return (dispatch: any) => {

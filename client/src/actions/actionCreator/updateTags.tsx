@@ -1,10 +1,5 @@
-import { TagData } from '../models/data';
-
-export interface UpdateTagsAction {
-    type: string;
-    index: number;
-    text: string;
-}
+import { TagData } from '../../models/data';
+import { UpdateTagsAction } from '../updateTagsAction';
 
 export const AddTag = (tagData: TagData): UpdateTagsAction => ({
     type: 'ADD_TAG',

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../reducers/index';
 import { UserState } from '../../reducers/user';
 import LogoutButton from '../../components/atoms/LogoutButton';
-import { logout } from '../../actions/logout';
+import { logout } from '../../actions/actionCreator/logout';
 import './styles/header.css';
 
 interface Props {

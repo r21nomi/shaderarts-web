@@ -1,4 +1,4 @@
-import { FetchArtDetailAction } from "../actions/fetchArtDetail";
+import { FetchArtDetailAction } from "../actions/fetchArtDetailAction";
 import { ArtEntity, ArtType } from '../models/';
 
 const initialState: ArtDetailState = {

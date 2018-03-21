@@ -1,4 +1,4 @@
-import { UpdatePaneModeAction } from '../actions/updatePaneMode';
+import { UpdatePaneModeAction } from '../actions/updatePaneModeAction';
 import { PaneMode } from '../models/index';
 
 const initialState: PaneModeState = {

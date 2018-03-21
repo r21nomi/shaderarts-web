@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import App from '../containers/pages/App';
-import { fetchUser } from '../actions/fetchUser';
+import { fetchUser } from '../actions/actionCreator/fetchUser';
 import { RootState } from '../reducers/index';
 import { UserState } from '../reducers/user';
 import * as firebase from 'firebase';

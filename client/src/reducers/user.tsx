@@ -1,4 +1,4 @@
-import { FetchUserAction } from "../actions/fetchUser";
+import { FetchUserAction } from "../actions/fetchUserAction";
 import { UserEntity } from '../models/';
 
 const initialState: UserState = {

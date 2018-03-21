@@ -1,12 +1,8 @@
 import * as firebase from 'firebase';
-import { UserEntity } from '../models/';
-import { urlProvider } from '../urlProvider';
+import { UserEntity } from '../../models/';
+import { urlProvider } from '../../urlProvider';
 import { handleErrors } from './handleErrors';
-
-export interface FetchUserAction {
-    type: string;
-    user: UserEntity;
-}
+import { FetchUserAction } from '../fetchUserAction';
 
 export function fetchUser() {
     return (dispatch: any) => {

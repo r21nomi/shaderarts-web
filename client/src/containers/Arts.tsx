@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchArts } from '../actions/fetchArts';
+import { fetchArts } from '../actions/actionCreator/fetchArts';
 import ArtList from './organisms/ArtList';
 import { RootState } from '../reducers/index';
 

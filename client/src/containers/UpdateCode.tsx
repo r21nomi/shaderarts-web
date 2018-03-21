@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateArtDataCode } from '../actions/updateArtData';
+import { updateArtDataCode } from '../actions/actionCreator/updateArtData';
 import ShaderEditor from '../components/molecules/ShaderEditor';
 import { RootState } from '../reducers/index';
 import { CodeData } from '../models/data';

@@ -1,16 +1,6 @@
-import { ArtType } from '../models';
-import { ArtData, CodeData } from '../models/data';
-
-export interface UpdateArtDataAction {
-    type: UpdateArtDataActionType;
-    artData: ArtData;
-    codeData: CodeData[];
-}
-
-export enum UpdateArtDataActionType {
-    UPDATE_ART_DATA = 'UPDATE_ART_DATA',
-    UPDATE_ART_DATA_CODE = 'UPDATE_ART_DATA_CODE'
-}
+import { ArtType } from '../../models';
+import { ArtData, CodeData } from '../../models/data';
+import { UpdateArtDataAction, UpdateArtDataActionType } from '../updateArtDataAction';
 
 export const updateArtData = (artData: ArtData): UpdateArtDataAction => ({
     type: UpdateArtDataActionType.UPDATE_ART_DATA,

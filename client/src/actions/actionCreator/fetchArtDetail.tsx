@@ -1,12 +1,8 @@
-import { ArtEntity, ArtType } from '../models/';
-import { urlProvider } from '../urlProvider';
+import { ArtEntity, ArtType } from '../../models/';
+import { urlProvider } from '../../urlProvider';
 import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
-
-export interface FetchArtDetailAction {
-    type: string;
-    art: ArtEntity;
-}
+import { FetchArtDetailAction } from '../fetchArtDetailAction';
 
 export function fetchArtDetail(artID: string) {
     return (dispatch: any) => {

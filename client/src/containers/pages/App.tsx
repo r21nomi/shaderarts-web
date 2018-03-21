@@ -14,7 +14,7 @@ import { RootState } from '../../reducers/index';
 import { ConnectedRouter } from 'react-router-redux';
 import history from '../../history';
 import { Route, Switch } from 'react-router';
-import { updateWindowSize } from '../../actions/updateWindowSize';
+import { updateWindowSize } from '../../actions/actionCreator/updateWindowSize';
 
 interface Props {
     onResize: (e: UIEvent) => void

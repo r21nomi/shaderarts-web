@@ -1,9 +1,5 @@
 import * as firebase from 'firebase';
-
-export interface LogoutAction {
-    type: string;
-    errorMessage: string;
-}
+import { LogoutAction } from '../logoutAction';
 
 export function logout() {
     return (dispatch: any) => {

@@ -1,4 +1,4 @@
-import { TogglePostSheetModeAction } from '../actions/togglePostSheetMode';
+import { TogglePostSheetModeAction } from '../actions/togglePostSheetModeAction';
 
 const initialState: PostSheetModeState = {
     isEnabled: false

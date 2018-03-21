@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import { addTodo } from '../actions/actionCreator';
 import AddTodoForm from '../components/molecules/AddTodoForm';
 
 const mapStateToProps = (state: any) => ({

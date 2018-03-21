@@ -1,4 +1,4 @@
-import { UpdateWindowSizeAction } from '../actions/updateWindowSize';
+import { UpdateWindowSizeAction } from '../actions/updateWindowSizeAction';
 
 const initialState: WindowSizeState = {
     width: window.innerWidth,

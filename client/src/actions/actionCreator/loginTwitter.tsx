@@ -1,11 +1,6 @@
 import * as firebase from 'firebase';
-import { UserEntity } from '../models/';
-
-export interface LoginTwitterAction {
-    type: string;
-    user: UserEntity;
-    errorMessage: string;
-}
+import { UserEntity } from '../../models/';
+import { LoginTwitterAction } from '../loginTwitterAction';
 
 export function loginTwitter() {
     return (dispatch: any) => {

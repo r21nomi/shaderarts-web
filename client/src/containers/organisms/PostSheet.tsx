@@ -4,7 +4,7 @@ import { ArtInfoData } from '../../models/data';
 import { TagData } from '../../models/data';
 import { RootState } from '../../reducers/index';
 import { TagsState } from '../../reducers/tags';
-import { AddTag, DeleteTag } from '../../actions/updateTags';
+import { AddTag, DeleteTag } from '../../actions/actionCreator/updateTags';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { WithContext as ReactTags } from 'react-tag-input';

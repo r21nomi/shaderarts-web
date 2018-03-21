@@ -1,12 +1,8 @@
-import { ArtEntity } from '../models/';
-import { urlProvider } from '../urlProvider';
+import { ArtEntity } from '../../models/';
+import { urlProvider } from '../../urlProvider';
 import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
-
-export interface FetchArtsAction {
-    type: string;
-    arts: ArtEntity[];
-}
+import { FetchArtsAction } from '../fetchArtsAction';
 
 export function fetchArts(offset: number) {
     var limit = 16;

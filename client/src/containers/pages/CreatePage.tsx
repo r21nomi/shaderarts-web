@@ -6,7 +6,7 @@ import { PaneModeState } from '../../reducers/paneMode';
 import UpdateCode from '../UpdateCode';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import CreateHeader from '../organisms/CreateHeader';
-import { postArt } from '../../actions/postArt';
+import { postArt } from '../../actions/actionCreator/postArt';
 import { toArtData } from '../../models/artDataProvider';
 import { ArtType, PaneMode } from '../../models/index';
 import './styles/page.css';

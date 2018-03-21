@@ -1,4 +1,4 @@
-import { UpdateTagsAction } from '../actions/updateTags';
+import { UpdateTagsAction } from '../actions/updateTagsAction';
 import { TagData } from '../models/data';
 
 const initialState: TagsState = {

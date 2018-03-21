@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import LoginButtoms from '../components/molecules/LoginButtons';
 import { RootState } from '../reducers/index';
-import { loginTwitter } from '../actions/loginTwitter';
+import { loginTwitter } from '../actions/actionCreator/loginTwitter';
 
 const mapStateToProps = (state: RootState) => ({
     // no-op

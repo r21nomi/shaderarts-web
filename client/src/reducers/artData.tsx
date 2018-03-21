@@ -1,4 +1,4 @@
-import { UpdateArtDataAction, UpdateArtDataActionType } from '../actions/updateArtData';
+import { UpdateArtDataAction, UpdateArtDataActionType } from '../actions/updateArtDataAction';
 import { ArtType, CodeType } from '../models';
 import { ArtData } from '../models/data';
 

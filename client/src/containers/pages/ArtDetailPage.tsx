@@ -7,7 +7,7 @@ import { ArtDetailState } from '../../reducers/artDetail';
 import { ArtType } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import ArtInfo from '../../components/atoms/ArtInfo';
-import { fetchArtDetail } from '../../actions/fetchArtDetail';
+import { fetchArtDetail } from '../../actions/actionCreator/fetchArtDetail';
 import './styles/page.css';
 
 const canvasProps = {
