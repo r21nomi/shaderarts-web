@@ -15,6 +15,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import history from '../../history';
 import { Route, Switch } from 'react-router';
 import { updateWindowSize } from '../../actions/actionCreator/updateWindowSize';
+import ScrollToTop from '../../components/atoms/ScrollToTop';
 
 interface Props {
     onResize: (e: UIEvent) => void
@@ -37,14 +38,16 @@ class App extends React.Component<Props, object> {
     }
     render() {
         return <ConnectedRouter history={history}>
-                    <Switch>
-                        <Route exact path="/" component={TopPage} />
-                        <Route path="/login" component={LoginPage} />
-                        <Route path="/explore" component={ExplorePage} />
-                        <Route path="/create" component={CreatePage} />
-                        <Route path="/art/:id" component={ArtDetailPage} />
-                        <Footer />
-                    </Switch>
+                    <ScrollToTop>
+                        <Switch>
+                            <Route exact path="/" component={TopPage} />
+                            <Route path="/login" component={LoginPage} />
+                            <Route path="/explore" component={ExplorePage} />
+                            <Route path="/create" component={CreatePage} />
+                            <Route path="/art/:id" component={ArtDetailPage} />
+                            <Footer />
+                        </Switch>
+                    </ScrollToTop>
                 </ConnectedRouter>
     }
 }
