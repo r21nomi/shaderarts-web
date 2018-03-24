@@ -11,6 +11,7 @@ export interface ArtEntity {
     thumb: string;
     description: string;
     star: number;
+    isStarred: boolean;
     user: UserEntity;
     codes: CodeEntity[];
     tags: TagEntity[];

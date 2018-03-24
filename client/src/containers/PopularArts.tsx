@@ -10,9 +10,6 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onFetch: () => {
         dispatch(fetchArts(6));
-    },
-    onArtClick: (id: string) => {
-        console.log('id:' + id);
     }
 });
 

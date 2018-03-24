@@ -8,7 +8,7 @@ interface Props {
     arts: ArtsState;
     userState: UserState;
     onFetch: () => void;
-    onArtClick: (id: string) => void;
+    onStar: (artId: String) => void;
 }
 
 class ArtList extends React.Component<Props, object> {
@@ -17,13 +17,13 @@ class ArtList extends React.Component<Props, object> {
     }
 
     render() {
-        const { arts, onArtClick } = this.props;
+        const { arts, onStar } = this.props;
         return <div className="ArtList">
             {arts.items.map(art =>
                 <Art
                     key={art.id}
                     art={art}
-                    onArtClick={() => onArtClick(art.id)}
+                    onStar={onStar}
                 />
             )}
         </div>;

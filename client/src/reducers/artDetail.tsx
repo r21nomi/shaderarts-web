@@ -1,4 +1,4 @@
-import { FetchArtDetailAction } from "../actions/fetchArtDetailAction";
+import { FetchArtDetailAction } from '../actions/fetchArtDetailAction';
 import { ArtEntity, ArtType } from '../models/';
 
 const initialState: ArtDetailState = {
@@ -10,6 +10,7 @@ const initialState: ArtDetailState = {
         thumb: '',
         description: '',
         star: 0,
+        isStarred: false,
         user: {
             id: '',
             name: '',
@@ -38,7 +39,7 @@ const artDetail = (state: ArtDetailState = initialState, action: FetchArtDetailA
 
 export interface ArtDetailState {
     isFetching: boolean;
-	art: ArtEntity;
+    art: ArtEntity;
 }
 
 export default artDetail;

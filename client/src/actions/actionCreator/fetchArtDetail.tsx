@@ -35,6 +35,7 @@ function requestArtDetail(): FetchArtDetailAction {
             thumb: '',
             description: '',
             star: 0,
+            isStarred: false,
             user: {
                 id: '',
                 name: '',

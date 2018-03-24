@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchArts } from '../actions/actionCreator/fetchArts';
+import { postStar } from '../actions/actionCreator/postStar';
 import ArtList from './organisms/ArtList';
 import { RootState } from '../reducers/index';
 
@@ -11,8 +12,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onFetch: () => {
         dispatch(fetchArts(0));
     },
-    onArtClick: (id: string) => {
-        console.log('id:' + id);
+    onStar: (artId: string) => {
+        dispatch(postStar(artId));
     }
 });
 

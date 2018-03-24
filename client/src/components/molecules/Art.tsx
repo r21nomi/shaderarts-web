@@ -6,15 +6,18 @@ import './styles/art.css';
 
 interface Props {
     art: ArtEntity;
-    onArtClick: (id: string) => void;
+    onStar: (artId: String) => void;
 }
 
-const Art = ({ art, onArtClick }: Props) => (
+const Art = ({ art, onStar }: Props) => (
     <div className="Art">
         <Link className="Art-thumb" to={`/art/${art.id}`}>
             <img src={art.thumb} alt={art.title}/>
         </Link>
-        <ArtInfo art={art} />
+        <ArtInfo
+            art={art}
+            onStar={onStar}
+        />
     </div>
 );
 

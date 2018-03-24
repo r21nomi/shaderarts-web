@@ -4,9 +4,10 @@ import './styles/artInfo.css';
 
 interface Props {
     art: ArtEntity;
+    onStar: (artId: String) => void;
 }
 
-const ArtInfo = ({ art }: Props) => (
+const ArtInfo = ({ art, onStar }: Props) => (
     <div className="ArtInfo">
         <ul className="ArtInfo-info">
             <li className="ArtInfo-userThumb">
@@ -25,9 +26,15 @@ const ArtInfo = ({ art }: Props) => (
             </li>
             <li className="ArtInfo-star">
                 <a href="javascript:void(0)"
-                    onClick={() => console.log('ArtInfo-stat')}
+                    onClick={() => onStar(art.id)}
                 >
-                    ☆{art.star}
+                    {(() => {
+                        if (art.isStarred) {
+                            return <div>★{art.star}</div>;
+                        } else {
+                            return <div>☆{art.star}</div>;
+                        }
+                    })()}
                 </a>
             </li>
         </ul>

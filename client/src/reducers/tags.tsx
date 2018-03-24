@@ -31,7 +31,7 @@ const tags = (state: TagsState = initialState, action: UpdateTagsAction): TagsSt
 };
 
 export interface TagsState {
-	tags: TagData[];
+    tags: TagData[];
 }
 
 export default tags;
