@@ -6,17 +6,17 @@ import './styles/art.css';
 
 interface Props {
     art: ArtEntity;
-    onStar: (artId: String) => void;
+    onToggleStar: (artId: String, isStarCurrent: boolean) => void;
 }
 
-const Art = ({ art, onStar }: Props) => (
+const Art = ({ art, onToggleStar }: Props) => (
     <div className="Art">
         <Link className="Art-thumb" to={`/art/${art.id}`}>
             <img src={art.thumb} alt={art.title}/>
         </Link>
         <ArtInfo
             art={art}
-            onStar={onStar}
+            onToggleStar={onToggleStar}
         />
     </div>
 );

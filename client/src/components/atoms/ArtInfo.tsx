@@ -4,10 +4,10 @@ import './styles/artInfo.css';
 
 interface Props {
     art: ArtEntity;
-    onStar: (artId: String) => void;
+    onToggleStar: (artId: String, isStarCurrent: boolean) => void;
 }
 
-const ArtInfo = ({ art, onStar }: Props) => (
+const ArtInfo = ({ art, onToggleStar }: Props) => (
     <div className="ArtInfo">
         <ul className="ArtInfo-info">
             <li className="ArtInfo-userThumb">
@@ -26,7 +26,7 @@ const ArtInfo = ({ art, onStar }: Props) => (
             </li>
             <li className="ArtInfo-star">
                 <a href="javascript:void(0)"
-                    onClick={() => onStar(art.id)}
+                    onClick={() => onToggleStar(art.id, art.isStarred)}
                 >
                     {(() => {
                         if (art.isStarred) {

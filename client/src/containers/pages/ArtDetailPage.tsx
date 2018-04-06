@@ -27,7 +27,7 @@ interface Props {
     userState: UserState;
     artDetailState: ArtDetailState;
     onFetch: (artID: string) => void;
-    onStar: (artId: String) => void;
+    onToggleStar: (artId: String) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -47,7 +47,7 @@ class ArtDetailPage extends React.Component<Props, object> {
         this.props.onFetch(artID);
     }
     render() {
-        const { artDetailState, onStar } = this.props;
+        const { artDetailState, onToggleStar } = this.props;
 
         if (artDetailState.isFetching) {
             return <div>Now fetching...</div>
@@ -75,7 +75,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                         </div>
                         <ArtInfo
                             art={art}
-                            onStar={onStar}
+                            onToggleStar={onToggleStar}
                         />
                     </div>
                 </div>

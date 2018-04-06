@@ -1,12 +1,12 @@
 import { FetchArtsAction } from '../actions/fetchArtsAction';
-import { PostStarAction, PostStarActionType } from '../actions/postStarAction';
+import { ToggleStarAction, ToggleStarActionType } from '../actions/toggleStarAction';
 import { ArtEntity } from '../models/';
 
 const initialState: ArtsState = {
     items: []
 };
 
-const arts = (state: ArtsState = initialState, action: FetchArtsAction | PostStarAction): ArtsState => {
+const arts = (state: ArtsState = initialState, action: FetchArtsAction | ToggleStarAction): ArtsState => {
     switch (action.type) {
         case 'REQUEST_ARTS':
             return state;
@@ -21,15 +21,27 @@ const arts = (state: ArtsState = initialState, action: FetchArtsAction | PostSta
                 })
             });
 
-        case PostStarActionType.POST_STAR_SUCCESS:
+        case ToggleStarActionType.POST_STAR_SUCCESS: {
             let newState = Object.assign({}, state);
             newState.items.forEach(artEntity => {
-                if (artEntity.id === (action as PostStarAction).artId) {
+                if (artEntity.id === (action as ToggleStarAction).artId) {
                     artEntity.isStarred = true;
                     artEntity.star++;
                 }
             });
             return newState;
+        }
+
+        case ToggleStarActionType.DELETE_STAR_SUCCESS: {
+            let newState = Object.assign({}, state);
+            newState.items.forEach(artEntity => {
+                if (artEntity.id === (action as ToggleStarAction).artId) {
+                    artEntity.isStarred = false;
+                    artEntity.star--;
+                }
+            });
+            return newState;
+        }
 
         default:
             return state;
