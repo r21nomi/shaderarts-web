@@ -1,4 +1,4 @@
-import { FetchArtsAction } from '../actions/fetchArtsAction';
+import { FetchArtsAction, FetchArtsActionType } from '../actions/fetchArtsAction';
 import { ToggleStarAction, ToggleStarActionType } from '../actions/toggleStarAction';
 import { ArtEntity } from '../models/';
 
@@ -8,10 +8,10 @@ const initialState: ArtsState = {
 
 const arts = (state: ArtsState = initialState, action: FetchArtsAction | ToggleStarAction): ArtsState => {
     switch (action.type) {
-        case 'REQUEST_ARTS':
+        case FetchArtsActionType.REQUEST_ARTS:
             return state;
 
-        case 'RECEIVE_ARTS':
+        case FetchArtsActionType.RECEIVE_ARTS:
             return Object.assign({}, state, {
                 items: (action as FetchArtsAction).arts.map(artEntity => {
                     if (artEntity.isStarred === undefined) {

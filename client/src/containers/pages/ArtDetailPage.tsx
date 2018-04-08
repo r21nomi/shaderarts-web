@@ -43,20 +43,20 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 
 class ArtDetailPage extends React.Component<Props, object> {
     componentDidMount() {
-        var artID = this.props.match.params.id
+        var artID = this.props.match.params.id;
         this.props.onFetch(artID);
     }
     render() {
         const { artDetailState, onToggleStar } = this.props;
 
         if (artDetailState.isFetching) {
-            return <div>Now fetching...</div>
+            return <div>Now fetching...</div>;
 
         } else {
-            const art = artDetailState.art
+            const art = artDetailState.art;
 
             if (art.type == ArtType.GLSL) {
-                console.log('ArtType: GLSL')
+                console.log('ArtType: GLSL');
             }
 
             return (
@@ -75,6 +75,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                         </div>
                         <ArtInfo
                             art={art}
+                            isMyPage={false}
                             onToggleStar={onToggleStar}
                         />
                     </div>

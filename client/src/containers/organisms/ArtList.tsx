@@ -6,6 +6,7 @@ import './styles/artList.css';
 
 interface Props {
     arts: ArtsState;
+    isMyPage: boolean;
     userState: UserState;
     onFetch: () => void;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
@@ -17,12 +18,14 @@ class ArtList extends React.Component<Props, object> {
     }
 
     render() {
-        const { arts, onToggleStar } = this.props;
+        const { arts, isMyPage, onToggleStar } = this.props;
+
         return <div className="ArtList">
             {arts.items.map(art =>
                 <Art
                     key={art.id}
                     art={art}
+                    isMyPage={isMyPage}
                     onToggleStar={onToggleStar}
                 />
             )}

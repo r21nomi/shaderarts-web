@@ -4,40 +4,47 @@ import './styles/artInfo.css';
 
 interface Props {
     art: ArtEntity;
+    isMyPage: boolean;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
 }
 
-const ArtInfo = ({ art, onToggleStar }: Props) => (
+const ArtInfo = ({ art, isMyPage, onToggleStar }: Props) => (
     <div className="ArtInfo">
-        <ul className="ArtInfo-info">
-            <li className="ArtInfo-userThumb">
-                <a href="javascript:void(0)"
-                    onClick={() => console.log('ArtInfo-userThumb')}
-                >
-                    <img src={art.user.thumb} alt={art.user.name}/>
-                </a>
-            </li>
-            <li className="ArtInfo-userName">
-                <a href="javascript:void(0)"
-                    onClick={() => console.log('ArtInfo-userName')}
-                >
-                    {art.user.name}
-                </a>
-            </li>
-            <li className="ArtInfo-star">
-                <a href="javascript:void(0)"
-                    onClick={() => onToggleStar(art.id, art.isStarred)}
-                >
-                    {(() => {
-                        if (art.isStarred) {
-                            return <div>★{art.star}</div>;
-                        } else {
-                            return <div>☆{art.star}</div>;
-                        }
-                    })()}
-                </a>
-            </li>
-        </ul>
+        {(() => {
+            if (!isMyPage) {
+                return <ul className="ArtInfo-info">
+                    <li className="ArtInfo-userThumb">
+                        <a href="javascript:void(0)"
+                            onClick={() => console.log('ArtInfo-userThumb')}
+                        >
+                            <img src={art.user.thumb} alt={art.user.name}/>
+                        </a>
+                    </li>
+                    <li className="ArtInfo-userName">
+                        <a href="javascript:void(0)"
+                            onClick={() => console.log('ArtInfo-userName')}
+                        >
+                            {art.user.name}
+                        </a>
+                    </li>
+                    <li className="ArtInfo-star">
+                        <a href="javascript:void(0)"
+                            onClick={() => onToggleStar(art.id, art.isStarred)}
+                        >
+                            {(() => {
+                                if (art.isStarred) {
+                                    return <div>★{art.star}</div>;
+                                } else {
+                                    return <div>☆{art.star}</div>;
+                                }
+                            })()}
+                        </a>
+                    </li>
+                </ul>;
+            } else {
+                return null;
+            }
+        })()}
         <ul className="ArtInfo-tags">
             {art.tags.map(tag =>
                 <li className="ArtInfo-tag"

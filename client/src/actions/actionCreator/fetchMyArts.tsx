@@ -4,7 +4,7 @@ import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
 import { FetchArtsAction, FetchArtsActionType } from '../fetchArtsAction';
 
-export function fetchArts(offset: number) {
+export function fetchMyArts(offset: number) {
     var limit = 16;
     return (dispatch: any) => {
         dispatch(requestArts());
@@ -18,7 +18,7 @@ export function fetchArts(offset: number) {
                     headers: header
                 };
             })
-            .then(option => fetch(`${urlProvider.endpoint}/v1/art?limit=${limit}&offset=${offset}`, option))
+            .then(option => fetch(`${urlProvider.endpoint}/v1/me/arts?limit=${limit}&offset=${offset}`, option))
             .then(handleErrors)
             .then(response => response.json())
             .then(json => dispatch(receiveArts(json)))
@@ -37,7 +37,6 @@ function requestArts(): FetchArtsAction {
 }
 
 function receiveArts(json: ArtEntity[]): FetchArtsAction {
-    console.log(json);
     return {
         type: FetchArtsActionType.RECEIVE_ARTS,
         arts: json
