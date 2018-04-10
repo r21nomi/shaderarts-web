@@ -1,0 +1,6 @@
+.MyPageStat {
+    display: flex;
+}
+.MyPageStat-item {
+    margin-right: 48px;
+}

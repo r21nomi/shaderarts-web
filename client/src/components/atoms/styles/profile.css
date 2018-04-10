@@ -1,0 +1,18 @@
+.Profile {
+    display: flex;
+}
+.Profile-thumb {
+    display: block;
+    margin-right: 16px;
+}
+.Profile-thumb img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+}
+.Profile-infoArea {
+    padding: 16px 0;
+}
+.Profile-userName {
+    font-size: 2.4rem;
+}
