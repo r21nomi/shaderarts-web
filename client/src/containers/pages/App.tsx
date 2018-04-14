@@ -10,6 +10,7 @@ import ExplorePage from './ExplorePage';
 import CreatePage from './CreatePage';
 import ArtDetailPage from './ArtDetailPage';
 import MyPage from './MyPage';
+import UserDetailPage from './UserDetailPage';
 import Footer from '../organisms/Footer';
 import { RootState } from '../../reducers/index';
 import { ConnectedRouter } from 'react-router-redux';
@@ -46,6 +47,7 @@ class App extends React.Component<Props, object> {
                             <Route path="/explore" component={ExplorePage} />
                             <Route path="/create" component={CreatePage} />
                             <Route path="/mypage" component={MyPage} />
+                            <Route path="/user/:id" component={UserDetailPage} />
                             <Route path="/art/:id" component={ArtDetailPage} />
                             <Footer />
                         </Switch>

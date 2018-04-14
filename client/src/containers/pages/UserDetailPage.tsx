@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/index';
-import { MyProfileState } from '../../reducers/myProfile';
+import { UserDetailState } from '../../reducers/userDetail';
+import { fetchUserDetail } from '../../actions/actionCreator/fetchUserDetail';
 import Header from '../organisms/Header';
-import MyArts from '../MyArts';
 import Profile from '../../components/atoms/Profile';
 import MyPageStat from '../../components/atoms/MyPageStat';
 import './styles/page.css';
-import './styles/my_page.css';
+import './styles/user_detail_page.css';
 
 interface Props {
-    MyProfileState: MyProfileState;
+    match: {
+        params: {
+            id: string
+        }
+    };
+    userDetailState: UserDetailState;
+    onFetch: (userID: string) => void;
     onArtCountClicked: () => void;
     onStarCountClicked: () => void;
     onFollowClicked: () => void;
@@ -18,10 +24,13 @@ interface Props {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile
+    userDetailState: state.userDetail
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+    onFetch: (artID: string) => {
+        dispatch(fetchUserDetail(artID));
+    },
     onArtCountClicked: () => {
         console.log('onArtCountClicked');
     },
@@ -36,7 +45,11 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     }
 });
 
-class MyPage extends React.Component<Props, object> {
+class UserDetailPage extends React.Component<Props, object> {
+    componentDidMount() {
+        var userID = this.props.match.params.id;
+        this.props.onFetch(userID);
+    }
     render() {
         const {
             onArtCountClicked,
@@ -47,11 +60,11 @@ class MyPage extends React.Component<Props, object> {
 
         return <div>
                     <Header />
-                    <div className="Page-content MyPage-content">
-                        <div className="MyPage-profile">
-                            <Profile userEntity={this.props.MyProfileState.user} />
+                    <div className="Page-content UserDetailPage-content">
+                        <div className="UserDetailPage-profile">
+                            <Profile userEntity={this.props.userDetailState.user} />
                         </div>
-                        <div className="MyPage-myPageStat">
+                        <div className="UserDetailPage-myPageStat">
                             <MyPageStat
                                 onArtCountClicked={onArtCountClicked}
                                 onStarCountClicked={onStarCountClicked}
@@ -59,7 +72,6 @@ class MyPage extends React.Component<Props, object> {
                                 onFollowerClicked={onFollowerClicked}
                             />
                         </div>
-                        <MyArts />
                     </div>
                 </div>
     }
@@ -68,4 +80,4 @@ class MyPage extends React.Component<Props, object> {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MyPage);
+)(UserDetailPage);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ArtEntity, CodeType } from '../../models';
+import { Link } from 'react-router-dom';
 import './styles/artInfo.css';
 
 interface Props {
@@ -14,18 +15,14 @@ const ArtInfo = ({ art, isMyPage, onToggleStar }: Props) => (
             if (!isMyPage) {
                 return <ul className="ArtInfo-info">
                     <li className="ArtInfo-userThumb">
-                        <a href="javascript:void(0)"
-                            onClick={() => console.log('ArtInfo-userThumb')}
-                        >
+                        <Link className="Art-thumb" to={`/user/${art.user.id}`}>
                             <img src={art.user.thumb} alt={art.user.name}/>
-                        </a>
+                        </Link>
                     </li>
                     <li className="ArtInfo-userName">
-                        <a href="javascript:void(0)"
-                            onClick={() => console.log('ArtInfo-userName')}
-                        >
+                        <Link className="Art-thumb" to={`/user/${art.user.id}`}>
                             {art.user.name}
-                        </a>
+                        </Link>
                     </li>
                     <li className="ArtInfo-star">
                         <a href="javascript:void(0)"
