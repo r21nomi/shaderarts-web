@@ -2,16 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import LoginForm from '../LoginForm';
 import { RootState } from '../../reducers/index';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import './styles/page.css';
 import './styles/top_page.css';
 
 interface Props {
-    userState: UserState;
+    MyProfileState: MyProfileState;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    userState: state.user
+    MyProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 
 class LoginPage extends React.Component<Props, object> {
     render() {
-        if (this.props.userState.isAuthorized) {
+        if (this.props.MyProfileState.isAuthorized) {
             // Go back to previous page since already loged-in.
             // Usually this process is for the case after login.
             history.back();

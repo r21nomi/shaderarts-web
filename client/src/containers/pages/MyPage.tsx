@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/index';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import Header from '../organisms/Header';
 import MyArts from '../MyArts';
 import Profile from '../../components/atoms/Profile';
@@ -10,7 +10,7 @@ import './styles/page.css';
 import './styles/my_page.css';
 
 interface Props {
-    userState: UserState;
+    MyProfileState: MyProfileState;
     onArtCountClicked: () => void;
     onStarCountClicked: () => void;
     onFollowClicked: () => void;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    userState: state.user
+    MyProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -49,7 +49,7 @@ class MyPage extends React.Component<Props, object> {
                     <Header />
                     <div className="Page-content MyPage-content">
                         <div className="MyPage-profile">
-                            <Profile userState={this.props.userState} />
+                            <Profile MyProfileState={this.props.MyProfileState} />
                         </div>
                         <div className="MyPage-myPageStat">
                             <MyPageStat

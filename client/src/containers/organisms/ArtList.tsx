@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Art from '../../components/molecules/Art';
 import { ArtsState } from '../../reducers/arts';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import './styles/artList.css';
 
 interface Props {
     arts: ArtsState;
     isMyPage: boolean;
-    userState: UserState;
+    MyProfileState: MyProfileState;
     onFetch: () => void;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
 }

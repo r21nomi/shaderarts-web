@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import visibilityFilter from './visibilityFilter';
 import windowSize, { WindowSizeState } from './windowSize';
-import user, { UserState } from './user';
+import myProfile, { MyProfileState } from './myProfile';
 import arts, { ArtsState } from './arts';
 import artDetail, { ArtDetailState } from './artDetail';
 import paneMode, { PaneModeState } from './paneMode';
@@ -12,7 +12,7 @@ import artData, { ArtDataState } from './artData';
 
 export interface RootState {
     windowSize: WindowSizeState;
-    user: UserState;
+    myProfile: MyProfileState;
     arts: ArtsState;
     artDetail: ArtDetailState;
     paneMode: PaneModeState;
@@ -25,7 +25,7 @@ const reducers = combineReducers<RootState>({
     router: routerReducer,
     windowSize,
     visibilityFilter,
-    user,
+    myProfile,
     arts,
     artDetail,
     paneMode,

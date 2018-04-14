@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import App from '../containers/pages/App';
 import { fetchUser } from '../actions/actionCreator/fetchUser';
 import { RootState } from '../reducers/index';
-import { UserState } from '../reducers/user';
+import { MyProfileState } from '../reducers/myProfile';
 import * as firebase from 'firebase';
 import { firebaseConfig } from '../firebaseConfig';
 
 interface Props {
-    userState: UserState;
+    MyProfileState: MyProfileState;
     onFetchUser: () => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    userState: state.user
+    MyProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -31,12 +31,12 @@ class AppWithAuthorizationCheck extends React.Component<Props, object> {
     }
 
     render() {
-        const { userState } = this.props;
+        const { MyProfileState } = this.props;
 
-        if (userState.isFetching) {
+        if (MyProfileState.isFetching) {
             return <div />;
         } else {
-            if (userState.isAuthorized) {
+            if (MyProfileState.isAuthorized) {
                 console.log("authorized");
                 return <App />;
             } else {

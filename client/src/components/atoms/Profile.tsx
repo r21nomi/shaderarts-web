@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import './styles/profile.css';
 
 interface Props {
-    userState: UserState;
+    MyProfileState: MyProfileState;
 }
 
-const Profile = ({ userState }: Props) => (
+const Profile = ({ MyProfileState }: Props) => (
     <div className="Profile">
         <div>
             <a className="Profile-thumb" href="javascript:void(0)">
-                <img src={userState.user.thumb} alt={userState.user.name}/>
+                <img src={MyProfileState.user.thumb} alt={MyProfileState.user.name}/>
             </a>
         </div>
         <ul className="Profile-infoArea">
-            <li className="Profile-userName">{userState.user.name}</li>
+            <li className="Profile-userName">{MyProfileState.user.name}</li>
         </ul>
     </div>
 );

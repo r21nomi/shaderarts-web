@@ -1,7 +1,7 @@
 import { FetchUserAction } from "../actions/fetchUserAction";
 import { UserEntity } from '../models/';
 
-const initialState: UserState = {
+const initialState: MyProfileState = {
     isFetching: true,
     isAuthorized: false,
     user: {
@@ -11,7 +11,7 @@ const initialState: UserState = {
     }
 };
 
-const user = (state: UserState = initialState, action: FetchUserAction): UserState => {
+const myProfile = (state: MyProfileState = initialState, action: FetchUserAction): MyProfileState => {
     switch (action.type) {
         case 'USER_AUTHORIZED':
             console.log('USER_AUTHORIZED');
@@ -33,10 +33,10 @@ const user = (state: UserState = initialState, action: FetchUserAction): UserSta
     }
 };
 
-export interface UserState {
+export interface MyProfileState {
     isFetching: boolean;
     isAuthorized: boolean;
 	user: UserEntity;
 }
 
-export default user;
+export default myProfile;

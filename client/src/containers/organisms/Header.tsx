@@ -2,18 +2,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../reducers/index';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import LogoutButton from '../../components/atoms/LogoutButton';
 import { logout } from '../../actions/actionCreator/logout';
 import './styles/header.css';
 
 interface Props {
-    userState: UserState;
+    MyProfileState: MyProfileState;
     onLogoutButtonClick: () => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    userState: state.user
+    MyProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 
 class Header extends React.Component<Props, object> {
     render() {
-        const { userState, onLogoutButtonClick } = this.props;
-        let isAuthorized = userState.isAuthorized;
+        const { MyProfileState, onLogoutButtonClick } = this.props;
+        let isAuthorized = MyProfileState.isAuthorized;
 
         return <header className="Header">
             <div className="Header-content">
@@ -41,8 +41,8 @@ class Header extends React.Component<Props, object> {
                         return <div className="Header-logoutSection">
                                     <Link to="/mypage">
                                         <div className="Header-userInfo">
-                                            <img className="Header-thumb" src={userState.user.thumb} alt={userState.user.name}/>
-                                            <p className="Header-userName">{userState.user.name}</p>
+                                            <img className="Header-thumb" src={MyProfileState.user.thumb} alt={MyProfileState.user.name}/>
+                                            <p className="Header-userName">{MyProfileState.user.name}</p>
                                         </div>
                                     </Link>
                                     <LogoutButton onClick={onLogoutButtonClick} />

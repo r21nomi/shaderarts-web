@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Header from '../organisms/Header';
 import { RootState } from '../../reducers/index';
-import { UserState } from '../../reducers/user';
+import { MyProfileState } from '../../reducers/myProfile';
 import { ArtDetailState } from '../../reducers/artDetail';
 import { ArtType } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
@@ -24,14 +24,14 @@ interface Props {
             id: string
         }
     };
-    userState: UserState;
+    MyProfileState: MyProfileState;
     artDetailState: ArtDetailState;
     onFetch: (artID: string) => void;
     onToggleStar: (artId: String) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    userState: state.user,
+    MyProfileState: state.myProfile,
     artDetailState: state.artDetail
 });
 
