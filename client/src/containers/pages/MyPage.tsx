@@ -10,7 +10,7 @@ import './styles/page.css';
 import './styles/my_page.css';
 
 interface Props {
-    MyProfileState: MyProfileState;
+    myProfileState: MyProfileState;
     onArtCountClicked: () => void;
     onStarCountClicked: () => void;
     onFollowClicked: () => void;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile
+    myProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -49,7 +49,7 @@ class MyPage extends React.Component<Props, object> {
                     <Header />
                     <div className="Page-content MyPage-content">
                         <div className="MyPage-profile">
-                            <Profile userEntity={this.props.MyProfileState.user} />
+                            <Profile userEntity={this.props.myProfileState.user} />
                         </div>
                         <div className="MyPage-myPageStat">
                             <MyPageStat

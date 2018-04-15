@@ -24,14 +24,14 @@ interface Props {
             id: string
         }
     };
-    MyProfileState: MyProfileState;
+    myProfileState: MyProfileState;
     artDetailState: ArtDetailState;
     onFetch: (artID: string) => void;
     onToggleStar: (artId: String) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile,
+    myProfileState: state.myProfile,
     artDetailState: state.artDetail
 });
 

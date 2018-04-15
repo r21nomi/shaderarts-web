@@ -8,12 +8,12 @@ import * as firebase from 'firebase';
 import { firebaseConfig } from '../firebaseConfig';
 
 interface Props {
-    MyProfileState: MyProfileState;
+    myProfileState: MyProfileState;
     onFetchUser: () => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile
+    myProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -31,12 +31,12 @@ class AppWithAuthorizationCheck extends React.Component<Props, object> {
     }
 
     render() {
-        const { MyProfileState } = this.props;
+        const { myProfileState } = this.props;
 
-        if (MyProfileState.isFetching) {
+        if (myProfileState.isFetching) {
             return <div />;
         } else {
-            if (MyProfileState.isAuthorized) {
+            if (myProfileState.isAuthorized) {
                 console.log("authorized");
                 return <App />;
             } else {

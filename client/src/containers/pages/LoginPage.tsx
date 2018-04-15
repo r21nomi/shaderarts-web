@@ -7,11 +7,11 @@ import './styles/page.css';
 import './styles/top_page.css';
 
 interface Props {
-    MyProfileState: MyProfileState;
+    myProfileState: MyProfileState;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile
+    myProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 
 class LoginPage extends React.Component<Props, object> {
     render() {
-        if (this.props.MyProfileState.isAuthorized) {
+        if (this.props.myProfileState.isAuthorized) {
             // Go back to previous page since already loged-in.
             // Usually this process is for the case after login.
             history.back();

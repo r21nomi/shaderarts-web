@@ -8,12 +8,12 @@ import { logout } from '../../actions/actionCreator/logout';
 import './styles/header.css';
 
 interface Props {
-    MyProfileState: MyProfileState;
+    myProfileState: MyProfileState;
     onLogoutButtonClick: () => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
-    MyProfileState: state.myProfile
+    myProfileState: state.myProfile
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 
 class Header extends React.Component<Props, object> {
     render() {
-        const { MyProfileState, onLogoutButtonClick } = this.props;
-        let isAuthorized = MyProfileState.isAuthorized;
+        const { myProfileState, onLogoutButtonClick } = this.props;
+        let isAuthorized = myProfileState.isAuthorized;
 
         return <header className="Header">
             <div className="Header-content">
@@ -41,8 +41,8 @@ class Header extends React.Component<Props, object> {
                         return <div className="Header-logoutSection">
                                     <Link to="/mypage">
                                         <div className="Header-userInfo">
-                                            <img className="Header-thumb" src={MyProfileState.user.thumb} alt={MyProfileState.user.name}/>
-                                            <p className="Header-userName">{MyProfileState.user.name}</p>
+                                            <img className="Header-thumb" src={myProfileState.user.thumb} alt={myProfileState.user.name}/>
+                                            <p className="Header-userName">{myProfileState.user.name}</p>
                                         </div>
                                     </Link>
                                     <LogoutButton onClick={onLogoutButtonClick} />
