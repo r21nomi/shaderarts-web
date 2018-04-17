@@ -24,7 +24,9 @@ const initialState: ArtDetailState = {
 const artDetail = (state: ArtDetailState = initialState, action: FetchArtDetailAction): ArtDetailState => {
     switch (action.type) {
         case 'REQUEST_ART_DETAIL':
-            return state;
+            return Object.assign({}, state, {
+                isFetching: true
+            });
 
         case 'RECEIVE_ART_DETAIL':
             return Object.assign({}, state, {
