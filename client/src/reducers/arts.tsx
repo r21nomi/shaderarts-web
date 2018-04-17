@@ -3,16 +3,20 @@ import { ToggleStarAction, ToggleStarActionType } from '../actions/toggleStarAct
 import { ArtEntity } from '../models/';
 
 const initialState: ArtsState = {
+    isLoading: false,
     items: []
 };
 
 const arts = (state: ArtsState = initialState, action: FetchArtsAction | ToggleStarAction): ArtsState => {
     switch (action.type) {
         case FetchArtsActionType.REQUEST_ARTS:
-            return state;
+            return Object.assign({}, state, {
+                isLoading: true
+            });
 
         case FetchArtsActionType.RECEIVE_ARTS:
             return Object.assign({}, state, {
+                isLoading: false,
                 items: (action as FetchArtsAction).arts.map(artEntity => {
                     if (artEntity.isStarred === undefined) {
                         artEntity.isStarred = false;
@@ -49,6 +53,7 @@ const arts = (state: ArtsState = initialState, action: FetchArtsAction | ToggleS
 };
 
 export interface ArtsState {
+    isLoading: boolean;
     items: ArtEntity[];
 }
 

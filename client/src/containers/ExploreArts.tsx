@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchArts } from '../actions/actionCreator/fetchArts';
+import { fetchExploreArts } from '../actions/actionCreator/fetchExploreArts';
 import ArtList from './organisms/ArtList';
 import { RootState } from '../reducers/index';
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onFetch: () => {
-        dispatch(fetchArts(6));
+        dispatch(fetchExploreArts(0));
     }
 });
 

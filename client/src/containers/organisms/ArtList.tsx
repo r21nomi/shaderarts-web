@@ -18,16 +18,20 @@ class ArtList extends React.Component<Props, object> {
     render() {
         const { arts, isMyPage, onToggleStar } = this.props;
 
-        return <div className="ArtList">
-            {arts.items.map(art =>
-                <Art
-                    key={art.id}
-                    art={art}
-                    isMyPage={isMyPage}
-                    onToggleStar={onToggleStar}
-                />
-            )}
-        </div>;
+        if (arts.isLoading) {
+            return <div className="ArtList">Loading...</div>;
+        } else {
+            return <div className="ArtList">
+                        {arts.items.map(art =>
+                            <Art
+                                key={art.id}
+                                art={art}
+                                isMyPage={isMyPage}
+                                onToggleStar={onToggleStar}
+                            />
+                        )}
+                    </div>;
+        }
     }
 }
 
