@@ -15,3 +15,7 @@
 .paneMode-overlay .CodeMirror-gutters {
     background-color: transparent;
 }
+
+.CodeMirror .CodeMirror-line.errorLine {
+    background-color: rgba(255, 0, 0, 0.4);
+}

@@ -100,11 +100,13 @@ export function getDefaultArtData(): ArtData {
         codes: [
             {
                 type: CodeType.VERTEX_SHADER,
-                text: VERTEX_SHADER_SOURCE
+                text: VERTEX_SHADER_SOURCE,
+                errorLine: -1
             },
             {
                 type: CodeType.FRAGMENT_SHADER,
-                text: FRAGMENT_SHADER_SOURCE
+                text: FRAGMENT_SHADER_SOURCE,
+                errorLine: -1
             }
         ],
         tags: []

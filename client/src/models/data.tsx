@@ -12,6 +12,7 @@ export interface ArtData {
 export interface CodeData {
     type: CodeType;
     text: string;
+    errorLine: number;
 }
 
 export interface ArtInfoData {

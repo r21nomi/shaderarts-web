@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './styles/glsl_canvas.css';
+import { CodeType } from '../../models';
 
 interface Props {
     width: number;
@@ -8,17 +9,20 @@ interface Props {
     vertexShader: string;
     fragmentShader: string;
     shouldRender: boolean;
+    onErrorLineUpdated: (errorLine: number, codeType: CodeType) => void;
 }
 
 class GLSLCanvas extends React.Component<Props, object> {
     gl: any;
     startTime: number;
     animationTimer: number;
+    currentVertexShader: string;
+    currentFragmentShader: string;
 
     getThumb: () => any = () => {
         let canvas: any = this.refs.canvas;
         return canvas.toDataURL('image/png');
-    };
+    }
 
     constructor(props: Props) {
         super(props);
@@ -62,11 +66,15 @@ class GLSLCanvas extends React.Component<Props, object> {
         let fragmentShaderSource = this.props.fragmentShader;
         let vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
         let fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
         if (!vertexShader || !fragmentShader) {
             // Could not compile program.
-            return;
+        } else {
+            this.currentVertexShader = vertexShader;
+            this.currentFragmentShader = fragmentShader;
         }
-        let program = this.createProgram(gl, vertexShader, fragmentShader);
+
+        let program = this.createProgram(gl, this.currentVertexShader, this.currentFragmentShader);
         gl.useProgram(program);
 
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -129,9 +137,20 @@ class GLSLCanvas extends React.Component<Props, object> {
         let success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
         if (!success) {
             console.log(gl.getShaderInfoLog(shader));
+
+            var errorLog = gl.getShaderInfoLog(shader);
+            errorLog = errorLog.replace('ERROR: 0:', '');
+            errorLog = errorLog.slice(0, errorLog.indexOf(':'));
+
+            let errorLine = parseInt(errorLog, 10);
+            this.props.onErrorLineUpdated(errorLine, CodeType.FRAGMENT_SHADER);
+
             gl.deleteShader(shader);
             return;
         }
+
+        this.props.onErrorLineUpdated(-1, CodeType.FRAGMENT_SHADER);
+
         return shader;
     }
 
