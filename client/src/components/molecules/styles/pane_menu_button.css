@@ -1,5 +1,5 @@
 .PaneMenuButton-text {
-    color: #666!important;
+    color: var(--text-on-primary-color)!important;
     font-size: 1.1rem!important;
     font-family: 'Roboto Mono', monospace!important;
 }

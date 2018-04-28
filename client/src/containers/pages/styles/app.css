@@ -1,9 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
+/* Variables */
+:root {
+    /* Base color */
+    --primary-color: #ffffff;
+    --primary-color__dark: #fafafa;
+
+    /* Accent color */
+    --secondary-color: #304ffe;
+    --secondary-color__light: #7a7cff;
+    --secondary-color__dark: #0026ca;
+
+    /* Text color on primary color */
+    --text-on-primary-color: #222222;
+    --text-on-primary-color__light: #999;
+    --text-on-primary-color__accent: #304ffe;
+
+    /* Text color on secondary color */
+    --text-on-secondary-color: #ffffff;
+}
+
 html {
     height: 100%;
     font-size: 62.5%;
-    color: #222;
+    color: var(--text-on-primary-color);
     font-family: 'Roboto Mono', monospace;
     line-height: normal;
 }
@@ -18,7 +38,7 @@ body {
 }
 
 a {
-    color: #666;
+    color: var(--text-on-primary-color);
     text-decoration: none;
 }
 
@@ -39,22 +59,22 @@ ul {
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #999;
+    color:    var(--text-on-primary-color__light);
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #999;
+   color:    var(--text-on-primary-color__light);
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #999;
+   color:    var(--text-on-primary-color__light);
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #999;
+   color:    var(--text-on-primary-color__light);
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #999;
+   color:    var(--text-on-primary-color__light);
 }
 ::placeholder { /* Most modern browsers support this now. */
-   color:    #999;
+   color:    var(--text-on-primary-color__light);
 }

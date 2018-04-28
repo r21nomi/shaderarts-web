@@ -34,7 +34,7 @@
 }
 .ArtInfo-tag a {
     font-size: 1.1rem;
-    color: #999;
+    color: var(--text-on-primary-color__light);
 }
 .ArtInfo-code {
     text-overflow: ellipsis;

@@ -1,6 +1,6 @@
 .Footer {
-    background-color: #fff;
-    color: #222;
+    background-color: var(--primary-color);
+    color: var(--text-on-primary-color);
     text-align: right;
     box-sizing: border-box;
 }
@@ -9,6 +9,6 @@
     max-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
-    border-top: 1px #ddd solid;
+    border-top: 1px var(--primary-color__dark) solid;
     padding: 16px;
 }

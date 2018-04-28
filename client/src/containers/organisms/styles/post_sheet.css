@@ -20,13 +20,13 @@
 }
 
 .PostSheet-cancelButton {
-    color: #666!important;
+    color: var(--text-on-primary-color)!important;
     font-size: 1.2rem!important;
     font-family: 'Roboto Mono', monospace!important;
 }
 
 .PostSheet-submitButton {
-    color: #9b27af!important;
+    color: var(--text-on-primary-color__accent)!important;
     font-size: 1.2rem!important;
     font-family: 'Roboto Mono', monospace!important;
 }
@@ -44,7 +44,7 @@
 
 .PostSheet-tagsLabel {
     display: inline-block;
-    color: rgba(0, 0, 0, 0.54);
+    color: var(--text-on-primary-color__light);
     font-size: 1.2rem;
     margin-bottom: 4px;
 }
@@ -65,16 +65,16 @@
     height: 100%;
     padding: 4px;
     box-sizing: border-box;
-    border: 1px solid #eee;
-    color: #666;
+    border: 1px solid var(--primary-color__dark);
+    color: var(--text-on-primary-color__light);
     font-size: 1.2rem;
     font-family: 'Roboto Mono', monospace;
 }
 
 .ReactTags__selected span.ReactTags__tag {
-    border: 1px solid #ddd;
-    background: #efefef;
-    color: #666;
+    border: 1px solid var(--text-on-primary-color__light);
+    background: var(--primary-color);
+    color: var(--text-on-primary-color__light);
     font-size: 12px;
     display: inline-block;
     padding: 4px;
@@ -84,7 +84,7 @@
 }
 
 .ReactTags__selected a.ReactTags__remove {
-    color: #aaa;
+    color: var(--text-on-primary-color__light);
     margin-left: 4px;
     cursor: pointer;
 }
