@@ -42,14 +42,19 @@ const arts = (state: ArtsState = initialState, action: FetchArtsAction | ToggleS
         }
 
         case ToggleStarActionType.DELETE_STAR_SUCCESS: {
-            let newState = Object.assign({}, state);
-            newState.items.forEach(artEntity => {
+            let newArtEntities = state.items.map(artEntity => {
                 if (artEntity.id === (action as ToggleStarAction).artId) {
-                    artEntity.isStarred = false;
-                    artEntity.star--;
+                    return Object.assign({}, artEntity, {
+                        isStarred: false,
+                        star: artEntity.star - 1
+                    });
+                } else {
+                    return artEntity;
                 }
             });
-            return newState;
+            return Object.assign({}, state, {
+                items: newArtEntities
+            });
         }
 
         default:
