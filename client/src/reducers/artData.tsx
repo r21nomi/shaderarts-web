@@ -15,13 +15,17 @@ const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction
                 data: (action as UpdateArtDataAction).artData
             });
 
-        case UpdateArtDataActionType.UPDATE_ART_DATA_CODE:
-            state.data.codes = (action as UpdateArtDataAction).artData.codes;
-            return Object.assign({}, state, {
-                data: state.data
+        case UpdateArtDataActionType.UPDATE_ART_DATA_CODE: {
+            let codes = (action as UpdateArtDataAction).artData.codes;
+            let newArtData = Object.assign({}, state.data, {
+                codes: codes
             });
+            return Object.assign({}, state, {
+                data: newArtData
+            });
+        }
 
-        case UpdateCodeErrorLineActionType.UPDATE_CODE_ERROR_LINE:
+        case UpdateCodeErrorLineActionType.UPDATE_CODE_ERROR_LINE: {
             let codeType = (action as UpdateCodeErrorLineAction).codeType;
             let errorLine = (action as UpdateCodeErrorLineAction).errorLine;
 
@@ -38,6 +42,7 @@ const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction
             return Object.assign({}, state, {
                 data: newArtData
             });
+        }
 
         case 'POSTING_ART_SUCCESS':
             // Reset ArtData.
