@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     }
 });
 
-class PostSheet extends React.Component<WithStyles<'textField'> & Props, object> {
+class PostSheet extends React.PureComponent<WithStyles<'textField'> & Props, object> {
     title: string;
     description: string;
 
