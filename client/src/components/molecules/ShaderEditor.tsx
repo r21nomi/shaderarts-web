@@ -25,6 +25,21 @@ class ShaderEditor extends React.Component<Props, object> {
         setHeight(this.codeMirror, this.props.windowSizeState.height);
     }
 
+    shouldComponentUpdate(nextProps: Props, nextState: any) {
+        let shouldUpdate = false;
+        let currentArtDataState = this.props.artData.data;
+        let nextArtDataState = nextProps.artData.data;
+
+        if (currentArtDataState.codes.length > 1) {
+            if (currentArtDataState.codes[0].errorLine != nextArtDataState.codes[0].errorLine) shouldUpdate = true;
+            if (currentArtDataState.codes[1].errorLine != nextArtDataState.codes[1].errorLine) shouldUpdate = true;
+            if (currentArtDataState.codes[0].text != nextArtDataState.codes[0].text) shouldUpdate = true;
+            if (currentArtDataState.codes[1].text != nextArtDataState.codes[1].text) shouldUpdate = true;
+        }
+
+        return shouldUpdate;
+    }
+
 	updateCode(newCode: string) {
         const { onCodeUpdated, artData } = this.props;
         let codes = artData.data.codes;

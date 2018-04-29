@@ -9,10 +9,11 @@ interface Props {
     vertexShader: string;
     fragmentShader: string;
     shouldRender: boolean;
+    hasError: boolean;
     onErrorLineUpdated: (errorLine: number, codeType: CodeType) => void;
 }
 
-class GLSLCanvas extends React.Component<Props, object> {
+class GLSLCanvas extends React.PureComponent<Props, object> {
     gl: any;
     startTime: number;
     animationTimer: number;
@@ -38,10 +39,6 @@ class GLSLCanvas extends React.Component<Props, object> {
 
     componentWillUnmount() {
         this.stopAnimate();
-    }
-
-    shouldComponentUpdate() {
-        return this.props.shouldRender;
     }
 
     animate() {
@@ -129,7 +126,7 @@ class GLSLCanvas extends React.Component<Props, object> {
         this.props.onCanvasUpdated(gl);
     }
 
-    createShader(gl: any, type: string, source: string) {
+    createShader(gl: any, type: string, source: string): any {
         let shader = gl.createShader(type);
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
@@ -138,18 +135,25 @@ class GLSLCanvas extends React.Component<Props, object> {
         if (!success) {
             console.log(gl.getShaderInfoLog(shader));
 
-            var errorLog = gl.getShaderInfoLog(shader);
+            let errorLog = gl.getShaderInfoLog(shader);
             errorLog = errorLog.replace('ERROR: 0:', '');
             errorLog = errorLog.slice(0, errorLog.indexOf(':'));
 
             let errorLine = parseInt(errorLog, 10);
-            this.props.onErrorLineUpdated(errorLine, CodeType.FRAGMENT_SHADER);
+
+            if (type == gl.FRAGMENT_SHADER) {
+                this.props.onErrorLineUpdated(errorLine, CodeType.FRAGMENT_SHADER);
+            }
 
             gl.deleteShader(shader);
-            return;
+            return null;
         }
 
-        this.props.onErrorLineUpdated(-1, CodeType.FRAGMENT_SHADER);
+        if (this.props.hasError) {
+            if (type == gl.FRAGMENT_SHADER) {
+                this.props.onErrorLineUpdated(-1, CodeType.FRAGMENT_SHADER);
+            }
+        }
 
         return shader;
     }

@@ -106,6 +106,7 @@ class CreatePage extends React.Component<Props, object> {
                     vertexShader={artDataState.data.codes[0].text}
                     fragmentShader={artDataState.data.codes[1].text}
                     shouldRender={shouldRenderCanvas}
+                    hasError = {(artDataState.data.codes[0].errorLine !== -1) || (artDataState.data.codes[1].errorLine !== -1)}
                 />
             </div>
         </div>;
