@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import visibilityFilter from './visibilityFilter';
 import windowSize, { WindowSizeState } from './windowSize';
 import myProfile, { MyProfileState } from './myProfile';
 import userDetail, { UserDetailState } from './userDetail';
@@ -26,7 +25,6 @@ export interface RootState {
 const reducers = combineReducers<RootState>({
     router: routerReducer,
     windowSize,
-    visibilityFilter,
     myProfile,
     userDetail,
     arts,
