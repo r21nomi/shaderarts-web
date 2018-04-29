@@ -25,13 +25,18 @@ const artData = (state: ArtDataState = initialState, action: UpdateArtDataAction
             let codeType = (action as UpdateCodeErrorLineAction).codeType;
             let errorLine = (action as UpdateCodeErrorLineAction).errorLine;
 
-            state.data.codes.forEach(codeData => {
-                if (codeData.type == codeType) {
-                    codeData.errorLine = errorLine;
-                }
+            let newCodes = state.data.codes.map(currentCodeData => {
+                return Object.assign({}, currentCodeData, {
+                    errorLine: currentCodeData.type == codeType ? errorLine : currentCodeData.errorLine
+                });
             });
+
+            let newArtData = Object.assign({}, state.data, {
+                codes: newCodes
+            });
+
             return Object.assign({}, state, {
-                data: state.data
+                data: newArtData
             });
 
         case 'POSTING_ART_SUCCESS':
