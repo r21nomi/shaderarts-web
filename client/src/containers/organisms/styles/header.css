@@ -17,8 +17,13 @@
 }
 
 .Header-logo {
-    color: white;
+    width: 28px;
     margin-right: 32px;
+}
+
+.Header-logo img {
+    width: 100%;
+    vertical-align: middle;
 }
 
 .Header-menu {
