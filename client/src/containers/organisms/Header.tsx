@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { RootState } from '../../reducers/index';
 import { MyProfileState } from '../../reducers/myProfile';
 import LogoutButton from '../../components/atoms/LogoutButton';
@@ -29,22 +29,22 @@ class Header extends React.Component<Props, object> {
 
         return <header className="Header">
             <div className="Header-content">
-                <div className="Header-logo"><Link to="/">Arto</Link></div>
+                <div className="Header-logo"><NavLink to="/">Arto</NavLink></div>
                 <ul className="Header-menu">
-                    <li className="Header-menuItem"><Link to="/explore">Explore</Link></li>
-                    <li className="Header-menuItem"><Link to="/create">Create</Link></li>
+                    <li className="Header-menuItem"><NavLink to="/explore" activeClassName="active">Explore</NavLink></li>
+                    <li className="Header-menuItem"><NavLink to="/create" activeClassName="active">Create</NavLink></li>
                 </ul>
                 {(() => {
                     if (!isAuthorized) {
-                        return <button><Link to="/login">Login</Link></button>;
+                        return <button><NavLink to="/login">Login</NavLink></button>;
                     } else {
                         return <div className="Header-logoutSection">
-                                    <Link to="/mypage">
-                                        <div className="Header-userInfo">
-                                            <img className="Header-thumb" src={myProfileState.user.thumb} alt={myProfileState.user.name}/>
-                                            <p className="Header-userName">{myProfileState.user.name}</p>
-                                        </div>
-                                    </Link>
+                                    <NavLink className="Header-userInfo"
+                                             to="/mypage"
+                                             activeClassName="active">
+                                        <img className="Header-thumb" src={myProfileState.user.thumb} alt={myProfileState.user.name}/>
+                                        <p className="Header-userName">{myProfileState.user.name}</p>
+                                    </NavLink>
                                     <LogoutButton onClick={onLogoutButtonClick} />
                                 </div>;
                     }
