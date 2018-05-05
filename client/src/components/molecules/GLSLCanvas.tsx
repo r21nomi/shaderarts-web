@@ -20,8 +20,13 @@ class GLSLCanvas extends React.PureComponent<Props, object> {
     currentVertexShader: string;
     currentFragmentShader: string;
 
-    getThumb: () => any = () => {
-        let canvas: any = this.refs.canvas;
+    createThumb: (size: number) => string = (size: number) => {
+        let canvas: any = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        this.gl = canvas.getContext('experimental-webgl', { preserveDrawingBuffer: true });
+        this.startTime = Date.now();
+        this.updateCanvas();
         return canvas.toDataURL('image/png');
     }
 

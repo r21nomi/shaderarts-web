@@ -39,14 +39,14 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
 
 class CreatePage extends React.Component<Props, object> {
     updateGLSLCanvas: any;
-    getArtThumb: () => any;
+    createThumb: (size: number) => string;
     lastCanvasWidth: number;
     lastCanvasHeight: number;
     lastPaneMode: PaneMode;
 
     componentDidMount() {
         let glslCanvas = this.updateGLSLCanvas.getWrappedInstance();
-        this.getArtThumb = glslCanvas.getThumb;
+        this.createThumb = glslCanvas.createThumb;
     }
 
     render() {
@@ -82,7 +82,7 @@ class CreatePage extends React.Component<Props, object> {
                     handleHeaderSaveAsDraftButtonClick(artDataState.data.codes);
                 }}
                 onSubmitButtonClick={(artInfoData: ArtInfoData) => {
-                    let artThumb: string = this.getArtThumb().replace(/^.*,/, '');
+                    let artThumb: string = this.createThumb(500).replace(/^.*,/, '');
                     let newArtData = toArtData(
                         artInfoData.title,
                         artInfoData.description,
