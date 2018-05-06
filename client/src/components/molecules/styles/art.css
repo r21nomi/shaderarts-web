@@ -1,12 +1,24 @@
 .Art {
 }
 .Art-thumb {
+    position: relative;
     display: block;
     line-height: 0;
     margin-bottom: 8px;
 }
 .Art-thumb img {
     width: 100%;
+}
+.Art-thumb .Art-preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.Art-thumb .Art-preview canvas {
+    width: 100%;
+    height: 100%;
 }
 .Art-title {
     font-size: 1.8rem;
