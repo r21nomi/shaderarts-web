@@ -1,4 +1,4 @@
-import { ArtType, CodeType } from './';
+import {ArtEntity, ArtType, CodeEntity, CodeType, TagEntity} from './';
 import { ArtData, CodeData, TagData } from './data';
 
 const VERTEX_SHADER_SOURCE =
@@ -36,6 +36,35 @@ export function toArtData(
         codes: codes,
         tags: tags
     };
+}
+
+export function toArtDataFromEntity(artEntity: ArtEntity): ArtData {
+    return {
+        title: artEntity.title,
+        description: artEntity.description,
+        type: artEntity.type,
+        thumb: artEntity.thumb,
+        codes: toCodeData(artEntity.codes),
+        tags: toTagData(artEntity.tags)
+    }
+}
+
+function toCodeData(codeEntities: CodeEntity[]): CodeData[] {
+    return codeEntities.map(codeEntity => {
+        return {
+            type: codeEntity.type,
+            text: codeEntity.text,
+            errorLine: -1
+        }
+    });
+}
+
+function toTagData(tagEntities: TagEntity[]): TagData[] {
+    return tagEntities.map(tagEntity => {
+        return {
+            text: tagEntity.text
+        }
+    });
 }
 
 export function getDefaultArtData(): ArtData {

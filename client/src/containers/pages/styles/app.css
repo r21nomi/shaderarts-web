@@ -34,6 +34,7 @@ ul {
 }
 
 body {
+    height: 100%;
     font-size: 1.4rem;
 }
 
@@ -52,6 +53,10 @@ button {
 
 ul {
     list-style:none;
+}
+
+#root {
+    height: 100%;
 }
 
 .content {

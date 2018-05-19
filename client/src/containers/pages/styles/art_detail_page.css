@@ -1,0 +1,22 @@
+.ArtDetailPage-artAndCode {
+    position: relative;
+    overflow: hidden;
+}
+
+.ArtDetailPage-artAndCode .GLSLCanvas-canvas {
+    position: absolute;
+    height: 100%;
+}
+
+.ArtDetailPage-artAndCode .ShaderEditor-content {
+    position: absolute;
+    height: 100%;
+}
+
+.ArtDetailPage-artAndCode .ArtDetailPage-codeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--text-on-secondary-color);
+    z-index: 10;
+}
