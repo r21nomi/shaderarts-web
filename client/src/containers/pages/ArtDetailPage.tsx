@@ -5,7 +5,7 @@ import Header from '../organisms/Header';
 import { RootState } from '../../reducers/index';
 import { MyProfileState } from '../../reducers/myProfile';
 import { ArtDetailState } from '../../reducers/artDetail';
-import { ArtType } from '../../models/index';
+import { ArtType, CodeEntity } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
 import ArtInfo from '../../components/atoms/ArtInfo';
 import { fetchArtDetail } from '../../actions/actionCreator/fetchArtDetail';
@@ -14,6 +14,7 @@ import './styles/page.css';
 import './styles/art_detail_page.css';
 import { toArtDataFromEntity } from '../../models/artDataProvider';
 import { WindowSizeState } from '../../reducers/windowSize';
+import { CodeData } from '../../models/data';
 
 interface Props {
     match: {
@@ -47,11 +48,23 @@ class ArtDetailPage extends React.Component<Props, object> {
     defaultCanvasHeight: number = 500;
     canvasWidth: number = 1024;
     canvasHeight: number = this.defaultCanvasHeight;
+    codes: CodeEntity[];
+
+    updateCode(codeData: CodeData[]) {
+        this.codes[1].text = codeData[1].text;
+        this.forceUpdate();
+    }
+
+    toggleCodeButton() {
+        this.showCode = !this.showCode;
+        this.forceUpdate();
+    }
 
     componentDidMount() {
         let artID = this.props.match.params.id;
         this.props.onFetch(artID);
     }
+
     render() {
         const { artDetailState, onToggleStar, windowSizeState } = this.props;
 
@@ -60,6 +73,10 @@ class ArtDetailPage extends React.Component<Props, object> {
 
         } else {
             const art = artDetailState.art;
+
+            if (!this.codes) {
+                this.codes = art.codes;
+            }
 
             if (art.type == ArtType.GLSL) {
                 console.log('ArtType: GLSL');
@@ -95,8 +112,8 @@ class ArtDetailPage extends React.Component<Props, object> {
                                 onCanvasUpdated={(gl: any) => {
                                     // no-op
                                 }}
-                                vertexShader={art.codes[0].text}
-                                fragmentShader={art.codes[1].text}
+                                vertexShader={this.codes[0].text}
+                                fragmentShader={this.codes[1].text}
                                 shouldRender={true}
                                 hasError={false}
                             />
@@ -104,9 +121,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                                 if (this.showCode) {
                                     return <ShaderEditor
                                         artData={artDataState}
-                                        onCodeUpdated={c => {
-
-                                        }}
+                                        onCodeUpdated={codeData => this.updateCode(codeData)}
                                         windowSizeState={windowSizeState}/>;
                                 } else {
                                     return null;
@@ -114,10 +129,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                             })()}
                             <Button
                                 className="ArtDetailPage-codeButton"
-                                onClick={() => {
-                                    this.showCode = !this.showCode;
-                                    this.forceUpdate();
-                                }}
+                                onClick={() => this.toggleCodeButton()}
                             >
                                 {this.codeButtonLabel}
                             </Button>
