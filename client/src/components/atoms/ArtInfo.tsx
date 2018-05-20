@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArtEntity, CodeType } from '../../models';
+import { ArtEntity } from '../../models';
 import { Link } from 'react-router-dom';
 import './styles/artInfo.css';
 
@@ -55,14 +55,6 @@ const ArtInfo = ({ art, isMyPage, onToggleStar }: Props) => (
                 </li>
             )}
         </ul>
-        <div>
-            {art.codes.map(code =>
-                <div key={code.id}>
-                    <div>{CodeType.getName(code.type)}</div>
-                    <div className="ArtInfo-code">{code.text}</div>
-                </div>
-            )}
-        </div>
     </div>
 );
 
