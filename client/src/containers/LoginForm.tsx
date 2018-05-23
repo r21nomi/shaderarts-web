@@ -2,14 +2,18 @@ import { connect } from 'react-redux';
 import LoginButtoms from '../components/molecules/LoginButtons';
 import { RootState } from '../reducers/index';
 import { loginTwitter } from '../actions/actionCreator/loginTwitter';
+import { logInGoogle } from '../actions/actionCreator/logInGoogle';
 
 const mapStateToProps = (state: RootState) => ({
     // no-op
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    onTwitterButtonClick: () => {
+    onTwitterLoginButtonClicked: () => {
         dispatch(loginTwitter());
+    },
+    onGoogleLoginButtonClicked: () => {
+        dispatch(logInGoogle());
     }
 });
 

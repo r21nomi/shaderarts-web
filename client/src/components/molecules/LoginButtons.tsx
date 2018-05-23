@@ -1,16 +1,24 @@
 import * as React from 'react';
 import TwitterLoginButton from '../atoms/TwitterLoginButton';
+import GoogleLoginButton from '../atoms/GoogleLoginButton';
 
 interface Props {
-    onTwitterButtonClick: () => void;
+    onTwitterLoginButtonClicked: () => void;
+    onGoogleLoginButtonClicked: () => void;
 }
 
 class LoginButtons extends React.Component<Props, object> {
     render() {
-        const { onTwitterButtonClick } = this.props;
-        return <div>
-            <TwitterLoginButton onClick={onTwitterButtonClick} />
-        </div>;
+        const { onTwitterLoginButtonClicked, onGoogleLoginButtonClicked } = this.props;
+
+        return <ul>
+                    <li>
+                        <TwitterLoginButton onClick={onTwitterLoginButtonClicked} />
+                    </li>
+                    <li>
+                        <GoogleLoginButton onClick={onGoogleLoginButtonClicked}/>
+                    </li>
+                </ul>;
     }
 }
 
