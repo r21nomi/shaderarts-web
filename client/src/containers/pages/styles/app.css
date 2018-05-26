@@ -18,6 +18,10 @@
 
     /* Text color on secondary color */
     --text-on-secondary-color: #ffffff;
+
+    --color-twitter: #55acee;
+    --color-facebook: #3b5998;
+
 }
 
 html {

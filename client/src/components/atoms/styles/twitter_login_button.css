@@ -1,5 +1,5 @@
 .TwitterLoginButton {
-    background-color: #55acee;
+    background-color: var(--color-twitter);
     padding: 8px 16px;
-    color: white;
+    color: var(--text-on-secondary-color);
 }
