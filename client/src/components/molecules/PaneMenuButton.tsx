@@ -7,7 +7,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { PaneMode } from '../../models/index';
 import './styles/pane_menu_button.css';
 
-const styles = (theme: any) => ({
+const styles = {
     root: {
         minWidth: '64px'
     },
@@ -21,14 +21,16 @@ const styles = (theme: any) => ({
         fontSize: '1.1rem!important',
         fontFamily: 'Roboto Mono, monospace!important'
     }
-});
+};
+
+type StyleNames = keyof typeof styles;
 
 interface Props {
     paneMode: PaneMode;
     onModeChanged: (mode: PaneMode) => void;
 }
 
-class PaneMenuButton extends React.Component<WithStyles<'root' | 'selector' | 'label'> & Props, object> {
+class PaneMenuButton extends React.Component<WithStyles<StyleNames> & Props, object> {
     handleChange = (event: any) => {
         this.props.onModeChanged(event.target.value);
     }
