@@ -1,15 +1,20 @@
 import * as React from 'react';
+import { MouseEvent } from 'react';
 import { connect } from 'react-redux';
-import { NavLink} from 'react-router-dom';
-import { RootState } from '../../reducers/index';
+import { NavLink } from 'react-router-dom';
+import { push } from 'react-router-redux';
+import { LocationDescriptor } from 'history';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { RootState } from '../../reducers';
 import { MyProfileState } from '../../reducers/myProfile';
-import LogoutButton from '../../components/atoms/LogoutButton';
 import { logout } from '../../actions/actionCreator/logout';
 import './styles/header.css';
 
 interface Props {
     myProfileState: MyProfileState;
     onLogoutButtonClick: () => void;
+    onMenuItemClicked: (location: LocationDescriptor) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -19,12 +24,27 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onLogoutButtonClick: () => {
         dispatch(logout());
+    },
+    onMenuItemClicked: (location: LocationDescriptor) => {
+        dispatch(push(location));
     }
 });
 
 class Header extends React.Component<Props, object> {
+    anchorEl: any = null;
+
+    handleMenuButtonClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        this.anchorEl = event.currentTarget;
+        this.forceUpdate();
+    }
+
+    handleMenuClose = () => {
+        this.anchorEl = null;
+        this.forceUpdate();
+    }
+
     render() {
-        const { myProfileState, onLogoutButtonClick } = this.props;
+        const { myProfileState, onLogoutButtonClick, onMenuItemClicked } = this.props;
         let isAuthorized = myProfileState.isAuthorized;
 
         return <header className="Header">
@@ -39,14 +59,20 @@ class Header extends React.Component<Props, object> {
                         return <button><NavLink to="/login">Login</NavLink></button>;
                     } else {
                         return <div className="Header-logoutSection">
-                                    <NavLink className="Header-userInfo"
-                                             to="/mypage"
-                                             activeClassName="active">
-                                        <img className="Header-thumb" src={myProfileState.user.thumb} alt={myProfileState.user.name}/>
-                                        <p className="Header-userName">{myProfileState.user.name}</p>
-                                    </NavLink>
-                                    <LogoutButton onClick={onLogoutButtonClick} />
-                                </div>;
+                            <a className="Header-userInfo"
+                               href="javascript:void(0)"
+                               onClick={this.handleMenuButtonClick}>
+                                <img className="Header-thumb"
+                                     src={myProfileState.user.thumb}
+                                     alt={myProfileState.user.name}/>
+                            </a>
+                            <Menu anchorEl={this.anchorEl}
+                                  open={Boolean(this.anchorEl)}
+                                  onClose={this.handleMenuClose}>
+                                <MenuItem onClick={() => onMenuItemClicked('/mypage')}>My Page</MenuItem>
+                                <MenuItem onClick={onLogoutButtonClick}>Logout</MenuItem>
+                            </Menu>
+                        </div>;
                     }
                 })()}
             </div>
