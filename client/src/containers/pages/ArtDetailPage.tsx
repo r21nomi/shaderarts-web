@@ -15,6 +15,7 @@ import './styles/art_detail_page.css';
 import { toArtDataFromEntity } from '../../models/artDataProvider';
 import { WindowSizeState } from '../../reducers/windowSize';
 import { CodeData } from '../../models/data';
+import { toggleStar } from '../../actions/actionCreator/toggleStar';
 
 interface Props {
     match: {
@@ -38,6 +39,9 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onFetch: (artID: string) => {
         dispatch(fetchArtDetail(artID));
+    },
+    onToggleStar: (artId: string, isStarCurrent: boolean) => {
+        dispatch(toggleStar(artId, isStarCurrent));
     }
 });
 

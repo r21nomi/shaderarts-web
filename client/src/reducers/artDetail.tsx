@@ -1,5 +1,6 @@
 import { FetchArtDetailAction } from '../actions/fetchArtDetailAction';
 import { ArtEntity, ArtType } from '../models/';
+import { ToggleStarAction, ToggleStarActionType } from '../actions/toggleStarAction';
 
 const initialState: ArtDetailState = {
     isFetching: true,
@@ -21,7 +22,8 @@ const initialState: ArtDetailState = {
     }
 };
 
-const artDetail = (state: ArtDetailState = initialState, action: FetchArtDetailAction): ArtDetailState => {
+const artDetail = (state: ArtDetailState = initialState,
+                   action: FetchArtDetailAction | ToggleStarAction): ArtDetailState => {
     switch (action.type) {
         case 'REQUEST_ART_DETAIL':
             return Object.assign({}, state, {
@@ -31,8 +33,38 @@ const artDetail = (state: ArtDetailState = initialState, action: FetchArtDetailA
         case 'RECEIVE_ART_DETAIL':
             return Object.assign({}, state, {
                 isFetching: false,
-                art: action.art
+                art: (action as FetchArtDetailAction).art
             });
+
+        case ToggleStarActionType.POST_STAR_SUCCESS: {
+            let artEntity = state.art;
+            if (artEntity.id === (action as ToggleStarAction).artId) {
+                let newArtEntity = Object.assign({}, artEntity, {
+                    isStarred: true,
+                    star: artEntity.star + 1
+                });
+                return Object.assign({}, state, {
+                    art: newArtEntity
+                });
+            } else {
+                return state;
+            }
+        }
+
+        case ToggleStarActionType.DELETE_STAR_SUCCESS: {
+            let artEntity = state.art;
+            if (artEntity.id === (action as ToggleStarAction).artId) {
+                let newArtEntity = Object.assign({}, artEntity, {
+                    isStarred: true,
+                    star: artEntity.star - 1
+                });
+                return Object.assign({}, state, {
+                    art: newArtEntity
+                });
+            } else {
+                return state;
+            }
+        }
 
         default:
             return state;
