@@ -2,7 +2,7 @@ import { urlProvider } from '../../urlProvider';
 import { ArtData } from '../../models/data';
 import { handleErrors } from './handleErrors';
 import { getCurrentUserToken } from './getCurrentUserToken';
-import { PostArtAction } from '../PostArtAction';
+import { PostArtAction } from '../postArtAction';
 import { push, RouterAction } from 'react-router-redux';
 
 export function postArt(artData: ArtData) {

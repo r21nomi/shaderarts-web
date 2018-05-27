@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import Header from '../organisms/Header';
 import { RootState } from '../../reducers/index';
 import { MyProfileState } from '../../reducers/myProfile';

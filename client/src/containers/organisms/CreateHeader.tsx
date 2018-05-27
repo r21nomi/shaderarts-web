@@ -11,7 +11,7 @@ import PostSheet from './PostSheet';
 import { UpdatePaneMode } from '../../actions/actionCreator/updatePaneMode';
 import { TogglePostSheetMode } from '../../actions/actionCreator/togglePostSheetMode';
 import { ArtInfoData } from '../../models/data';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import { PostSheetModeState } from '../../reducers/postSheetMode';
 
 interface Props {

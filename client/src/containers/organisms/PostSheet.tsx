@@ -5,18 +5,20 @@ import { TagData } from '../../models/data';
 import { RootState } from '../../reducers/index';
 import { TagsState } from '../../reducers/tags';
 import { AddTag, DeleteTag } from '../../actions/actionCreator/updateTags';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { WithContext as ReactTags } from 'react-tag-input';
-import withStyles, { WithStyles } from 'material-ui/styles/withStyles';
+import { WithStyles, withStyles } from '@material-ui/core/styles';
 import './styles/post_sheet.css';
 
-const styles = (theme: any) => ({
+const styles = {
     textField: {
         width: '500px',
         fontSize: '2.4rem'
     }
-});
+};
+
+type ClassNames = keyof typeof styles;
 
 interface Props {
     onDaveAsDraftButtonClick: () => void;
@@ -45,7 +47,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     }
 });
 
-class PostSheet extends React.PureComponent<WithStyles<'textField'> & Props, object> {
+class PostSheet extends React.PureComponent<Props & WithStyles<ClassNames>, object> {
     title: string;
     description: string;
 
@@ -68,7 +70,9 @@ class PostSheet extends React.PureComponent<WithStyles<'textField'> & Props, obj
                             id="required"
                             label="Title"
                             className={classes.textField}
-                            labelClassName="PostSheet-label"
+                            InputLabelProps={{
+                                className: 'PostSheet-label'
+                            }}
                             onChange={event => {
                                 this.title = event.target.value;
                             }}
@@ -82,7 +86,9 @@ class PostSheet extends React.PureComponent<WithStyles<'textField'> & Props, obj
                             id="required"
                             label="Description"
                             className={classes.textField}
-                            labelClassName="PostSheet-label"
+                            InputLabelProps={{
+                                className: 'PostSheet-label'
+                            }}
                             onChange={event => {
                                 this.description = event.target.value;
                             }}
@@ -132,7 +138,9 @@ function toInternalTagDataList(tagsState: TagsState): InternalTagData[] {
     });
 }
 
-export default connect(
+let component = connect(
     mapStateToProps,
     mapDispatchToProps
-)(withStyles(styles)(PostSheet));
+)(PostSheet);
+
+export default withStyles(styles)(component);
