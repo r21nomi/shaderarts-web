@@ -52,11 +52,18 @@ class ArtDetailPage extends React.Component<Props, object> {
     defaultCanvasHeight: number = 500;
     canvasWidth: number = 1024;
     canvasHeight: number = this.defaultCanvasHeight;
-    codes: CodeEntity[];
+    codes: CodeEntity[] = [];
 
     updateCode(codeData: CodeData[]) {
         this.codes[1].text = codeData[1].text;
-        this.forceUpdate();
+
+        let hasError = function (): boolean {
+            return codeData[0].errorLine > 0 || codeData[1].errorLine > 0;
+        };
+
+        if (!hasError()) {
+            this.forceUpdate();
+        }
     }
 
     toggleCodeButton() {
@@ -64,7 +71,7 @@ class ArtDetailPage extends React.Component<Props, object> {
         this.forceUpdate();
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let artID = this.props.match.params.id;
         this.props.onFetch(artID);
     }
@@ -78,9 +85,7 @@ class ArtDetailPage extends React.Component<Props, object> {
         } else {
             const art = artDetailState.art;
 
-            if (!this.codes) {
-                this.codes = art.codes;
-            }
+            this.codes = art.codes;
 
             if (art.type == ArtType.GLSL) {
                 console.log('ArtType: GLSL');
