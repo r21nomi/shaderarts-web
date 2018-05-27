@@ -22,6 +22,10 @@
     --color-twitter: #55acee;
     --color-facebook: #3b5998;
 
+    --color-cursor: #ff0000;
+    --color-cursor-active-line: rgba(0, 0, 0, 0.2);
+    --color-cursor-error-line: rgba(255, 0, 0, 0.4);
+    --color-background: rgba(0, 0, 0, 0.5);
 }
 
 html {

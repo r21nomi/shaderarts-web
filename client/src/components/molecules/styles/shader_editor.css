@@ -8,8 +8,8 @@
     height: 100%;
 }
 .CodeMirror {
-    background-color: rgba(0, 0, 0, 0.5)!important;
-    text-shadow: rgba(0, 0, 0, 0.5) 0 1px 1px!important;
+    background-color: var(--color-background)!important;
+    text-shadow: var(--color-background) 0 1px 1px!important;
 }
 
 .CodeMirror-gutters {
@@ -17,9 +17,17 @@
 }
 
 .paneMode-split .CodeMirror {
-    background-color: rgba(0, 0, 0, 0.8)!important;
+    background-color: var(--color-background)!important;
 }
 
-.CodeMirror .CodeMirror-line.errorLine {
-    background-color: rgba(255, 0, 0, 0.4);
+.CodeMirror [data-errorLine] {
+    background-color: var(--color-cursor-error-line);
+}
+
+.CodeMirror .CodeMirror-cursor {
+    border-left: 2px solid var(--color-cursor);
+}
+
+.CodeMirror .CodeMirror-activeline-background {
+    background-color: var(--color-cursor-active-line);
 }

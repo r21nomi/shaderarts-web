@@ -6,6 +6,7 @@ import { ArtDataState } from '../../reducers/artData';
 import 'codemirror/mode/clike/clike';
 import './styles/shader_editor.css';
 import 'codemirror/theme/monokai.css';
+import 'codemirror/addon/selection/active-line';
 
 interface Props {
     onCodeUpdated: (codeData: CodeData[]) => void;
@@ -71,9 +72,11 @@ class ShaderEditor extends React.Component<Props, object> {
 		let options = {
             readOnly: false,
             lineNumbers: true,
+            cursorBlinkRate: 400,
             mode: 'x-shader/x-fragment',
             theme: 'monokai',
-            indentUnit: 4
+            indentUnit: 4,
+            styleActiveLine: true
         };
 
         let fragmentShader = artData.data.codes[1].text;
@@ -91,15 +94,20 @@ function setHeight(codeMirror: Element, height: number) {
 }
 
 function toggleHighlightForErrorLine(errorLine: number) {
-    let errorLineClassName = 'errorLine';
+    let errorLineAttrName = 'data-errorLine';
 
     if (errorLine > 0) {
         let liens = document.getElementsByClassName('CodeMirror-line');
-        liens[errorLine - 1].classList.add(errorLineClassName);
+        let targetElement = liens[errorLine - 1].parentElement;
+
+        if (targetElement && !targetElement.hasAttribute(errorLineAttrName)) {
+            targetElement.setAttribute(errorLineAttrName, (errorLine - 1).toString());
+        }
     } else {
-        let lines = document.getElementsByClassName(errorLineClassName);
-        for (var i = 0; i < lines.length; i++) {
-            lines[i].classList.remove(errorLineClassName);
+        let lines = document.querySelectorAll(`[${errorLineAttrName}]`);
+        for (let i = 0; i < lines.length; i++) {
+            console.log(i);
+            lines[i].removeAttribute(errorLineAttrName);
         }
     }
 }
