@@ -58,3 +58,10 @@
 .Header-userInfo.active {
     font-weight: bold;
 }
+
+.Header-loginButton {
+    color: var(--text-on-primary-color)!important;
+    font-size: 1.4rem!important;
+    font-family: 'Roboto Mono', monospace!important;
+    text-transform: none!important;
+}

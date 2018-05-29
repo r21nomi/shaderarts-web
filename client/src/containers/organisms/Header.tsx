@@ -10,6 +10,7 @@ import { RootState } from '../../reducers';
 import { MyProfileState } from '../../reducers/myProfile';
 import { logout } from '../../actions/actionCreator/logout';
 import './styles/header.css';
+import Button from '@material-ui/core/Button';
 
 interface Props {
     myProfileState: MyProfileState;
@@ -56,7 +57,9 @@ class Header extends React.Component<Props, object> {
                 </ul>
                 {(() => {
                     if (!isAuthorized) {
-                        return <button><NavLink to="/login">Login</NavLink></button>;
+                        return <NavLink to="/login">
+                            <Button className="Header-loginButton">Login</Button>
+                        </NavLink>;
                     } else {
                         return <div className="Header-logoutSection">
                             <a className="Header-userInfo"
