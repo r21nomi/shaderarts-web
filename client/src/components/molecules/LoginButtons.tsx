@@ -1,7 +1,6 @@
 import * as React from 'react';
-import TwitterLoginButton from '../atoms/TwitterLoginButton';
-import GoogleLoginButton from '../atoms/GoogleLoginButton';
-import FacebookLoginButton from '../atoms/FacebookLoginButton';
+import LoginButton from '../atoms/LoginButton';
+import './styles/login_buttons.css';
 
 interface Props {
     onTwitterLoginButtonClicked: () => void;
@@ -13,15 +12,15 @@ class LoginButtons extends React.Component<Props, object> {
     render() {
         const { onTwitterLoginButtonClicked, onFacebookLoginButtonClicked, onGoogleLoginButtonClicked } = this.props;
 
-        return <ul>
-                    <li>
-                        <TwitterLoginButton onClick={onTwitterLoginButtonClicked} />
+        return <ul className="LoginButtons">
+                    <li className="LoginButtons-twitter">
+                        <LoginButton label="Login with Twitter" onClick={onTwitterLoginButtonClicked} />
                     </li>
-                    <li>
-                        <FacebookLoginButton onClick={onFacebookLoginButtonClicked} />
+                    <li className="LoginButtons-facebook">
+                        <LoginButton label="Login with Facebook" onClick={onFacebookLoginButtonClicked} />
                     </li>
-                    <li>
-                        <GoogleLoginButton onClick={onGoogleLoginButtonClicked}/>
+                    <li className="LoginButtons-google">
+                        <LoginButton label="Login with Google" onClick={onGoogleLoginButtonClicked}/>
                     </li>
                 </ul>;
     }

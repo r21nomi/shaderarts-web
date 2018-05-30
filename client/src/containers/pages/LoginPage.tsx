@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import LoginForm from '../LoginForm';
-import { RootState } from '../../reducers/index';
+import { RootState } from '../../reducers';
 import { MyProfileState } from '../../reducers/myProfile';
+import BackgroundArts from '../BackgroundArts';
 import './styles/page.css';
-import './styles/top_page.css';
+import './styles/login_page.css';
 
 interface Props {
     myProfileState: MyProfileState;
@@ -25,9 +26,13 @@ class LoginPage extends React.Component<Props, object> {
             // Usually this process is for the case after login.
             history.back();
         }
-        return <div>
-            <div className="Page-content LoginPage-content">Top Page</div>
-            <LoginForm />
+        return <div className="LoginPage-content">
+            <BackgroundArts/>
+            <div className="LoginPage-contentWrapper">
+                <h1 className="LoginPage-title">Arto</h1>
+                <p className="LoginPage-description">Welcome to the digital art world.</p>
+                <LoginForm />
+            </div>
         </div>;
     }
 }

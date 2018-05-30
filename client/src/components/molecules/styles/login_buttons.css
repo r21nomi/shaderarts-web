@@ -1,0 +1,17 @@
+.LoginButtons-twitter {
+    margin-bottom: 16px;
+}
+.LoginButtons-twitter .LoginButton {
+    background-color: var(--color-twitter);
+}
+
+.LoginButtons-facebook {
+    margin-bottom: 16px;
+}
+.LoginButtons-facebook .LoginButton {
+    background-color: var(--color-facebook);
+}
+
+.LoginButtons-google .LoginButton {
+    background-color: var(--color-google);
+}

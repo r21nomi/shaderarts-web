@@ -1,0 +1,41 @@
+.LoginPage-content {
+    position: relative;
+}
+
+.CarouselArts::after {
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "";
+    position: absolute;
+    background-color: var(--color-background);
+    top: 0;
+    left: 0;
+}
+
+.LoginPage-contentWrapper {
+    width: 360px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 140px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.LoginPage-title {
+    font-size: 8.0rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.LoginPage-description {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 68px;
+}
