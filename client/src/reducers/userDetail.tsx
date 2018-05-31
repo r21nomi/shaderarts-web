@@ -13,7 +13,7 @@ const initialState: UserDetailState = {
 const userDetail = (state: UserDetailState = initialState, action: FetchUserDetailAction): UserDetailState => {
     switch (action.type) {
         case FetchUserDetailActionType.REQUEST_FETCH_USER_DETAIL:
-            return state;
+            return Object.assign({}, state, initialState);
 
         case FetchUserDetailActionType.FETCH_USER_DETAIL_SUCCESS:
             return Object.assign({}, state, {

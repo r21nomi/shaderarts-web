@@ -8,6 +8,7 @@ import Profile from '../../components/atoms/Profile';
 import MyPageStat from '../../components/atoms/MyPageStat';
 import './styles/page.css';
 import './styles/user_detail_page.css';
+import UserArts from "../UserArts";
 
 interface Props {
     match: {
@@ -46,8 +47,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 });
 
 class UserDetailPage extends React.Component<Props, object> {
-    componentDidMount() {
-        var userID = this.props.match.params.id;
+    componentWillMount() {
+        let userID = this.props.match.params.id;
         this.props.onFetch(userID);
     }
     render() {
@@ -55,14 +56,17 @@ class UserDetailPage extends React.Component<Props, object> {
             onArtCountClicked,
             onStarCountClicked,
             onFollowClicked,
-            onFollowerClicked
+            onFollowerClicked,
+            userDetailState
         } = this.props;
+
+        let userID = this.props.match.params.id;
 
         return <div>
                     <Header />
                     <div className="Page-content UserDetailPage-content">
                         <div className="UserDetailPage-profile">
-                            <Profile userEntity={this.props.userDetailState.user} />
+                            <Profile userEntity={userDetailState.user} />
                         </div>
                         <div className="UserDetailPage-myPageStat">
                             <MyPageStat
@@ -72,6 +76,15 @@ class UserDetailPage extends React.Component<Props, object> {
                                 onFollowerClicked={onFollowerClicked}
                             />
                         </div>
+                        {(() => {
+                            //  FIXME: stop checking user id here.
+                            // This is work around that sometimes different arts are shown for a while af first.
+                            if (!userDetailState.isFetching && userID == userDetailState.user.id) {
+                                return <UserArts userId={userDetailState.user.id}/>;
+                            } else {
+                                return null;
+                            }
+                        })()}
                     </div>
                 </div>
     }

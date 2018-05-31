@@ -11,7 +11,7 @@ interface Props {
 }
 
 class ArtList extends React.Component<Props, object> {
-    componentDidMount() {
+    componentWillMount() {
         this.props.onFetch();
     }
 
