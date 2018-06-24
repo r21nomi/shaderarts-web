@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { toggleStar } from '../actions/actionCreator/toggleStar';
 import ArtList from './organisms/ArtList';
-import { RootState } from '../reducers/index';
+import { RootState } from '../reducers';
 import { fetchUserArts } from '../actions/actionCreator/fetchUserArts';
 
 interface Props {

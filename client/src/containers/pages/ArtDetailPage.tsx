@@ -7,7 +7,6 @@ import { MyProfileState } from '../../reducers/myProfile';
 import { ArtDetailState } from '../../reducers/artDetail';
 import { ArtType, CodeEntity } from '../../models/index';
 import UpdateGLSLCanvas from '../UpdateGLSLCanvas';
-import ArtInfo from '../../components/atoms/ArtInfo';
 import { fetchArtDetail } from '../../actions/actionCreator/fetchArtDetail';
 import ShaderEditor from '../../components/molecules/ShaderEditor';
 import './styles/page.css';
@@ -16,6 +15,8 @@ import { toArtDataFromEntity } from '../../models/artDataProvider';
 import { WindowSizeState } from '../../reducers/windowSize';
 import { CodeData } from '../../models/data';
 import { toggleStar } from '../../actions/actionCreator/toggleStar';
+import { pushArt } from '../../actions/actionCreator/pushArt';
+import DetailArtInfo from '../../components/atoms/DetailArtInfo';
 
 interface Props {
     match: {
@@ -26,7 +27,8 @@ interface Props {
     myProfileState: MyProfileState;
     artDetailState: ArtDetailState;
     onFetch: (artID: string) => void;
-    onToggleStar: (artId: String) => void;
+    onToggleStar: (artId: String, isStarCurrent: boolean) => void;
+    onPushArt: (artId: string) => void;
     windowSizeState: WindowSizeState;
 }
 
@@ -42,6 +44,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     },
     onToggleStar: (artId: string, isStarCurrent: boolean) => {
         dispatch(toggleStar(artId, isStarCurrent));
+    },
+    onPushArt: (artId: string) => {
+        dispatch(pushArt(artId));
     }
 });
 
@@ -77,7 +82,7 @@ class ArtDetailPage extends React.Component<Props, object> {
     }
 
     render() {
-        const { artDetailState, onToggleStar, windowSizeState } = this.props;
+        const { artDetailState, onToggleStar, onPushArt, windowSizeState } = this.props;
 
         if (artDetailState.isFetching) {
             return <div>Now fetching...</div>;
@@ -147,10 +152,11 @@ class ArtDetailPage extends React.Component<Props, object> {
                             <h1>{art.title}</h1>
                             <p>{art.description}</p>
                         </div>
-                        <ArtInfo
+                        <DetailArtInfo
                             art={art}
                             isMyPage={false}
                             onToggleStar={onToggleStar}
+                            onPushArt={onPushArt}
                         />
                     </div>
                 </React.Fragment>
