@@ -13,6 +13,7 @@ import { TogglePostSheetMode } from '../../actions/actionCreator/togglePostSheet
 import { ArtInfoData } from '../../models/data';
 import Button from '@material-ui/core/Button';
 import { PostSheetModeState } from '../../reducers/postSheetMode';
+import {SaveArtInfoData} from "../../actions/actionCreator/saveArtInfoData";
 
 interface Props {
     onSaveAsDraftButtonClick: () => void;
@@ -25,6 +26,8 @@ interface Props {
     // For PublishButton
     postSheetModeState: PostSheetModeState;
     onPostSheetModeChanged: (isCurrentEnabled: boolean) => void;
+
+    onSaveArtInfoData: (artInfoData: ArtInfoData) => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -38,10 +41,15 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     },
     onPostSheetModeChanged: (isCurrentEnabled: boolean) => {
         dispatch(TogglePostSheetMode(isCurrentEnabled));
+    },
+    onSaveArtInfoData: (artInfoData: ArtInfoData) => {
+        dispatch(SaveArtInfoData(artInfoData));
     }
 });
 
 class CreateHeader extends React.Component<Props, object> {
+
+    postSheet: any;
 
     onSubmitMouseOver() {
         let headerEL: any = this.refs.createHeader;
@@ -65,7 +73,8 @@ class CreateHeader extends React.Component<Props, object> {
             onModeChanged,
             onPostSheetModeChanged,
             onSaveAsDraftButtonClick,
-            onSubmitButtonClick
+            onSubmitButtonClick,
+            onSaveArtInfoData
         } = this.props;
 
         return <header className="Header CreateHeader" ref="createHeader">
@@ -80,7 +89,13 @@ class CreateHeader extends React.Component<Props, object> {
                         </ul>
                         <Button
                             className="CreateHeader-submitButton"
-                            onClick={() => onPostSheetModeChanged(postSheetModeState.isEnabled)}
+                            onClick={() => {
+                                if (this.postSheet) {
+                                    let artInfoData = this.postSheet.getWrappedInstance().getArtInfoData();
+                                    onSaveArtInfoData(artInfoData);
+                                }
+                                onPostSheetModeChanged(postSheetModeState.isEnabled);
+                            }}
                         >
                             Publish
                         </Button>
@@ -91,6 +106,7 @@ class CreateHeader extends React.Component<Props, object> {
                                         className="CreateHeader-submitMenu"
                                     >
                                         <PostSheet
+                                            innerRef={(r:any) => this.postSheet = r}
                                             onDaveAsDraftButtonClick={() => onSaveAsDraftButtonClick()}
                                             onSubmitButtonClick={(postData: ArtInfoData) => onSubmitButtonClick(postData)} />
                                     </div>;

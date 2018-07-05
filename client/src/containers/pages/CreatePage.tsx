@@ -13,6 +13,7 @@ import './styles/page.css';
 import './styles/create_page.css';
 import { ArtData, CodeData, ArtInfoData } from '../../models/data';
 import { ArtDataState } from '../../reducers/artData';
+import {ClearArtInfoData} from "../../actions/actionCreator/clearArtInfoData";
 
 interface Props {
     windowSizeState: WindowSizeState;
@@ -20,6 +21,7 @@ interface Props {
     artDataState: ArtDataState;
     handleHeaderSaveAsDraftButtonClick: (codes: CodeData[]) => void;
     handleHeaderSubmitButtonClick: (artData: ArtData) => void;
+    onClearArtInfoData: () => void;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -34,6 +36,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: Props) => ({
     },
     handleHeaderSubmitButtonClick: (artData: ArtData) => {
         dispatch(postArt(artData));
+    },
+    onClearArtInfoData: () => {
+        dispatch(ClearArtInfoData());
     }
 });
 
@@ -47,6 +52,10 @@ class CreatePage extends React.Component<Props, object> {
     componentDidMount() {
         let glslCanvas = this.updateGLSLCanvas.getWrappedInstance();
         this.createThumb = glslCanvas.createThumb;
+    }
+
+    componentWillUnmount() {
+        this.props.onClearArtInfoData();
     }
 
     render() {

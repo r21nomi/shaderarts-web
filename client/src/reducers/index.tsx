@@ -9,6 +9,7 @@ import paneMode, { PaneModeState } from './paneMode';
 import postSheetMode, { PostSheetModeState } from './postSheetMode';
 import tags, { TagsState } from './tags';
 import artData, { ArtDataState } from './artData';
+import artInfoData, {ArtInfoDataState} from "./artInfoData";
 
 export interface RootState {
     windowSize: WindowSizeState;
@@ -20,6 +21,7 @@ export interface RootState {
     postSheetMode: PostSheetModeState;
     tags: TagsState;
     artData: ArtDataState;
+    artInfoData: ArtInfoDataState;
 }
 
 const reducers = combineReducers<RootState>({
@@ -32,7 +34,8 @@ const reducers = combineReducers<RootState>({
     paneMode,
     postSheetMode,
     tags,
-    artData
+    artData,
+    artInfoData
 });
 
 export default reducers;

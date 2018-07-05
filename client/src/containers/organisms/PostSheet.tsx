@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { WithStyles, withStyles } from '@material-ui/core/styles';
 import './styles/post_sheet.css';
+import {ArtInfoDataState} from "../../reducers/artInfoData";
 
 const styles = {
     textField: {
@@ -25,6 +26,7 @@ interface Props {
     onSubmitButtonClick: (artInfoData: ArtInfoData) => void;
 
     tagsState: TagsState;
+    artInfoDataState: ArtInfoDataState;
     onTagAdded: (tag: TagData) => void;
     onTagDeleted: (id: number) => void;
 }
@@ -35,7 +37,8 @@ interface InternalTagData {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    tagsState: state.tags
+    tagsState: state.tags,
+    artInfoDataState: state.artInfoData
 });
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
@@ -51,17 +54,27 @@ class PostSheet extends React.PureComponent<Props & WithStyles<ClassNames>, obje
     title: string;
     description: string;
 
+    getArtInfoData: (() => ArtInfoData) = () => {
+        return {
+            title: this.title || '',
+            description: this.description || '',
+            tags: this.props.tagsState.tags
+        }
+    }
+
     render() {
         const {
             classes,
             onDaveAsDraftButtonClick,
             onSubmitButtonClick,
             tagsState,
+            artInfoDataState,
             onTagAdded,
             onTagDeleted
         } = this.props;
 
-        console.log(this.props);
+        this.title = artInfoDataState.data.title;
+        this.description = artInfoDataState.data.description;
 
         return <div className="PostSheet-content">
                     <div className="PostSheet-textField PostSheet-title">
@@ -77,6 +90,7 @@ class PostSheet extends React.PureComponent<Props & WithStyles<ClassNames>, obje
                                 this.title = event.target.value;
                             }}
                             margin="normal"
+                            defaultValue={this.title}
                         />
                     </div>
                     <div className="PostSheet-textField PostSheet-description">
@@ -93,6 +107,7 @@ class PostSheet extends React.PureComponent<Props & WithStyles<ClassNames>, obje
                                 this.description = event.target.value;
                             }}
                             margin="normal"
+                            defaultValue={this.description}
                         />
                     </div>
                     <div className="PostSheet-textField PostSheet-tags">
@@ -116,11 +131,7 @@ class PostSheet extends React.PureComponent<Props & WithStyles<ClassNames>, obje
                         </Button>
                         <Button
                             className="PostSheet-submitButton"
-                            onClick={() => onSubmitButtonClick({
-                                title: this.title,
-                                description: this.description,
-                                tags: tagsState.tags
-                            })}
+                            onClick={() => onSubmitButtonClick(this.getArtInfoData())}
                         >
                             Submit
                         </Button>
@@ -140,7 +151,9 @@ function toInternalTagDataList(tagsState: TagsState): InternalTagData[] {
 
 let component = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    null,
+    { withRef: true }
 )(PostSheet);
 
 export default withStyles(styles)(component);
