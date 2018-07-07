@@ -27,6 +27,7 @@
     --color-cursor-active-line: rgba(0, 0, 0, 0.2);
     --color-cursor-error-line: rgba(255, 0, 0, 0.4);
     --color-background: rgba(0, 0, 0, 0.5);
+    --color-background-selected: rgba(0, 0, 0, 0.6);
 }
 
 html {

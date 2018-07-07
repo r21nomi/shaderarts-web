@@ -31,3 +31,7 @@
 .CodeMirror .CodeMirror-activeline-background {
     background-color: var(--color-cursor-active-line);
 }
+
+.CodeMirror-selected {
+    background-color: var(--color-background-selected)!important;
+}
