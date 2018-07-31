@@ -17,6 +17,7 @@ import { CodeData } from '../../models/data';
 import { toggleStar } from '../../actions/actionCreator/toggleStar';
 import { pushArt } from '../../actions/actionCreator/pushArt';
 import DetailArtInfo from '../../components/atoms/DetailArtInfo';
+import Spinner from '../../components/atoms/Spinner';
 
 interface Props {
     match: {
@@ -85,7 +86,7 @@ class ArtDetailPage extends React.Component<Props, object> {
         const { artDetailState, onToggleStar, onPushArt, windowSizeState } = this.props;
 
         if (artDetailState.isFetching) {
-            return <div>Now fetching...</div>;
+            return <Spinner />
 
         } else {
             const art = artDetailState.art;

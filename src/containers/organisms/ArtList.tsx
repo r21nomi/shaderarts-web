@@ -2,6 +2,7 @@ import * as React from 'react';
 import Art from '../../components/molecules/Art';
 import { ArtsState } from '../../reducers/arts';
 import './styles/artList.css';
+import Spinner from '../../components/atoms/Spinner';
 
 interface Props {
     arts: ArtsState;
@@ -19,7 +20,7 @@ class ArtList extends React.Component<Props, object> {
         const { arts, isMyPage, onToggleStar } = this.props;
 
         if (arts.isLoading) {
-            return <div className="ArtList">Loading...</div>;
+            return <Spinner />;
         } else {
             return <div className="ArtList">
                         {arts.items.map(art =>
