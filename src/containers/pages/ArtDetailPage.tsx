@@ -56,7 +56,7 @@ class ArtDetailPage extends React.Component<Props, object> {
     codeButtonLabel: string;
     showCode: boolean = false;
     defaultCanvasHeight: number = 500;
-    canvasWidth: number = 1024;
+    canvasWidth: number = 0;
     canvasHeight: number = this.defaultCanvasHeight;
     codes: CodeEntity[] = [];
 
@@ -84,6 +84,8 @@ class ArtDetailPage extends React.Component<Props, object> {
 
     render() {
         const { artDetailState, onToggleStar, onPushArt, windowSizeState } = this.props;
+
+        this.canvasWidth = this.getCanvasWidth();
 
         if (artDetailState.isFetching) {
             return <Spinner />
@@ -163,6 +165,10 @@ class ArtDetailPage extends React.Component<Props, object> {
                 </React.Fragment>
             );
         }
+    }
+
+    private getCanvasWidth(): number {
+        return  Math.min(1024, this.props.windowSizeState.width);
     }
 }
 
