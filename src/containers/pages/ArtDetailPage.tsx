@@ -151,7 +151,7 @@ class ArtDetailPage extends React.Component<Props, object> {
                                 {this.codeButtonLabel}
                             </Button>
                         </div>
-                        <div>
+                        <div className="ArtDetailPage-titleArea">
                             <h1>{art.title}</h1>
                             <p>{art.description}</p>
                         </div>

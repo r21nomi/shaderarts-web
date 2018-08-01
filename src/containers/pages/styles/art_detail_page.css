@@ -1,6 +1,7 @@
 .ArtDetailPage-artAndCode {
     position: relative;
     overflow: hidden;
+    margin-bottom: 8px;
 }
 
 .ArtDetailPage-artAndCode .GLSLCanvas-canvas {
@@ -19,4 +20,15 @@
     right: 0;
     color: var(--text-on-secondary-color);
     z-index: 10;
+}
+
+.ArtDetailPage-content .ArtDetailPage-titleArea {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 8px;
+}
+
+.ArtDetailPage-content .ArtInfo {
+    padding-left: 16px;
+    padding-right: 16px;
 }
