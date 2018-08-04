@@ -2,14 +2,16 @@ import * as React from 'react';
 import { ArtEntity } from '../../models';
 import { Link } from 'react-router-dom';
 import './styles/artInfo.css';
+import Button from "@material-ui/core/Button";
 
 interface Props {
     art: ArtEntity;
     isMyPage: boolean;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
+    onPushArt: (artId: string) => void;
 }
 
-const ArtInfo = ({ art, isMyPage, onToggleStar }: Props) => (
+const ArtInfo = ({ art, isMyPage, onToggleStar, onPushArt }: Props) => (
     <div className="ArtInfo">
         {(() => {
             if (!isMyPage) {
@@ -36,6 +38,14 @@ const ArtInfo = ({ art, isMyPage, onToggleStar }: Props) => (
                                 }
                             })()}
                         </a>
+                    </li>
+                    <li className="ArtInfo-pushArt">
+                        <Button
+                            className="ArtInfo-uploadButton"
+                            onClick={() => onPushArt(art.id)}
+                        >
+                            <img src="/img/upload_24px.png"/>
+                        </Button>
                     </li>
                 </ul>;
             } else {

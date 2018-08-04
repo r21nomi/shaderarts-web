@@ -9,6 +9,7 @@ interface Props {
     art: ArtEntity;
     isMyPage: boolean;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
+    onPushArt: (artId: string) => void;
 }
 
 class Art extends React.Component<Props, object> {
@@ -19,7 +20,7 @@ class Art extends React.Component<Props, object> {
     }
 
     render() {
-        const { art, isMyPage, onToggleStar } = this.props;
+        const { art, isMyPage, onToggleStar, onPushArt } = this.props;
 
         return <div className="Art">
             <Link className="Art-thumb"
@@ -58,6 +59,7 @@ class Art extends React.Component<Props, object> {
                 art={art}
                 isMyPage={isMyPage}
                 onToggleStar={onToggleStar}
+                onPushArt={onPushArt}
             />
         </div>;
     }

@@ -9,6 +9,7 @@ interface Props {
     isMyPage: boolean;
     onFetch: () => void;
     onToggleStar: (artId: String, isStarCurrent: boolean) => void;
+    onPushArt: (artId: string) => void;
 }
 
 class ArtList extends React.Component<Props, object> {
@@ -17,7 +18,7 @@ class ArtList extends React.Component<Props, object> {
     }
 
     render() {
-        const { arts, isMyPage, onToggleStar } = this.props;
+        const { arts, isMyPage, onToggleStar, onPushArt } = this.props;
 
         if (arts.isLoading) {
             return <Spinner />;
@@ -29,6 +30,7 @@ class ArtList extends React.Component<Props, object> {
                                 art={art}
                                 isMyPage={isMyPage}
                                 onToggleStar={onToggleStar}
+                                onPushArt={onPushArt}
                             />
                         )}
                     </div>;
