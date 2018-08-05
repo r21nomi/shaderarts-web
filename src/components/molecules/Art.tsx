@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import ArtInfo from '../atoms/ArtInfo';
 import { ArtEntity } from '../../models';
 import './styles/art.css';
@@ -23,8 +22,10 @@ class Art extends React.Component<Props, object> {
         const { art, isMyPage, onToggleStar, onPushArt } = this.props;
 
         return <div className="Art">
-            <Link className="Art-thumb"
-                  to={`/art/${art.id}`}
+            <div className="Art-thumb"
+                 onClick={() => {
+                     onPushArt(art.id)
+                 }}
                   onMouseOver={() => {
                       this.isMouseOver = true;
                       this.forceUpdate();
@@ -54,7 +55,7 @@ class Art extends React.Component<Props, object> {
                         return null;
                     }
                 })()}
-            </Link>
+            </div>
             <ArtInfo
                 art={art}
                 isMyPage={isMyPage}
