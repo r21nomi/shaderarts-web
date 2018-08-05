@@ -5,7 +5,7 @@ import { getCurrentUserToken } from './getCurrentUserToken';
 import { FetchArtsAction, FetchArtsActionType } from '../fetchArtsAction';
 
 export function fetchArts(offset: number) {
-    var limit = 16;
+    var limit = 30;
     return (dispatch: any) => {
         dispatch(requestArts());
         return getCurrentUserToken()
