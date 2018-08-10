@@ -29,7 +29,7 @@ class LoginPage extends React.Component<Props, object> {
         return <div className="LoginPage-content">
             <BackgroundArts/>
             <div className="LoginPage-contentWrapper">
-                <h1 className="LoginPage-title">Arto</h1>
+                <h1 className="LoginPage-title">ShaderArts</h1>
                 <p className="LoginPage-description">Welcome to the digital art world.</p>
                 <LoginForm />
             </div>

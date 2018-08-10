@@ -79,7 +79,7 @@ class CreateHeader extends React.Component<Props, object> {
 
         return <header className="Header CreateHeader" ref="createHeader">
                     <div className="Header-content CreateHeader-content">
-                        <div className="Header-logo CreateHeader-logo"><Link to="/">Arto</Link></div>
+                        <div className="Header-logo CreateHeader-logo"><Link to="/">ShaderArts</Link></div>
                         <ul className="Header-menu CreateHeader-menu">
                             <li>
                                 <PaneMenuButton
