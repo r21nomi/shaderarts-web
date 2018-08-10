@@ -4,7 +4,7 @@ import './styles/footer.css';
 const Footer = () => (
     <footer className="Footer">
         <div className="Footer-content">
-            Arto, inc.
+            ShaderArts, inc.
         </div>
     </footer>
 );

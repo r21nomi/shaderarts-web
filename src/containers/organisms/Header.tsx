@@ -50,7 +50,7 @@ class Header extends React.Component<Props, object> {
 
         return <header className="Header">
             <div className="Header-content">
-                <NavLink className="Header-logo" to="/"><img src="/img/logo.png" alt="Arto"/></NavLink>
+                <NavLink className="Header-logo" to="/"><img src="/img/logo.png" alt="ShaderArts"/></NavLink>
                 <ul className="Header-menu">
                     <li className="Header-menuItem"><NavLink to="/explore" activeClassName="active">Explore</NavLink></li>
                     <li className="Header-menuItem"><NavLink to="/create" activeClassName="active">Create</NavLink></li>
