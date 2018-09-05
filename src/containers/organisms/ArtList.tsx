@@ -5,6 +5,7 @@ import './styles/artList.css';
 import Spinner from '../../components/atoms/Spinner';
 
 interface Props {
+    userId: String;
     arts: ArtsState;
     isMyPage: boolean;
     onFetch: () => void;

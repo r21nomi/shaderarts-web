@@ -5,7 +5,7 @@ import { RootState } from '../reducers';
 import { fetchUserArts } from '../actions/actionCreator/fetchUserArts';
 
 interface Props {
-    userId: String
+    userId: String;
 }
 
 const mapStateToProps = (state: RootState) => ({
